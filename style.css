@@ -8,6 +8,10 @@
     font-family: var(--my-font);
 }
 
+html input{
+  outline: none;
+}
+
 
 /* font size responsiveness for all devices */
 html {
@@ -89,6 +93,7 @@ nav{
     font-size: 1.5rem;
     margin-top: 1rem;
     color: black;
+    text-transform: capitalize;
 }
 
 .form-inps{
@@ -133,4 +138,21 @@ nav{
 .ftr-t{
     font-size: 1.7rem;
     text-transform: capitalize;
+}
+
+.inp-cntr-login{
+  background-color: burlywood;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.login-pg-btn{
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  border: none;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: black;
+  text-transform: capitalize;
 }
