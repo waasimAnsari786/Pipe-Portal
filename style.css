@@ -81,15 +81,11 @@ nav{
     list-style-type: none;
 }
 
-.head-cntr{
-    background-color: burlywood;
-}
-
 .opts{
-    background-color: white;
+    background-color: burlywood;
     border-radius: 1rem;
     padding: 1rem;
-    border: .1rem solid burlywood;
+    border: none;
     font-size: 1.5rem;
     margin-top: 1rem;
     color: black;
@@ -97,10 +93,10 @@ nav{
 }
 
 .form-inps{
-    background-color: white;
+    background-color: burlywood;
     border-radius: 1rem;
     padding: 1rem;
-    border: .1rem solid burlywood;
+    border: none;
     font-size: 1.5rem;
     margin-top: 1rem;
     width: 100%;

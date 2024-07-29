@@ -2,12 +2,16 @@ let optCtnr = document.querySelector(".opt-ctnr");
 let num = 0;
 let logInBtn = document.querySelector("#login-btn");
 let topBar = document.querySelector("#navbarSupportedContent");
+let loginPgForm = document.querySelector(".login-pg-form");
+let loginPgBtn = document.querySelector(".login-pg-btn");
 
-for (let index = 0; index <= 6; index++) {
-  let btn = document.createElement("button");
-  btn.innerText = `Button ${index}`;
-  btn.classList.add("opts", "w-100");
-  optCtnr.append(btn);
+if (optCtnr) {
+  for (let index = 0; index <= 6; index++) {
+    let btn = document.createElement("button");
+    btn.innerText = `Button ${index}`;
+    btn.classList.add("opts", "w-100");
+    optCtnr.append(btn);
+  }
 }
 
 let optBtns = document.querySelectorAll(".opts");
@@ -45,3 +49,15 @@ topBar.addEventListener("click" , (e) => {
     console.log('clicked');
   }
 });
+
+if (loginPgForm) {
+  loginPgForm.addEventListener("submit" , (e) => {
+    e.preventDefault();
+  });
+
+  loginPgForm.addEventListener("click" , (e) => {
+    if (e.target.classList.contains("login-pg-btn")) {
+      navigateToNextPage("dashbord.html")
+    }  
+  });
+}
