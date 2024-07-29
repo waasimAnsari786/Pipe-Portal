@@ -1,7 +1,15 @@
 /* variables for whole web */
 :root {
   --my-font: "Montserrat", sans-serif;
-  --web-color: #766df4;
+  --web-color: #000000;
+}
+
+.h-body{
+  background-image: url(img/23887.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 /* whole body's font family */
@@ -173,11 +181,10 @@ footer{
 
 /* dashbord */
 .dash-col{
-  height: 35rem;
+  height: 17rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25rem;
   color: white;
   text-transform: capitalize;
   border-radius: 100%;
@@ -187,24 +194,20 @@ footer{
 .opts , .sub-opts {
   background-color: white;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
+  width: 60%;
   border: none;
   font-size: 1.5rem;
   margin-top: 1rem;
   color: var(--web-color);
   text-transform: capitalize;
-  width: 80%;
   font-weight: bold;
 }
 
 .opt-ctnr{
   background-color: var(--web-color);
-  border-radius: 1rem;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column  ;
+  padding: 2rem;  
+  height: 100vh;
 }
 
 .sub-opt-ctnr{
@@ -216,7 +219,7 @@ footer{
 }
 
 .db-left-sec{
-  background-color: var(--web-color);
+  background-color: #1e1e1e;
   border-radius: 1rem;
   padding: 3rem ;
 }
@@ -244,7 +247,7 @@ footer{
 
 
 .rough {
-  border: 0.1rem solid black;
+  border: .1rem solid black;
 }
 
 .ctnr-pad{
@@ -254,40 +257,3 @@ footer{
 .hide {
   display: none;
 }
-
-.ftr-logo {
-  font-size: 4rem;
-  text-transform: capitalize;
-  font-weight: bold;
-}
-
-.ftr-heads {
-  font-size: 2rem;
-  text-transform: capitalize;
-  font-weight: bold;
-}
-
-
-
-.ftr-t {
-  font-size: 1.7rem;
-  text-transform: capitalize;
-}
-
-.inp-cntr-login {
-  background-color: burlywood;
-  border-radius: 1rem;
-  padding: 2rem;
-}
-
-.login-pg-btn {
-  background-color: rgb(255, 255, 255);
-  border-radius: 1rem;
-  padding: 1rem 3rem;
-  border: none;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: black;
-  text-transform: capitalize;
-}
-

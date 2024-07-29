@@ -25,12 +25,12 @@ if (homeForm) {
 }
 
 let optCtnr = document.querySelector(".opt-ctnr");
-let dbFormCtnr = document.querySelector(".inp-cntr");
+let dbFormCtnr = document.querySelector(".inp-ctnr");
 let num = 0;
 let num2 = 0;
 let subBtnCtnr;
 
-let inpCtnr = document.querySelector(".inp-cntr");
+let inpCtnr = document.querySelector(".inp-ctnr");
 
 optCtnr.addEventListener("click", (e) => {
   if (e.target.classList.contains("opts")) {
@@ -40,9 +40,10 @@ optCtnr.addEventListener("click", (e) => {
 
     if (num === 0) {
       subBtnCtnr.classList.add("col-8", "sub-opt-ctnr");
-      subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">option 1</button>
-                            <button class="w-100 sub-opts">option 2</button>
-                            <button class="w-100 sub-opts">option 3</button>`;
+      subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">add ${e.target.innerText}</button>
+                            <button class="w-100 sub-opts">add product</button>
+                            <button class="w-100 sub-opts">transaction</button>
+                            <button class="w-100 sub-opts">ledger</button>`;
       e.target.parentElement.append(subBtnCtnr);
       num = 1;
     } else {
