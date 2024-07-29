@@ -4,6 +4,14 @@ const navigateToNextPage = (page) => {
   window.location.href = page;
 };
 
+const addClassFunc = (elem, className) => {
+  elem.classList.add(className);
+};
+
+const remClassFunc = (elem, className) => {
+  elem.classList.remove(className);
+};
+
 if (homeForm) {
   homeForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -17,58 +25,39 @@ if (homeForm) {
 }
 
 let optCtnr = document.querySelector(".opt-ctnr");
+let dbFormCtnr = document.querySelector(".inp-cntr");
 let num = 0;
-let topBar = document.querySelector("#navbarSupportedContent");
-let loginPgForm = document.querySelector(".login-pg-form");
-let loginPgBtn = document.querySelector(".login-pg-btn");
+let num2 = 0;
+let subBtnCtnr;
 
-if (optCtnr) {
-  for (let index = 0; index <= 6; index++) {
-    let btn = document.createElement("button");
-    btn.innerText = `Button ${index}`;
-    btn.classList.add("opts", "w-100");
-    optCtnr.append(btn);
-  }
-}
-
-let optBtns = document.querySelectorAll(".opts");
 let inpCtnr = document.querySelector(".inp-cntr");
 
-const addClassFunc = (elem, className) => {
-  elem.classList.add(className);
-};
+optCtnr.addEventListener("click", (e) => {
+  if (e.target.classList.contains("opts")) {
+    if (!subBtnCtnr) {
+      subBtnCtnr = document.createElement("div");
+    }
 
-const remClassFunc = (elem, className) => {
-  elem.classList.remove(className);
-};
-
-optBtns.forEach((element) => {
-  element.addEventListener("click", () => {
     if (num === 0) {
-      remClassFunc(inpCtnr, "hide");
+      subBtnCtnr.classList.add("col-8", "sub-opt-ctnr");
+      subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">option 1</button>
+                            <button class="w-100 sub-opts">option 2</button>
+                            <button class="w-100 sub-opts">option 3</button>`;
+      e.target.parentElement.append(subBtnCtnr);
       num = 1;
     } else {
-      addClassFunc(inpCtnr, "hide");
+      subBtnCtnr.innerHTML = "";
       num = 0;
     }
-  });
-});
-
-topBar.addEventListener("click", (e) => {
-  if (e.target.id === "login-btn" || e.target.id === "signin-btn") {
-    navigateToNextPage("login.html");
-    console.log("clicked");
+  } else if (e.target.classList.contains("sub-opts")) {
+    if (dbFormCtnr) {
+      if (num2 === 0) {
+        remClassFunc(dbFormCtnr, "hide");
+        num2 = 1;
+      } else {
+        addClassFunc(dbFormCtnr, "hide");
+        num2 = 0;
+      }
+    }
   }
 });
-
-if (loginPgForm) {
-  loginPgForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
-
-  loginPgForm.addEventListener("click", (e) => {
-    if (e.target.classList.contains("login-pg-btn")) {
-      navigateToNextPage("dashbord.html");
-    }
-  });
-}

@@ -9,6 +9,11 @@
   font-family: var(--my-font);
 }
 
+*::selection {
+  background-color: var(--web-color);
+  color: white;
+}
+
 html input {
   outline: none;
 }
@@ -179,15 +184,58 @@ footer{
   background-color: var(--web-color);
 }
 
-.opts {
-  background-color: var(--web-color);
+.opts , .sub-opts {
+  background-color: white;
   border-radius: 1rem;
   padding: 1rem;
   border: none;
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: white;
+  color: var(--web-color);
   text-transform: capitalize;
+  width: 80%;
+  font-weight: bold;
+}
+
+.opt-ctnr{
+  background-color: var(--web-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column  ;
+}
+
+.sub-opt-ctnr{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  padding: 0;
+}
+
+.db-left-sec{
+  background-color: var(--web-color);
+  border-radius: 1rem;
+  padding: 3rem ;
+}
+
+.form-inps {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  color: var(--web-color);
+  font-weight: bold;
+}
+
+.form-inps::placeholder{
+  color: var(--web-color);
+  font-weight: bold;
 }
 /* dashbord end */
 
@@ -201,17 +249,6 @@ footer{
 
 .ctnr-pad{
   padding: 7rem 0;
-}
-
-.form-inps {
-  background-color: burlywood;
-  border-radius: 1rem;
-  padding: 1rem;
-  border: none;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  width: 100%;
-  color: black;
 }
 
 .hide {
