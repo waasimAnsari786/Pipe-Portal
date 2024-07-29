@@ -1,6 +1,23 @@
+let homeForm = document.querySelector(".home-f");
+
+const navigateToNextPage = (page) => {
+  window.location.href = page;
+};
+
+if (homeForm) {
+  homeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
+  homeForm.addEventListener("click", (e) => {
+    if (e.target.classList.contains("sub-btn")) {
+      navigateToNextPage("dashbord.html");
+    }
+  });
+}
+
 let optCtnr = document.querySelector(".opt-ctnr");
 let num = 0;
-let logInBtn = document.querySelector("#login-btn");
 let topBar = document.querySelector("#navbarSupportedContent");
 let loginPgForm = document.querySelector(".login-pg-form");
 let loginPgBtn = document.querySelector(".login-pg-btn");
@@ -17,10 +34,6 @@ if (optCtnr) {
 let optBtns = document.querySelectorAll(".opts");
 let inpCtnr = document.querySelector(".inp-cntr");
 
-const navigateToNextPage = (page) => {
-  window.location.href = page
-};
-
 const addClassFunc = (elem, className) => {
   elem.classList.add(className);
 };
@@ -32,32 +45,30 @@ const remClassFunc = (elem, className) => {
 optBtns.forEach((element) => {
   element.addEventListener("click", () => {
     if (num === 0) {
-        remClassFunc(inpCtnr , "hide");
-        num = 1;
-    }
-
-    else{
-        addClassFunc(inpCtnr , "hide");
-        num = 0;
+      remClassFunc(inpCtnr, "hide");
+      num = 1;
+    } else {
+      addClassFunc(inpCtnr, "hide");
+      num = 0;
     }
   });
 });
 
-topBar.addEventListener("click" , (e) => {
-  if (e.target.id === 'login-btn' || e.target.id === 'signin-btn') {
-    navigateToNextPage('login.html');
-    console.log('clicked');
+topBar.addEventListener("click", (e) => {
+  if (e.target.id === "login-btn" || e.target.id === "signin-btn") {
+    navigateToNextPage("login.html");
+    console.log("clicked");
   }
 });
 
 if (loginPgForm) {
-  loginPgForm.addEventListener("submit" , (e) => {
+  loginPgForm.addEventListener("submit", (e) => {
     e.preventDefault();
   });
 
-  loginPgForm.addEventListener("click" , (e) => {
+  loginPgForm.addEventListener("click", (e) => {
     if (e.target.classList.contains("login-pg-btn")) {
-      navigateToNextPage("dashbord.html")
-    }  
+      navigateToNextPage("dashbord.html");
+    }
   });
 }

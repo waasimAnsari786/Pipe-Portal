@@ -1,148 +1,249 @@
 /* variables for whole web */
-:root{
-    --my-font:"Montserrat", sans-serif;
+:root {
+  --my-font: "Montserrat", sans-serif;
+  --web-color: #766df4;
 }
 
 /* whole body's font family */
-*{
-    font-family: var(--my-font);
+* {
+  font-family: var(--my-font);
 }
 
-html input{
+html input {
   outline: none;
 }
 
-
 /* font size responsiveness for all devices */
 html {
+  font-size: 62.5%;
+}
+
+@media (min-width: 1200px) {
+  html {
     font-size: 62.5%;
   }
-  
-  @media(min-width:1200px) {
-    html {
-      font-size: 62.5%;
-    }
+}
+
+@media (max-width: 1199px) {
+  html {
+    font-size: 62.5%;
   }
-  
-  @media(max-width:1199px) {
-    html {
-      font-size: 62.5%;
-    }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 56.25%;
   }
-  
-  @media(max-width:992px) {
-    html {
-      font-size: 56.25%;
-    }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
   }
-  
-  @media(max-width:768px) {
-    html {
-      font-size: 50%;
-    }
-  
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 43.75%;
   }
-  
-  @media(max-width:576px) {
-    html {
-      font-size: 43.75%;
-    }
-  }
-  
-  /* font size responsiveness for all devices end*/
-
-
-nav{
-    background-color: burlywood;
 }
 
-.navbar-brand{
-    color: white !important;
-    font-size: 2.5rem !important;
-    font-weight: bold !important;
+/* font size responsiveness for all devices end*/
+
+
+
+
+
+/* topbar */
+
+.topbar {
+  box-shadow: 0.2rem 0.4rem 1rem rgb(194, 194, 194);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: white;
 }
 
-.my-nav-it{
-    color: white;
-    font-size: 1.5rem;
-    text-transform: capitalize;
+.inp-lbl {
+  color: var(--web-color);
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-right: 1rem;
 }
 
-.rough{
-    border:.1rem solid black;
+.login-inps {
+  background-color: var(--web-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  margin-right: 3rem;
 }
 
-.carousel-item img{
-    height: 100vh !important;
-    object-fit: cover;
+.login-inps::placeholder {
+  color: white;
+  text-transform: capitalize;
 }
 
-.carousel-indicators{
-    list-style-type: none;
+.sub-btn{
+  background-color: transparent;
+  color: var(--web-color);
+  font-size: 1.6rem;
+  font-weight: bold;
+  border: .1rem solid var(--web-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: .5s;
 }
 
-.opts{
-    background-color: burlywood;
-    border-radius: 1rem;
-    padding: 1rem;
-    border: none;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    color: black;
-    text-transform: capitalize;
+.sub-btn:hover{
+  background-color: var(--web-color);
+  color: white;
+  border: .1rem solid transparent;
+}
+/* topbar end */
+
+
+
+
+
+/* hero section */
+.hero-sec{
+  background-color: #F1F0FE;
+  clip-path: polygon(0 0, 100% 0%, 100% 86%, 0% 100%);
+  padding: 5rem 0 10rem 0;
 }
 
-.form-inps{
-    background-color: burlywood;
-    border-radius: 1rem;
-    padding: 1rem;
-    border: none;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    width: 100%;
-    color: black;
+.hero-t{
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.form-inps::placeholder{
-    color: black;
+.hero-t-2{
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 6rem;
 }
 
-.hide{
-    display: none;
+.hero-t-2 span{
+  color: var(--web-color);
 }
 
-.ftr-logo{
-    font-size: 4rem;
-    text-transform: capitalize;
-    font-weight: bold;
+.hero-t-3{
+  color: rgb(129, 129, 129);
+  font-size: 1.8rem;
 }
 
-.ftr-heads{
-    font-size: 2rem;
-    text-transform: capitalize;
-    font-weight: bold;
+/* hero section end */
+
+
+
+
+
+
+/* footer */
+footer{
+  background-color: var(--web-color);
+  clip-path: polygon(0 14%, 100% 0%, 100% 100%, 0% 100%);
+  padding: 5rem 0;
+  color: white;
 }
 
-.fa-brands{
-    font-size: 2rem;
-    background-color: black;
-    color: white;
-    padding: 1rem;
-    border-radius: 100%;
+.fa-brands {
+  font-size: 2.5rem;
+  background-color: white;
+  color: var(--web-color);
+  padding: 1rem;
+  margin-right: .3rem;
+  border-radius: 100%;
+}
+/* footer end */
+
+
+
+
+
+
+
+/* dashbord */
+.dash-col{
+  height: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  color: white;
+  text-transform: capitalize;
+  border-radius: 100%;
+  background-color: var(--web-color);
 }
 
-.ftr-t{
-    font-size: 1.7rem;
-    text-transform: capitalize;
+.opts {
+  background-color: var(--web-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: white;
+  text-transform: capitalize;
+}
+/* dashbord end */
+
+
+
+
+
+.rough {
+  border: 0.1rem solid black;
 }
 
-.inp-cntr-login{
+.ctnr-pad{
+  padding: 7rem 0;
+}
+
+.form-inps {
+  background-color: burlywood;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  color: black;
+}
+
+.hide {
+  display: none;
+}
+
+.ftr-logo {
+  font-size: 4rem;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.ftr-heads {
+  font-size: 2rem;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+
+
+.ftr-t {
+  font-size: 1.7rem;
+  text-transform: capitalize;
+}
+
+.inp-cntr-login {
   background-color: burlywood;
   border-radius: 1rem;
   padding: 2rem;
 }
 
-.login-pg-btn{
+.login-pg-btn {
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
   padding: 1rem 3rem;
@@ -152,3 +253,4 @@ nav{
   color: black;
   text-transform: capitalize;
 }
+
