@@ -4,7 +4,7 @@
   --web-color: #000000;
 }
 
-.h-body{
+.h-body {
   background-image: url(img/23887.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +22,8 @@
   color: white;
 }
 
-input , textarea {
+input,
+textarea {
   outline: none;
 }
 
@@ -99,7 +100,7 @@ html {
   text-transform: capitalize;
 }
 
-.sub-btn{
+.sub-btn {
   background-color: transparent;
   color: var(--web-color);
   font-size: 1.6rem;
@@ -110,11 +111,12 @@ html {
   transition: .5s;
 }
 
-.sub-btn:hover{
+.sub-btn:hover {
   background-color: var(--web-color);
   color: white;
   border: .1rem solid transparent;
 }
+
 /* topbar end */
 
 
@@ -123,7 +125,7 @@ html {
 
 
 /* dashbord */
-.dash-col{
+.dash-col {
   height: 17rem;
   display: flex;
   justify-content: center;
@@ -134,7 +136,7 @@ html {
   background-color: var(--web-color);
 }
 
-.opts{
+.opts {
   background-color: white;
   border-radius: 1rem;
   padding: 1.5rem;
@@ -147,10 +149,10 @@ html {
   font-weight: bold;
 }
 
-.sub-opts{
+.sub-opts {
   background-color: transparent;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem .5rem;
   width: 68%;
   border: .1rem solid white;
   font-size: 1.5rem;
@@ -160,12 +162,12 @@ html {
   font-weight: bold;
 }
 
-.opt-ctnr{
+.opt-ctnr {
   background-color: var(--web-color);
   padding: 2rem;
 }
 
-.sub-opt-ctnr{
+.sub-opt-ctnr {
   display: flex;
   justify-content: start;
   align-items: start;
@@ -173,16 +175,15 @@ html {
   padding: 0;
 }
 
-.inp-ctnr{
-  background-color: #1e1e1e;
-  padding: 3rem ;
+.inp-ctnr {
+  padding: 3rem;
 }
 
 .form-inps {
-  background-color: white;
+  background-color: transparent;
   border-radius: 1rem;
   padding: 1rem;
-  border: none;
+  border: .1rem solid var(--web-color);
   font-size: 1.5rem;
   margin-top: 1rem;
   width: 100%;
@@ -190,14 +191,28 @@ html {
   font-weight: bold;
 }
 
-.form-inps::placeholder{
+.form-inps::placeholder {
   color: var(--web-color);
   font-weight: bold;
 }
 
-.head-cntr{
+.head-ctnr {
   height: 100vh;
 }
+
+.graph-item {
+  width: 4rem;
+  border: .1rem solid white;
+  background-color: var(--web-color);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: 0 .5rem;
+  font-size: 1.5rem;
+}
+
 /* dashbord end */
 
 
@@ -208,7 +223,7 @@ html {
   border: .1rem solid rgb(0, 0, 0);
 }
 
-.ctnr-pad{
+.ctnr-pad {
   padding: 7rem 0;
 }
 
