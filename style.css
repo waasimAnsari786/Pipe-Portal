@@ -22,7 +22,7 @@
   color: white;
 }
 
-html input {
+input , textarea {
   outline: none;
 }
 
@@ -121,63 +121,6 @@ html {
 
 
 
-/* hero section */
-.hero-sec{
-  background-color: #F1F0FE;
-  clip-path: polygon(0 0, 100% 0%, 100% 86%, 0% 100%);
-  padding: 5rem 0 10rem 0;
-}
-
-.hero-t{
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.hero-t-2{
-  font-size: 5rem;
-  font-weight: bold;
-  line-height: 6rem;
-}
-
-.hero-t-2 span{
-  color: var(--web-color);
-}
-
-.hero-t-3{
-  color: rgb(129, 129, 129);
-  font-size: 1.8rem;
-}
-
-/* hero section end */
-
-
-
-
-
-
-/* footer */
-footer{
-  background-color: var(--web-color);
-  clip-path: polygon(0 14%, 100% 0%, 100% 100%, 0% 100%);
-  padding: 5rem 0;
-  color: white;
-}
-
-.fa-brands {
-  font-size: 2.5rem;
-  background-color: white;
-  color: var(--web-color);
-  padding: 1rem;
-  margin-right: .3rem;
-  border-radius: 100%;
-}
-/* footer end */
-
-
-
-
-
-
 
 /* dashbord */
 .dash-col{
@@ -191,11 +134,11 @@ footer{
   background-color: var(--web-color);
 }
 
-.opts , .sub-opts {
+.opts{
   background-color: white;
   border-radius: 1rem;
   padding: 1.5rem;
-  width: 60%;
+  width: 68%;
   border: none;
   font-size: 1.5rem;
   margin-top: 1rem;
@@ -204,10 +147,22 @@ footer{
   font-weight: bold;
 }
 
+.sub-opts{
+  background-color: transparent;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 68%;
+  border: .1rem solid white;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: white;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 .opt-ctnr{
   background-color: var(--web-color);
-  padding: 2rem;  
-  height: 100vh;
+  padding: 2rem;
 }
 
 .sub-opt-ctnr{
@@ -218,9 +173,8 @@ footer{
   padding: 0;
 }
 
-.db-left-sec{
+.inp-ctnr{
   background-color: #1e1e1e;
-  border-radius: 1rem;
   padding: 3rem ;
 }
 
@@ -240,6 +194,10 @@ footer{
   color: var(--web-color);
   font-weight: bold;
 }
+
+.head-cntr{
+  height: 100vh;
+}
 /* dashbord end */
 
 
@@ -247,7 +205,7 @@ footer{
 
 
 .rough {
-  border: .1rem solid black;
+  border: .1rem solid rgb(0, 0, 0);
 }
 
 .ctnr-pad{

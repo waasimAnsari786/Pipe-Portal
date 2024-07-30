@@ -39,7 +39,7 @@ optCtnr.addEventListener("click", (e) => {
     }
 
     if (num === 0) {
-      subBtnCtnr.classList.add("col-8", "sub-opt-ctnr");
+      subBtnCtnr.classList.add("col-8" , "sub-opt-ctnr");
       subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">add ${e.target.innerText}</button>
                             <button class="w-100 sub-opts">add product</button>
                             <button class="w-100 sub-opts">transaction</button>
