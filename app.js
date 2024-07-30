@@ -1,7 +1,8 @@
 let homeForm = document.querySelector(".home-f");
 let graphCtnr = document.querySelector(".graph-ctnr");
+let graphCtnr2 = document.querySelector(".graph-ctnr-2");
 
-const navigateToNextPage = (page) => {
+const navigateToNextPageFunc = (page) => {
   window.location.href = page;
 };
 
@@ -13,20 +14,50 @@ const remClassFunc = (elem, className) => {
   elem.classList.remove(className);
 };
 
-const printGraph = () => {
-  for (let index = 0; index <= 25; index++) {
-    let grapghDiv = document.createElement("div");
-    let grapghPera = document.createElement("span");
-    grapghDiv.classList.add("graph-item");
-    grapghPera.innerText = `${index + 9}%`;
-    grapghDiv.style.height = `${5 + index}rem`;
-    grapghDiv.append(grapghPera);
-    graphCtnr.append(grapghDiv);
-  }
-};
-
 if (graphCtnr) {
-  printGraph();
+  const ctx = document.getElementById('barchart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+}
+
+if (graphCtnr2) {
+  const ctx = document.getElementById('doughnut');
+  
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
 }
 
 if (homeForm) {
@@ -36,7 +67,7 @@ if (homeForm) {
 
   homeForm.addEventListener("click", (e) => {
     if (e.target.classList.contains("sub-btn")) {
-      navigateToNextPage("dashbord.html");
+      navigateToNextPageFunc("dashbord.html");
     }
   });
 }
