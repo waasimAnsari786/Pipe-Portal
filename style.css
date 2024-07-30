@@ -200,8 +200,18 @@ html {
   height: 100vh;
 }
 
-.graph-ctnr-2{
+.graph-ctnr-2 div{
   height: 50rem;
+  border: .1rem solid var(--web-color);
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.graph-ctnr div{
+  height: 30rem;
+  border: .1rem solid var(--web-color);
+  border-radius: 1rem;
+  padding: 3rem;
 }
 
 /* dashbord end */
