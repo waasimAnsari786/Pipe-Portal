@@ -1,16 +1,33 @@
 /* variables for whole web */
 :root {
   --my-font: "Montserrat", sans-serif;
-  --web-color: #000000;
+  --web-color-l-gray: #efefef;
+  --web-color-green: #208c63;
+  --web-color-white: #ffffff;
+
+  --web-fS-lg: 4rem;
+  --web-fS-md: 1.6rem;
 }
+
+
+
 
 .h-body {
   background-image: url(img/23887.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: rgba(0, 0, 0, 0.59);
+  background-blend-mode: overlay;
   height: 100vh;
 }
+
+
+
+
+
+
+
 
 /* whole body's font family */
 * {
@@ -18,7 +35,7 @@
 }
 
 *::selection {
-  background-color: var(--web-color);
+  background-color: var(--web-color-green);
   color: white;
 }
 
@@ -26,6 +43,11 @@ input,
 textarea {
   outline: none;
 }
+
+
+
+
+
 
 /* font size responsiveness for all devices */
 html {
@@ -48,11 +70,35 @@ html {
   html {
     font-size: 56.25%;
   }
+
+  .login-inps{
+    margin-right: 1rem !important;
+    width: 29%;
+  }
+
+  .d-data-ctnr{
+    margin-top: 1.5rem;
+  }
+
+  /* .graph-ctnr-2 div{
+    height: 35rem;
+  } */
 }
 
 @media (max-width: 768px) {
   html {
     font-size: 50%;
+  }
+
+  .login-inps{
+    margin-right: .5rem !important;
+    width: 34%;
+  }
+
+  .sub-btn{
+    margin-top: 1rem;
+    width: 20%;
+    transform: translateX(200%);
   }
 }
 
@@ -60,18 +106,36 @@ html {
   html {
     font-size: 43.75%;
   }
+
+  .tb-form{
+    position: relative;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
 }
+
+@media (max-width: 400px) {
+  .login-inps{
+    width: 30%;
+  }
+
+  .d-data-ctnr-prnt{
+    width: 100% !important;
+  }
+}
+
 
 /* font size responsiveness for all devices end*/
 
-
-
-
-
 /* topbar */
+.logo h1 {
+  color: var(--web-color-green);
+  font-weight: bold;
+}
 
 .topbar {
-  box-shadow: 0.2rem 0.4rem 1rem rgb(194, 194, 194);
+  /* box-shadow: 0.2rem 0.4rem 1rem rgb(194, 194, 194); */
   position: fixed;
   top: 0;
   z-index: 999;
@@ -79,18 +143,18 @@ html {
 }
 
 .inp-lbl {
-  color: var(--web-color);
-  font-size: 1.6rem;
+  color: var(--web-color-green);
+  font-size: var(--web-fS-md);
   font-weight: bold;
   margin-right: 1rem;
 }
 
 .login-inps {
-  background-color: var(--web-color);
+  background-color: var(--web-color-green);
   border-radius: 1rem;
   padding: 1rem;
   border: none;
-  font-size: 1.5rem;
+  font-size: var(--web-fS-md);
   color: rgb(255, 255, 255);
   margin-right: 3rem;
 }
@@ -102,29 +166,35 @@ html {
 
 .sub-btn {
   background-color: transparent;
-  color: var(--web-color);
-  font-size: 1.6rem;
+  color: var(--web-color-green);
+  font-size: var(--web-fS-md);
   font-weight: bold;
-  border: .1rem solid var(--web-color);
+  border: 0.1rem solid var(--web-color-green);
   border-radius: 1rem;
   padding: 1rem;
-  transition: .5s;
+  transition: 0.5s;
+}
+
+.tb-form{
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .sub-btn:hover {
-  background-color: var(--web-color);
+  background-color: var(--web-color-green);
   color: white;
-  border: .1rem solid transparent;
+  border: 0.1rem solid transparent;
 }
 
 /* topbar end */
 
-
-
-
-
-
 /* dashbord */
+.d-body {
+  background-color: var(--web-color-l-gray);
+}
+
 .dash-col {
   height: 17rem;
   display: flex;
@@ -133,37 +203,36 @@ html {
   color: white;
   text-transform: capitalize;
   border-radius: 100%;
-  background-color: var(--web-color);
+  background-color: var(--web-color-green);
 }
 
-.opts {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  width: 68%;
-  border: none;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: var(--web-color);
-  text-transform: capitalize;
-  font-weight: bold;
+.dshbd-icon {
+  margin-right: 1rem;
+  font-size: 2.5rem;
 }
 
+.opts,
 .sub-opts {
   background-color: transparent;
-  border-radius: 1rem;
-  padding: 1.5rem .5rem;
-  width: 68%;
-  border: .1rem solid white;
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-size: var(--web-fS-md);
+  padding: 1.5rem;
+  text-align: left;
+  border: none;
   color: white;
   text-transform: capitalize;
   font-weight: bold;
+  transition: 0.5s;
+  position: relative;
+}
+
+.opts:hover,
+.sub-opts:hover {
+  background-color: white;
+  color: var(--web-color-green);
 }
 
 .opt-ctnr {
-  background-color: var(--web-color);
+  background-color: var(--web-color-green);
   padding: 2rem;
 }
 
@@ -173,26 +242,37 @@ html {
   align-items: start;
   flex-direction: column;
   padding: 0;
+  height: 0rem;
+  opacity: 0;
+  transition: all .5s ease;
 }
 
 .inp-ctnr {
   padding: 3rem;
+  /* background-color: var(--web-color-white);
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  transform: scale(0);
+  transition: all 0.5s ease;
+  z-index: 999; */
 }
 
 .form-inps {
   background-color: transparent;
   border-radius: 1rem;
   padding: 1rem;
-  border: .1rem solid var(--web-color);
-  font-size: 1.5rem;
+  border: 0.1rem solid var(--web-color-green);
+  font-size: var(--web-fS-md);
   margin-top: 1rem;
   width: 100%;
-  color: var(--web-color);
+  color: var(--web-color-green);
   font-weight: bold;
 }
 
 .form-inps::placeholder {
-  color: var(--web-color);
+  color: var(--web-color-green);
   font-weight: bold;
 }
 
@@ -200,18 +280,57 @@ html {
   height: 100vh;
 }
 
-.graph-ctnr-2 div{
-  height: 50rem;
-  border: .1rem solid var(--web-color);
+.graph-ctnr-2 div , .graph-ctnr div {
+  background-color: white;
   border-radius: 1rem;
   padding: 3rem;
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.graph-ctnr div{
-  height: 30rem;
-  border: .1rem solid var(--web-color);
+#barchart , #doughnut{
+  height: 40vh !important;
+}
+
+.d-data-ctnr {
+  background-color: white;
   border-radius: 1rem;
-  padding: 3rem;
+  padding: 2rem;
+  transition: 0.5s;
+}
+
+.d-num-data :nth-child(1) {
+  color: var(--web-color-green);
+  font-size: var(--web-fS-lg);
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.d-num-data :nth-child(2) {
+  color: black;
+  font-size: var(--web-fS-md);
+  text-transform: capitalize;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.d-data-icon i {
+  color: var(--web-color-green);
+  font-size: var(--web-fS-lg);
+  text-align: right;
+  transition: 0.5s;
+}
+
+.d-data-ctnr:hover {
+  background-color: var(--web-color-green);
+}
+
+.d-data-ctnr:hover .d-num-data :nth-child(1),
+.d-data-ctnr:hover .d-num-data :nth-child(2),
+.d-data-ctnr:hover i {
+  color: white;
 }
 
 /* dashbord end */
@@ -220,8 +339,12 @@ html {
 
 
 
+
+
+
+
 .rough {
-  border: .1rem solid rgb(0, 0, 0);
+  border: 0.1rem solid rgb(0, 0, 0);
 }
 
 .ctnr-pad {

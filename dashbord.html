@@ -26,35 +26,114 @@
   <title>Pipe Portal Dashboard</title>
 </head>
 
-<body>
+<body class='d-body'>
+  <!-- dashboard -->
+
   <div class="container-fluid">
     <div class="row head-ctnr">
-      <div class="col-2 d-flex justify-content-center align-items-center flex-column gap-5 opt-ctnr">
-        <div class="col-12 d-flex justify-content-center align-items-center flex-column">
-          <button class="opts">vendor</button>
+
+      <!-- dashboard buttons container -->
+      <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 p-0 opt-ctnr">
+
+        <div class="col-12 p-0 opt-ctnr-inner">
+          <button class="opts w-100 mt-4" id="vendor-btn">
+            <i class="fa-solid fa-user-plus dshbd-icon" id="vendor-icon"></i>
+            <span>vendor</span>
+          </button>
         </div>
 
-        <div class="col-12 main-opts-ctnr d-flex justify-content-center align-items-center flex-column">
-          <button class="opts">client</button>
+        <div class="col-12 p-0 opt-ctnr-inner">
+          <button class="opts w-100" id="client-btn">
+            <i class="fa-solid fa-users dshbd-icon" id="client-icon"></i>
+            <span>client</span>
+          </button>
         </div>
 
-        <div class="col-12 main-opts-ctnr d-flex justify-content-center align-items-center flex-column">
-          <button class="opts">payroll</button>
+        <div class="col-12 p-0 opt-ctnr-inner">
+          <button class="opts w-100" id="payroll-btn">
+            <i class="fa-solid fa-user-pen dshbd-icon" id="payroll-icon"></i>
+            <span>payroll</span>
+          </button>
         </div>
       </div>
+      <!-- dashboard buttons container end-->
 
 
-      <div class="col-10">
-        <div class="row">
-          <div class="col-6 graph-ctnr d-flex justify-content-between align-items-baseline">
-            <div class="col-12">
-              <canvas id="barchart"></canvas>
+
+
+      <!-- dashboard chart and clients data section -->
+      <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9 pb-5 px-4">
+        <div class="row d-flex justify-content-center align-items-center py-5">
+
+          <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
+            <div class="col-12 d-data-ctnr">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-4 d-num-data ">
+                  <p>1217</p>
+                  <p>vendors</p>
+                </div>
+                <div class="col-4 d-data-icon d-flex justify-content-end align-items-center">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+              </div>
             </div>
           </div>
-  
-          <div class="col-6 graph-ctnr-2 d-flex justify-content-between align-items-baselin">
+
+          <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
+            <div class="col-12 d-data-ctnr">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-4 d-num-data ">
+                  <p>1000</p>
+                  <p>clients</p>
+                </div>
+                <div class="col-4 d-data-icon d-flex justify-content-end align-items-center">
+                  <i class="fa-solid fa-users-line"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
+            <div class="col-12 d-data-ctnr">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-4 d-num-data">
+                  <p>68</p>
+                  <p>employees</p>
+                </div>
+                <div class="col-4 d-data-icon d-flex justify-content-end align-items-center">
+                  <i class="fa-solid fa-users-gear"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
+            <div class="col-12 d-data-ctnr">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-4 d-num-data">
+                  <p>4500</p>
+                  <p>earnings</p>
+                </div>
+                <div class="col-4 d-data-icon d-flex justify-content-end align-items-center">
+                  <i class="fa-solid fa-sack-dollar"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center">
+          <div
+            class="col-xxl-5 col-xl-8 col-lg-8 col-md-9 graph-ctnr d-flex justify-content-between align-items-baseline mt-3">
             <div class="col-12">
-              <canvas id="doughnut"></canvas>
+              <canvas class="w-100" id="barchart" canvas>
+            </div>
+          </div>
+
+          <div
+            class="col-xxl-3 col-xl-4 col-lg-4 col-md-9 graph-ctnr-2 d-flex justify-content-between align-items-baselin mt-3">
+            <div class="col-12">
+              <canvas id="doughnut" class="w-100"></canvas>
             </div>
           </div>
         </div>
@@ -78,9 +157,12 @@
           </form>
         </div>
       </div>
+      <!-- dashboard chart and clients data section end-->
+
     </div>
   </div>
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="app.js"></script>
