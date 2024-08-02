@@ -3,6 +3,7 @@
   --my-font: "Montserrat", sans-serif;
   --web-color-l-gray: #efefef;
   --web-color-green: #208c63;
+  --web-color--dark-green: #1a6549;
   --web-color-white: #ffffff;
 
   --web-fS-lg: 4rem;
@@ -247,33 +248,25 @@ html {
   transition: all .5s ease;
 }
 
-.inp-ctnr {
-  padding: 3rem;
-  /* background-color: var(--web-color-white);
-  position: absolute;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  transform: scale(0);
-  transition: all 0.5s ease;
-  z-index: 999; */
-}
-
 .form-inps {
-  background-color: transparent;
+  background-color: var(--web-color-green);
   border-radius: 1rem;
   padding: 1rem;
-  border: 0.1rem solid var(--web-color-green);
+  border: none;
   font-size: var(--web-fS-md);
-  margin-top: 1rem;
-  width: 100%;
-  color: var(--web-color-green);
-  font-weight: bold;
+  color: var(--web-color-white);
+  font-weight: 500;
+}
+
+.form-inps:focus {
+  background-color: var(--web-color--dark-green);
+  box-shadow: 2px 0 10px var(--web-color-green);
 }
 
 .form-inps::placeholder {
-  color: var(--web-color-green);
-  font-weight: bold;
+  color: var(--web-color-white);
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .head-ctnr {
@@ -333,6 +326,18 @@ html {
   color: white;
 }
 
+.d-form{
+  display: grid;
+  grid-template-columns: repeat(3 , 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
+
+.d-form-head{
+  text-transform: capitalize;
+  color: var(--web-color-green);
+  font-weight: bold;
+}
 /* dashbord end */
 
 
