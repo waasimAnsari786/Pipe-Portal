@@ -37,32 +37,43 @@
     <title>Pipe Portal</title>
   </head>
   <body class="h-body">
+    <!-- home page or login page -->
 
-<!-- home page or login page -->
-
-    <div class="container-fluid topbar">
+    <div class="container-fluid topbar bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-xxl-1 col-xl-1 col-lg-2 col-md-2 col-sm-2 logo">
-            <img src="img/final logo pvc pipe factory.png" class="w-100" alt="brand logo">
-          </div>
-
-          <div class="col-xxl-11 col-xl-10 col-lg-10 col-md-10 col-sm-10 tb-form">
-            <form class="home-f">
-              <label class="inp-lbl">Email</label>
-              <input type="email" class="login-inps" placeholder="your email" id="email-inp">
-
-              <label class="inp-lbl">Password</label>
-              <input type="password" class="login-inps" placeholder="your password" id="pswd-inp">
-
-              <button class="sub-btn" id="submit-btn">Submit</button>
-            </form>
+          <div
+            class="col-xxl-2 col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 logo py-2"
+          >
+            <img src="img/logo 2.png" class="w-100" alt="brand logo" />
           </div>
         </div>
       </div>
     </div>
 
-    
+    <div class="form-container mx-auto my-5">
+      <form id="loginForm" class="d-flex justify-content-center align-items-center flex-column">
+        <div class="form-group mb-5">
+          <label class="inp-lbl" for="email">Email:</label>
+          <input
+            type="email"
+            id="email-inp"
+            class="login-inps w-100"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="form-group mb-5">
+          <label class="inp-lbl" for="password">Password:</label>
+          <input
+            type="password"
+            id="pswd-inp"
+            class="login-inps w-100"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button class="sub-btn w-100" id="submit-btn">Login</button>
+      </form>
+    </div>
 
     <script type="module" src="app.js"></script>
   </body>

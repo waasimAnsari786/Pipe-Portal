@@ -2,7 +2,7 @@
 import { formsDataAPI } from "./formAPI.js";
 
 // login page's code
-let homeForm = document.querySelector(".home-f");
+let homeForm = document.querySelector("#loginForm");
 let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
 
@@ -26,10 +26,10 @@ const validatePswdfunc = (userPswd) => {
 };
 
 // this function if for subit button of login page
-const chkEmailPswdOnClick = (CBEmaliFunc, CBPswdFunc, a, b) => {
-  let checkedEmail = CBEmaliFunc(a);
+const chkEmailPswdOnClick = (CBEmailFunc, CBPswdFunc, a, b) => {
+  let checkedEmail = CBEmailFunc(a);
   let checkedPswd = CBPswdFunc(b);
-  return [checkedEmail, checkedPswd];
+  return [checkedEmail, checkedPswd, a, b];
 };
 
 // this is for prevnting the submit functionality of forms
@@ -42,7 +42,7 @@ if (homeForm) {
   homeForm.addEventListener("click", (e) => {
     if (e.target.id === "submit-btn") {
       // i used callback hell in this line of code
-      let [finalValue1, finalValue2] = chkEmailPswdOnClick(
+      let [finalValue1, finalValue2, emInpVal, psInpVal] = chkEmailPswdOnClick(
         validateEmailFunc,
         validatePswdfunc,
         emailInp.value,
@@ -50,17 +50,18 @@ if (homeForm) {
       );
 
       // these are the conditions for alerting the user that what mistake is he doing at the time of login
-      if (finalValue1 && finalValue2) {
-        navigateToNextPageFunc("dashbord.html");
-      } else if (!finalValue1 && !finalValue2) {
-        alert("Both email and password are incorrect.");
-        navigateToNextPageFunc("index.html");
-      } else if (!finalValue1) {
-        alert("Your email is incorrect.");
-        navigateToNextPageFunc("index.html");
-      } else if (!finalValue2) {
-        alert("Your password is incorrect.");
-        navigateToNextPageFunc("index.html");
+      if (emInpVal && psInpVal) {
+        if (finalValue1 && finalValue2) {
+          navigateToNextPageFunc("dashbord.html");
+        } else if (!finalValue1 && !finalValue2) {
+          alert("Both email and password are incorrect!");
+        } else if (!finalValue1) {
+          alert("Your email is incorrect!");
+        } else if (!finalValue2) {
+          alert("Your password is incorrect!");
+        }
+      } else {
+        alert("You can't login without enter your email and password!");
       }
     }
   });
@@ -102,13 +103,8 @@ const remAniFunc = (targElem) => {
   targElem.innerHTML = "";
 };
 
-const printForms = (targElem , plchldr) => {
-  let inp = document.createElement("input");
-  inp.setAttribute("type", "text");
-  inp.setAttribute("placeholder", `${plchldr}`);
-  inp.classList.add("form-inps");
-  targElem.append(inp);
-};
+
+
 
 // this is "Chart.Js" library's code for inserting charts
 if (graphCtnr) {
@@ -158,159 +154,129 @@ if (graphCtnr2) {
   });
 }
 
-let optCtnr = document.querySelector(".opt-ctnr");
-let dbFormCtnr = document.querySelector(".inp-ctnr form");
-let num = 0;
-let subBtnCtnr;
+const handleOnClick = (targElem, type, btnText) => {
+  if (type === "vendor") {
+    targElem.innerHTML = `<button class="w-100 sub-opts">add ${btnText}</button>
+      <button class="w-100 sub-opts">add product</button>
+      <button class="w-100 sub-opts">${btnText}'s transaction</button>
+      <button class="w-100 sub-opts">${btnText}'s ledger</button>`;
+    addAniFunc(targElem, "20rem", 0);
+  } else if (type === "client") {
+    targElem.innerHTML = `<button class="w-100 sub-opts">add ${btnText}</button>
+                            <button class="w-100 sub-opts">${btnText}'s entry</button>
+                            <button class="w-100 sub-opts">${btnText}'s ledger</button>`;
+    addAniFunc(targElem, "15rem", 0);
+  } else if (type === "payroll") {
+    targElem.innerHTML = `<button class="w-100 sub-opts">add employee</button>
+      <button class="w-100 sub-opts">advance salary</button>
+      <button class="w-100 sub-opts">${btnText} entry</button>
+      <button class="w-100 sub-opts">${btnText} ledger</button>`;
+    addAniFunc(targElem, "20rem", 1);
+  }
 
-// all the sub buttons and their forms targeted in this function.
+  let allSubOptCtrns = document.querySelectorAll(".sub-opt-ctnr");
+  allSubOptCtrns.forEach((div) => {
+    if (div !== targElem) {
+      remAniFunc(div);
+    }
+  });
+};
+
+// this variable is g=for getting the dashbord's page button's section
+let optCtnr = document.querySelector(".opt-ctnr");
+
+// all the sub buttons and all forms will be printed through this function
 if (optCtnr) {
   optCtnr.addEventListener("click", (e) => {
+    let targetedBtn = e.target.closest("button");
+    if (!targetedBtn) return;
+
+    let subBtnCtnr = targetedBtn.nextElementSibling;
     if (
       e.target.id === "vendor-btn" ||
       e.target.innerText === "Vendor" ||
       e.target.id === "vendor-icon"
     ) {
-      if (!subBtnCtnr) {
-        subBtnCtnr = document.createElement("div");
-        addClassFunc(subBtnCtnr, "sub-opt-ctnr");
-      }
-
-      if (num === 0) {
-        subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">add ${e.target.innerText}</button>
-                            <button class="w-100 sub-opts">add product</button>
-                            <button class="w-100 sub-opts">${e.target.innerText}'s transaction</button>
-                            <button class="w-100 sub-opts">${e.target.innerText}'s ledger</button>`;
-        e.target.closest(".opt-ctnr-inner").append(subBtnCtnr);
-        addAniFunc(subBtnCtnr, "20rem", 0);
-        num = 1;
-      } else {
-        remAniFunc(subBtnCtnr);
-        num = 0;
-      }
-    }
-
-    if (
+      handleOnClick(subBtnCtnr, "vendor", e.target.innerText);
+    } else if (
       e.target.id === "client-btn" ||
       e.target.innerText === "Client" ||
       e.target.id === "client-icon"
     ) {
-      if (!subBtnCtnr) {
-        subBtnCtnr = document.createElement("div");
-      }
-
-      if (num === 0) {
-        addClassFunc(subBtnCtnr, "sub-opt-ctnr");
-        subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">add ${e.target.innerText}</button>
-                            <button class="w-100 sub-opts">${e.target.innerText}'s entry</button>
-                            <button class="w-100 sub-opts">${e.target.innerText}'s ledger</button>`;
-        e.target.closest(".opt-ctnr-inner").append(subBtnCtnr);
-        addAniFunc(subBtnCtnr, "15rem", 0);
-        num = 1;
-      } else {
-        remAniFunc(subBtnCtnr);
-        num = 0;
-      }
-    }
-
-    if (
+      handleOnClick(subBtnCtnr, "client", e.target.innerText);
+    } else if (
       e.target.id === "payroll-btn" ||
       e.target.innerText === "Payroll" ||
       e.target.id === "payroll-icon"
     ) {
-      if (!subBtnCtnr) {
-        subBtnCtnr = document.createElement("div");
-      }
-
-      if (num === 0) {
-        addClassFunc(subBtnCtnr, "sub-opt-ctnr");
-        subBtnCtnr.innerHTML = `<button class="w-100 sub-opts">add employee</button>
-                            <button class="w-100 sub-opts">advance salary</button>
-                            <button class="w-100 sub-opts">${e.target.innerText} entry</button>
-                            <button class="w-100 sub-opts">${e.target.innerText} ledger</button>`;
-        e.target.closest(".opt-ctnr-inner").append(subBtnCtnr);
-        addAniFunc(subBtnCtnr, "20rem", 1);
-        num = 1;
-      } else {
-        remAniFunc(subBtnCtnr);
-        num = 0;
-      }
+      handleOnClick(subBtnCtnr, "payroll", e.target.innerText);
     } else if (e.target.innerText === "Add Vendor") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Add Vendor")) {
-          dbFormCtnr.innerHTML = "";
-          element["Add Vendor"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc('add vendor.html');
+      // formsDataAPI.forEach((element) => {
+      //   if (element.hasOwnProperty("Add Vendor")) {
+      //     dbFormCtnr.innerHTML = "";
+      //     element["Add Vendor"].forEach((innElem) => {
+      //       printForms(dbFormCtnr, innElem);
+      //     });
+      //   }
+      // });
+      // dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
     } else if (e.target.innerText === "Add Product") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Add Product")) {
           dbFormCtnr.innerHTML = "";
           element["Add Product"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });
       dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
-    }
-
-    else if (e.target.innerText === "Add Client") {
+    } else if (e.target.innerText === "Add Client") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Add Client")) {
           dbFormCtnr.innerHTML = "";
           element["Add Client"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });
       dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
-    }
-
-    else if (e.target.innerText === "Client's Entry") {
+    } else if (e.target.innerText === "Client's Entry") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Client's Entry")) {
           dbFormCtnr.innerHTML = "";
           element["Client's Entry"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });
       dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
-    }
-
-    else if (e.target.innerText === "Add Employee") {
+    } else if (e.target.innerText === "Add Employee") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Add Employee")) {
           dbFormCtnr.innerHTML = "";
           element["Add Employee"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });
       dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
-    }
-
-    else if (e.target.innerText === "Advance Salary") {
+    } else if (e.target.innerText === "Advance Salary") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Advance Salary")) {
           dbFormCtnr.innerHTML = "";
           element["Advance Salary"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });
       dbFormCtnr.previousElementSibling.innerText = `employee's ${e.target.innerText}'s form`;
-    }
-
-    else if (e.target.innerText === "Payroll Entry") {
+    } else if (e.target.innerText === "Payroll Entry") {
       formsDataAPI.forEach((element) => {
         if (element.hasOwnProperty("Payroll Entry")) {
           dbFormCtnr.innerHTML = "";
           element["Payroll Entry"].forEach((innElem) => {
-            printForms(dbFormCtnr , innElem)
+            printForms(dbFormCtnr, innElem);
           });
         }
       });

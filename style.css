@@ -2,16 +2,32 @@
 :root {
   --my-font: "Montserrat", sans-serif;
   --web-color-l-gray: #efefef;
-  --web-color-green: #208c63;
-  --web-color--dark-green: #1a6549;
-  --web-color-white: #ffffff;
+  --web-main-color-light: #fec982;
+  --web-main-color-dark: #5E2C00;
 
   --web-fS-lg: 4rem;
   --web-fS-md: 1.6rem;
 }
 
+/* login page's form's div's animation */
+@keyframes shadowAnimation {
+  0% {
+    box-shadow: inset -0.5rem 0 1.5rem rgba(255, 255, 255, 0.5);
+  }
 
-
+  25% {
+    box-shadow: inset 0 -0.5rem 1.5rem rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: inset 0.5rem 0 1.5rem rgba(255, 255, 255, 0.5);
+  }
+  75% {
+    box-shadow: inset 0 0.5rem 1.5rem rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: inset -0.5rem 0 1.5rem rgba(255, 255, 255, 0.5);
+  }
+}
 
 .h-body {
   background-image: url(img/23887.jpg);
@@ -23,21 +39,14 @@
   height: 100vh;
 }
 
-
-
-
-
-
-
-
 /* whole body's font family */
 * {
   font-family: var(--my-font);
 }
 
 *::selection {
-  background-color: var(--web-color-green);
-  color: white;
+  background-color: var(--web-main-color-light);
+  color: var(--web-main-color-dark);
 }
 
 input,
@@ -45,10 +54,9 @@ textarea {
   outline: none;
 }
 
-
-
-
-
+html button{
+  text-transform: capitalize;
+}
 
 /* font size responsiveness for all devices */
 html {
@@ -72,18 +80,14 @@ html {
     font-size: 56.25%;
   }
 
-  .login-inps{
+  .login-inps {
     margin-right: 1rem !important;
     width: 29%;
   }
 
-  .d-data-ctnr{
+  .d-data-ctnr {
     margin-top: 1.5rem;
   }
-
-  /* .graph-ctnr-2 div{
-    height: 35rem;
-  } */
 }
 
 @media (max-width: 768px) {
@@ -91,12 +95,12 @@ html {
     font-size: 50%;
   }
 
-  .login-inps{
-    margin-right: .5rem !important;
+  .login-inps {
+    margin-right: 0.5rem !important;
     width: 34%;
   }
 
-  .sub-btn{
+  .sub-btn {
     margin-top: 1rem;
     width: 20%;
     transform: translateX(200%);
@@ -108,7 +112,7 @@ html {
     font-size: 43.75%;
   }
 
-  .tb-form{
+  .tb-form {
     position: relative;
     display: flex;
     justify-content: center !important;
@@ -117,76 +121,75 @@ html {
 }
 
 @media (max-width: 400px) {
-  .login-inps{
+  .login-inps {
     width: 30%;
   }
 
-  .d-data-ctnr-prnt{
+  .d-data-ctnr-prnt {
     width: 100% !important;
   }
 }
 
-
 /* font size responsiveness for all devices end*/
 
 /* topbar */
-.logo h1 {
-  color: var(--web-color-green);
-  font-weight: bold;
+.form-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(.5rem);
+  border-radius: 1.5rem;
+  padding: 5rem;
+  max-width: 40rem;
+  width: 100%;
+  animation: shadowAnimation 1.5s infinite linear;
 }
 
-.topbar {
-  /* box-shadow: 0.2rem 0.4rem 1rem rgb(194, 194, 194); */
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  background-color: white;
+.logo {
+  width: 10.5% !important;
 }
 
 .inp-lbl {
-  color: var(--web-color-green);
+  color: var(--web-main-color-light);
   font-size: var(--web-fS-md);
   font-weight: bold;
-  margin-right: 1rem;
 }
 
 .login-inps {
-  background-color: var(--web-color-green);
+  background-color: var(--web-main-color-light);
   border-radius: 1rem;
   padding: 1rem;
   border: none;
   font-size: var(--web-fS-md);
-  color: rgb(255, 255, 255);
+  color: var(--web-main-color-dark);
   margin-right: 3rem;
+  font-weight: 500;
+}
+
+.login-inps:focus {
+  background-color: var(--web-main-color-dark);
+  color: var(--web-main-color-light);
+  font-weight: 500;
 }
 
 .login-inps::placeholder {
-  color: white;
+  color: var(--web-main-color-dark);
   text-transform: capitalize;
+  font-weight: 500;
 }
 
 .sub-btn {
-  background-color: transparent;
-  color: var(--web-color-green);
+  background-color: var(--web-main-color-dark);
+  color: var(--web-main-color-light);
   font-size: var(--web-fS-md);
   font-weight: bold;
-  border: 0.1rem solid var(--web-color-green);
   border-radius: 1rem;
   padding: 1rem;
+  border: none;
   transition: 0.5s;
 }
 
-.tb-form{
-  position: relative;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-}
-
 .sub-btn:hover {
-  background-color: var(--web-color-green);
-  color: white;
-  border: 0.1rem solid transparent;
+  background-color: var(--web-main-color-light);
+  color: var(--web-main-color-dark);
 }
 
 /* topbar end */
@@ -204,7 +207,7 @@ html {
   color: white;
   text-transform: capitalize;
   border-radius: 100%;
-  background-color: var(--web-color-green);
+  background-color: var(--web-main-color-light);
 }
 
 .dshbd-icon {
@@ -219,7 +222,7 @@ html {
   padding: 1.5rem;
   text-align: left;
   border: none;
-  color: white;
+  color: var(--web-main-color-dark);
   text-transform: capitalize;
   font-weight: bold;
   transition: 0.5s;
@@ -229,11 +232,10 @@ html {
 .opts:hover,
 .sub-opts:hover {
   background-color: white;
-  color: var(--web-color-green);
 }
 
 .opt-ctnr {
-  background-color: var(--web-color-green);
+  background-color: var(--web-main-color-light);
   padding: 2rem;
 }
 
@@ -245,26 +247,26 @@ html {
   padding: 0;
   height: 0rem;
   opacity: 0;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .form-inps {
-  background-color: var(--web-color-green);
-  border-radius: 1rem;
+  background-color: var(--web-main-color-light);
   padding: 1rem;
   border: none;
   font-size: var(--web-fS-md);
-  color: var(--web-color-white);
+  color: var(--web-main-color-dark);
   font-weight: 500;
+  width: 100%;
 }
 
 .form-inps:focus {
-  background-color: var(--web-color--dark-green);
-  box-shadow: 2px 0 10px var(--web-color-green);
+  background-color: var(--web-main-color-dark);
+  color: var(--web-main-color-light);
 }
 
 .form-inps::placeholder {
-  color: var(--web-color-white);
+  color: var(--web-main-color-dark);
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -273,7 +275,8 @@ html {
   height: 100vh;
 }
 
-.graph-ctnr-2 div , .graph-ctnr div {
+.graph-ctnr-2 div,
+.graph-ctnr div {
   background-color: white;
   border-radius: 1rem;
   padding: 3rem;
@@ -283,26 +286,27 @@ html {
   align-items: center;
 }
 
-#barchart , #doughnut{
+#barchart,
+#doughnut {
   height: 40vh !important;
 }
 
 .d-data-ctnr {
-  background-color: white;
+  background-color: var(--web-main-color-light);
   border-radius: 1rem;
   padding: 2rem;
   transition: 0.5s;
 }
 
 .d-num-data :nth-child(1) {
-  color: var(--web-color-green);
+  color: var(--web-main-color-dark);
   font-size: var(--web-fS-lg);
   font-weight: 500;
   transition: 0.5s;
 }
 
 .d-num-data :nth-child(2) {
-  color: black;
+  color: var(--web-main-color-dark);
   font-size: var(--web-fS-md);
   text-transform: capitalize;
   font-weight: 500;
@@ -310,43 +314,35 @@ html {
 }
 
 .d-data-icon i {
-  color: var(--web-color-green);
+  color: var(--web-main-color-dark);
   font-size: var(--web-fS-lg);
   text-align: right;
   transition: 0.5s;
 }
 
 .d-data-ctnr:hover {
-  background-color: var(--web-color-green);
+  background-color: var(--web-main-color-dark);
 }
 
 .d-data-ctnr:hover .d-num-data :nth-child(1),
 .d-data-ctnr:hover .d-num-data :nth-child(2),
 .d-data-ctnr:hover i {
-  color: white;
+  color: var(--web-main-color-light);
 }
 
-.d-form{
+/* .d-form {
   display: grid;
-  grid-template-columns: repeat(3 , 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 1.5rem;
   row-gap: 1.5rem;
-}
+} */
 
-.d-form-head{
+.d-form-head {
   text-transform: capitalize;
-  color: var(--web-color-green);
+  color: var(--web-main-color-dark);
   font-weight: bold;
 }
 /* dashbord end */
-
-
-
-
-
-
-
-
 
 .rough {
   border: 0.1rem solid rgb(0, 0, 0);
