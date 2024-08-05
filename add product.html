@@ -41,52 +41,77 @@
     <div class="container">
       <section>
         <h1 class="d-form-head my-5">Add Product</h1>
-        <table class="table" width="100%">
-          <thead>
-            <tr>
-              <th scope="col">s.no</th>
-              <th scope="col">date</th>
-              <th scope="col">product name</th>
-              <th scope="col">product size</th>
-              <th scope="col">num of bundles</th>
-              <th scope="col">KGs</th>
-              <th scope="col">price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="p-0" width="50rem">
-                <input type="text" value="1" id="add-product-sno" class="py-1 form-inps" readonly />
-              </td>
-              <td class="p-0" width="50rem">
-                <input type="date" id="add-product-date" class="form-inps py-1" />
-              </td>
-              <td class="p-0" width="300rem">
-                <select id="add-product-product-name" class="form-inps py-1">
-                  <option value="product 1">product 1</option>
-                  <option value="product 2">product 2</option>
-                  <option value="product 3">product 3</option>
-                  <option value="product 4">product 4</option>
-                  <option value="product 5">product 5</option>
-                </select>
-              </td>
-              <td class="p-0" width="300rem">
-                <input type="text" id="add-product-product-size" class="py-1 form-inps" autocomplete="off" />
-              </td>
-              <td class="p-0" width="200rem">
-                <input type="number" id="add-product-num-of-bundles" class="py-1 form-inps" />
-              </td>
-              <td class="p-0" width="200rem">
-                <input type="number" id="add-product-kgs" class="py-1 form-inps" />
-              </td>
-              <td class="p-0" width="200rem">
-                <input type="number" id="add-product-price" class="py-1 form-inps" readonly />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <form id="add-product-form">
+          <table class="table" width="100%">
+            <thead>
+              <tr>
+                <th scope="col">date</th>
+                <th scope="col">product name</th>
+                <th scope="col">product size</th>
+                <th scope="col">num of bundles</th>
+                <th scope="col">KGs</th>
+                <th scope="col">price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-0" width="50rem">
+                  <input
+                    type="date"
+                    id="add-product-date"
+                    class="form-inps py-1"
+                  />
+                </td>
+                <td class="p-0" width="300rem">
+                  <select id="add-product-product-name" class="form-inps py-1">
+                    <option value="product 1">product 1</option>
+                    <option value="product 2">product 2</option>
+                    <option value="product 3">product 3</option>
+                    <option value="product 4">product 4</option>
+                    <option value="product 5">product 5</option>
+                  </select>
+                </td>
+                <td class="p-0" width="300rem">
+                  <input
+                    type="text"
+                    id="add-product-product-size"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-product-num-of-bundles"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-product-kgs"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-product-price"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+
+                <td class="p-0" width="200rem">
+                  <button class="py-1 form-inps">save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="col-12 added-data-ctnr d-flex justify-content-between align-items-center"></div>
+        </form>
       </section>
-      
     </div>
   </body>
 

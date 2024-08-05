@@ -1,10 +1,8 @@
-// import forms data API for printing the forms
-import { formsDataAPI } from "./formAPI.js";
-
 // login page's code
 let homeForm = document.querySelector("#loginForm");
 let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
+let subForm = document.querySelector("form");
 
 // this function is for navigate new page
 const navigateToNextPageFunc = (page) => {
@@ -71,16 +69,6 @@ if (homeForm) {
 // dashboard start
 let graphCtnr = document.querySelector(".graph-ctnr");
 let graphCtnr2 = document.querySelector(".graph-ctnr-2");
-
-// remove the class function
-const addClassFunc = (elem, className) => {
-  elem.classList.add(className);
-};
-
-// add the class function
-const remClassFunc = (elem, className) => {
-  elem.classList.remove(className);
-};
 
 // these 2 funtions "addAniFunc" and "remAniFunc" are for toggling the sub buttons div on dashboard
 const addAniFunc = (targElem, myHeight, num) => {
@@ -227,3 +215,55 @@ if (optCtnr) {
   });
 }
 // dashboard end
+
+
+
+
+
+
+
+
+
+// form controlling of all pages's forms
+const obj = {};
+
+const createPera = (text) => {
+  let addedDataDiv = subForm.querySelector(".added-data-ctnr");
+  let pera = document.createElement("p");
+  pera.innerText = text;
+  pera.classList.add("added-data");
+  if (addedDataDiv) {
+    addedDataDiv.append(pera)
+  }
+};
+
+const printAddedDataFun = (updatedObj) => {
+  let ValArr = Object.values(updatedObj);
+  for (let index = 0; index < ValArr.length; index++) {
+    createPera(ValArr[index]);
+  }
+  return ValArr;
+};
+
+const getAddedDataFunc = (targForm) => {
+  let inps = targForm.querySelectorAll("input , select");
+  inps.forEach((inp, i) => {
+    obj[inp.id] = inp.value;
+  });
+  return obj;
+};
+
+const ctnrOfAddedDataFunc = (targElem) => {
+  let updatedObj = getAddedDataFunc(targElem);
+  let ValArr = printAddedDataFun(updatedObj);
+  return [updatedObj, ValArr];
+};
+
+if (subForm) {
+  subForm.addEventListener("click", (e) => {
+    if (e.target.closest("button")) {
+      e.preventDefault();
+      ctnrOfAddedDataFunc(subForm)
+    }
+  });
+}

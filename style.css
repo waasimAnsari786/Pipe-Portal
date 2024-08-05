@@ -347,3 +347,9 @@ th {
   font-size: var(--web-fS-md);
   color: var(--web-main-color-dark) !important;
 }
+
+.added-data{
+  color: var(--web-main-color-dark);
+  font-size: var(--web-fS-md);
+  font-weight: 600;
+}

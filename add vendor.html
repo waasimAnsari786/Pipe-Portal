@@ -39,64 +39,68 @@
 
   <body>
     <div class="container">
-      <h1 class="my-5 d-form-head">Vendor's details</h1>
-      <table class="table" width="100%">
-        <thead>
-          <tr>
-            <th scope="col">s.no</th>
-            <th scope="col">date</th>
-            <th scope="col">vendor name</th>
-            <th scope="col">address</th>
-            <th scope="col">cell num</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="p-0" width="50rem">
-              <input
-                type="text"
-                value="1"
-                id="add-vendor-sno"
-                class="py-1 form-inps"
-                readonly
-              />
-            </td>
+      <div
+        class="col-12 d-flex justify-content-between align-items-center heading-ctnr"
+      >
+        <h1 class="my-5 d-form-head">Vendor's details</h1>
+      </div>
 
-            <td class="p-0" width="50rem">
-              <input type="date" id="add-vendor-date" class="form-inps py-1" />
-            </td>
+      <form id="add-vendor-form">
+        <table class="table" width="100%">
+          <thead>
+            <tr>
+              <th scope="col">date</th>
+              <th scope="col">vendor name</th>
+              <th scope="col">address</th>
+              <th scope="col">cell num</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-0" width="50rem">
+                <input
+                  type="date"
+                  id="add-vendor-date"
+                  class="form-inps py-1"
+                />
+              </td>
 
-            <td class="p-0" width="300rem">
-              <select name="vendor-name-ctnr" id="add-vendor-vendor-name" class="form-inps py-1">
-                <option value="customer 1" class="vendor-name">customer 1</option>
-                <option value="customer 2" class="vendor-name">customer 2</option>
-                <option value="customer 3" class="vendor-name">customer 3</option>
-                <option value="customer 4" class="vendor-name">customer 4</option>
-                <option value="customer 5" class="vendor-name">customer 5</option>
-              </select>
-            </td>
+              <td class="p-0" width="300rem">
+                <input
+                  type="text"
+                  id="add-vendor-vendor-name"
+                  class="py-1 form-inps"
+                  autocomplete="off"
+                />
+              </td>
 
-            <td class="p-0" width="300rem">
-              <input
-                type="text"
-                id="add-vendor-address"
-                class="py-1 form-inps"
-                autocomplete="off"
-              />
-            </td>
+              <td class="p-0" width="300rem">
+                <input
+                  type="text"
+                  id="add-vendor-address"
+                  class="py-1 form-inps"
+                  autocomplete="off"
+                />
+              </td>
 
-            <td class="p-0" width="200rem">
-              <input
-                type="number"
-                id="add-vendor-vendor-cell-num"
-                class="py-1 form-inps"
-                autocomplete="off"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <td class="p-0" width="200rem">
+                <input
+                  type="number"
+                  id="add-vendor-vendor-cell-num"
+                  class="py-1 form-inps"
+                  autocomplete="off"
+                />
+              </td>
 
+              <td class="p-0" width="50rem">
+                <button class="py-1 form-inps">save</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="col-12 added-data-ctnr d-flex justify-content-between align-items-center"></div>
+      </form>
     </div>
   </body>
 
