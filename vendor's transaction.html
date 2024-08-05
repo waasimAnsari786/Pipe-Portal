@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Vendor's Transaction Form</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <section>
+        <h1 class="my-5 d-form-head">vendor's transaction</h1>
+      <table class="table" width="100%">
+        <thead>
+          <tr>
+            <th scope="col">prouct</th>
+            <th scope="col">bags</th>
+            <th scope="col">bags weight</th>
+            <th scope="col">price</th>
+            <th scope="col">total price</th>
+            <th scope="col">amount payable</th>
+            <th scope="col">advance payment</th>
+            <th scope="col">outstanding payable</th>
+            <th scope="col">balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-0" width="250rem">
+              <select id="add-vendor-product" class="form-inps py-1">
+                <option value="product 1">product 1</option>
+                <option value="product 2">product 2</option>
+                <option value="product 3">product 3</option>
+                <option value="product 4">product 4</option>
+                <option value="product 5">product 5</option>
+              </select>
+            </td>
+
+            <td class="p-0" width="80rem">
+              <input
+                type="number"
+                id="add-vendor-bags"
+                class="py-1 form-inps"
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="110rem">
+              <input
+                type="number"
+                id="add-vendor-bags-weight"
+                class="py-1 form-inps"
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-price"
+                class="py-1 form-inps"
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-total-value"
+                class="py-1 form-inps"
+                readonly
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-advance-payment"
+                class="py-1 form-inps"
+                readonly
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-amount-payable"
+                class="py-1 form-inps"
+                readonly
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-outstanding-payable"
+                class="py-1 form-inps"
+                readonly
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="150rem">
+              <input
+                type="number"
+                id="add-vendor-balance"
+                class="py-1 form-inps"
+                readonly
+                autocomplete="off"
+              />
+            </td>
+
+            <td class="p-0" width="50rem">
+              <button id="add-vendor-edit" class="py-1 form-inps">edit</button>
+            </td>
+
+            <td class="p-0" width="50rem">
+              <button id="add-vendor-edit" class="py-1 form-inps">
+                delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </section>
+      
+    </div>
+  </body>
+
+  <script type="module" src="app.js"></script>
+</html>

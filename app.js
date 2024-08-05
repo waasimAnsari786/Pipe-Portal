@@ -103,9 +103,6 @@ const remAniFunc = (targElem) => {
   targElem.innerHTML = "";
 };
 
-
-
-
 // this is "Chart.Js" library's code for inserting charts
 if (graphCtnr) {
   const ctx = document.getElementById("barchart");
@@ -211,76 +208,21 @@ if (optCtnr) {
     ) {
       handleOnClick(subBtnCtnr, "payroll", e.target.innerText);
     } else if (e.target.innerText === "Add Vendor") {
-      navigateToNextPageFunc('add vendor.html');
-      // formsDataAPI.forEach((element) => {
-      //   if (element.hasOwnProperty("Add Vendor")) {
-      //     dbFormCtnr.innerHTML = "";
-      //     element["Add Vendor"].forEach((innElem) => {
-      //       printForms(dbFormCtnr, innElem);
-      //     });
-      //   }
-      // });
-      // dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("add vendor.html");
     } else if (e.target.innerText === "Add Product") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Add Product")) {
-          dbFormCtnr.innerHTML = "";
-          element["Add Product"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("add product.html");
+    } else if (e.target.innerText === "Vendor's Transaction") {
+      navigateToNextPageFunc("vendor's transaction.html");
     } else if (e.target.innerText === "Add Client") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Add Client")) {
-          dbFormCtnr.innerHTML = "";
-          element["Add Client"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("add client.html");
     } else if (e.target.innerText === "Client's Entry") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Client's Entry")) {
-          dbFormCtnr.innerHTML = "";
-          element["Client's Entry"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("client's entry.html");
     } else if (e.target.innerText === "Add Employee") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Add Employee")) {
-          dbFormCtnr.innerHTML = "";
-          element["Add Employee"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("add employee.html");
     } else if (e.target.innerText === "Advance Salary") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Advance Salary")) {
-          dbFormCtnr.innerHTML = "";
-          element["Advance Salary"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `employee's ${e.target.innerText}'s form`;
+      navigateToNextPageFunc("advance salary.html");
     } else if (e.target.innerText === "Payroll Entry") {
-      formsDataAPI.forEach((element) => {
-        if (element.hasOwnProperty("Payroll Entry")) {
-          dbFormCtnr.innerHTML = "";
-          element["Payroll Entry"].forEach((innElem) => {
-            printForms(dbFormCtnr, innElem);
-          });
-        }
-      });
-      dbFormCtnr.previousElementSibling.innerText = `${e.target.innerText}'s form`;
+      navigateToNextPageFunc("payroll entry.html");
     }
   });
 }

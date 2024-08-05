@@ -3,10 +3,11 @@
   --my-font: "Montserrat", sans-serif;
   --web-color-l-gray: #efefef;
   --web-main-color-light: #fec982;
-  --web-main-color-dark: #5E2C00;
+  --web-main-color-dark: #5e2c00;
 
   --web-fS-lg: 4rem;
   --web-fS-md: 1.6rem;
+  --web-fS-sm: 1.2rem;
 }
 
 /* login page's form's div's animation */
@@ -50,11 +51,12 @@
 }
 
 input,
-textarea {
+textarea,
+select {
   outline: none;
 }
 
-html button{
+html button {
   text-transform: capitalize;
 }
 
@@ -135,7 +137,7 @@ html {
 /* topbar */
 .form-container {
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(.5rem);
+  backdrop-filter: blur(0.5rem);
   border-radius: 1.5rem;
   padding: 5rem;
   max-width: 40rem;
@@ -252,9 +254,8 @@ html {
 
 .form-inps {
   background-color: var(--web-main-color-light);
-  padding: 1rem;
-  border: none;
-  font-size: var(--web-fS-md);
+  border: 0.1rem solid var(--web-main-color-dark);
+  font-size: var(--web-fS-sm);
   color: var(--web-main-color-dark);
   font-weight: 500;
   width: 100%;
@@ -330,13 +331,6 @@ html {
   color: var(--web-main-color-light);
 }
 
-/* .d-form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 1.5rem;
-  row-gap: 1.5rem;
-} */
-
 .d-form-head {
   text-transform: capitalize;
   color: var(--web-main-color-dark);
@@ -348,10 +342,8 @@ html {
   border: 0.1rem solid rgb(0, 0, 0);
 }
 
-.ctnr-pad {
-  padding: 7rem 0;
-}
-
-.hide {
-  display: none;
+th {
+  text-transform: capitalize;
+  font-size: var(--web-fS-md);
+  color: var(--web-main-color-dark) !important;
 }

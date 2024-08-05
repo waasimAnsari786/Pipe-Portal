@@ -70,7 +70,7 @@ let formsDataAPI = [
       "employee name",
       "designation",
       "emp's cell nums",
-      "emp's salary"
+      "emp's salary",
     ],
   },
 
@@ -81,7 +81,7 @@ let formsDataAPI = [
       "employee name",
       "designation",
       "emp's cell nums",
-      "emp's salary"
+      "emp's salary",
     ],
   },
 
