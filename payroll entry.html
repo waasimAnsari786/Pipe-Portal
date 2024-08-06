@@ -41,116 +41,105 @@
     <div class="container">
       <section>
         <h1 class="d-form-head my-5">Payroll Entry</h1>
-        <table class="table" width="100%">
-          <thead>
-            <tr>
-              <th scope="col">s.no</th>
-              <th scope="col">date</th>
-              <th scope="col">employee name</th>
-              <th scope="col">designation</th>
-              <th scope="col">month working days</th>
-              <th scope="col">emp working days</th>
-              <th scope="col">leaves</th>
-              <th scope="col">salary</th>
-              <th scope="col">advance</th>
-              <th scope="col">net salary</th>
-              <th scope="col">edit</th>
-              <th scope="col">delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="p-0" width="50rem">
-                <input
-                  type="text"
-                  id="payroll-entry-sno"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="50rem">
-                <input
-                  type="date"
-                  id="payroll-entry-date"
-                  class="form-inps py-1"
-                />
-              </td>
-              <td class="p-0" width="300rem">
-                <select id="payroll-entry-employee-name" class="form-inps py-1">
-                  <option value="employee 1">employee 1</option>
-                  <option value="employee 2">employee 2</option>
-                  <option value="employee 3">employee 3</option>
-                  <option value="employee 4">employee 4</option>
-                  <option value="employee 5">employee 5</option>
-                </select>
-              </td>
-              <td class="p-0" width="300rem">
-                <input
-                  type="text"
-                  id="payroll-entry-designation"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-month-working-days"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-emp-working-days"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-leaves"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-salary"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-advance"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="payroll-entry-net-salary"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="50rem">
-                <button id="payroll-entry-edit" class="py-1 form-inps">
-                  edit
-                </button>
-              </td>
-              <td class="p-0" width="50rem">
-                <button id="payroll-entry-delete" class="py-1 form-inps">
-                  delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <form id="payroll-entry-form">
+          <table class="table" width="100%">
+            <thead>
+              <tr>
+                <th scope="col">date</th>
+                <th scope="col">employee name</th>
+                <th scope="col">designation</th>
+                <th scope="col">month working days</th>
+                <th scope="col">emp working days</th>
+                <th scope="col">leaves</th>
+                <th scope="col">salary</th>
+                <th scope="col">advance</th>
+                <th scope="col">net salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-0" width="50rem">
+                  <input
+                    type="date"
+                    id="payroll-entry-date"
+                    class="form-inps py-1"
+                  />
+                </td>
+                <td class="p-0" width="300rem">
+                  <select
+                    id="payroll-entry-employee-name"
+                    class="form-inps py-1"
+                  >
+                    <option value="employee 1">employee 1</option>
+                    <option value="employee 2">employee 2</option>
+                    <option value="employee 3">employee 3</option>
+                    <option value="employee 4">employee 4</option>
+                    <option value="employee 5">employee 5</option>
+                  </select>
+                </td>
+                <td class="p-0" width="300rem">
+                  <input
+                    type="text"
+                    id="payroll-entry-designation"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-month-working-days"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-emp-working-days"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-leaves"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-salary"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-advance"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="payroll-entry-net-salary"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+                <td class="p-0" width="50rem">
+                  <button class="py-1 form-inps">save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="col-12 added-data-ctnr"></div>
+        </form>
       </section>
     </div>
   </body>

@@ -41,152 +41,108 @@
     <div class="container">
       <section>
         <h1 class="d-form-head py-5">Client's Entry</h1>
-        <table class="table" width="100%">
-          <thead>
-            <tr>
-              <th scope="col">s.no</th>
-              <th scope="col">date</th>
-              <th scope="col">client name</th>
-              <th scope="col">address size</th>
-              <th scope="col">cell num</th>
-              <th scope="col">product</th>
-              <th scope="col">size</th>
-              <th scope="col">bundles</th>
-              <th scope="col">FT</th>
-              <th scope="col">price</th>
-              <th scope="col">total value</th>
-              <th scope="col">amount receivable</th>
-              <th scope="col">received by client</th>
-              <th scope="col">outstanding amount</th>
-              <th scope="col">edit</th>
-              <th scope="col">delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="p-0" width="50rem">
-                <input
-                  type="text"
-                  id="clients-entry-sno"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="50rem">
-                <input
-                  type="date"
-                  id="clients-entry-date"
-                  class="form-inps py-1"
-                />
-              </td>
-              <td class="p-0" width="300rem">
-                <select id="clients-entry-client-name" class="form-inps py-1">
-                  <option value="client 1">client 1</option>
-                  <option value="client 2">client 2</option>
-                  <option value="client 3">client 3</option>
-                  <option value="client 4">client 4</option>
-                  <option value="client 5">client 5</option>
-                </select>
-              </td>
-              <td class="p-0" width="300rem">
-                <input
-                  type="text"
-                  id="clients-entry-address-size"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-client-cell-num"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <select id="clients-entry-product" class="form-inps py-1">
-                  <option value="product 1">product 1</option>
-                  <option value="product 2">product 2</option>
-                  <option value="product 3">product 3</option>
-                  <option value="product 4">product 4</option>
-                  <option value="product 5">product 5</option>
-                </select>
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="text"
-                  id="clients-entry-size"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-bundles"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-ft"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-price"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-total-value"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-amount-receivable"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-received-by-client"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="clients-entry-outstanding-amount"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="50rem">
-                <button id="clients-entry-edit" class="py-1 form-inps">
-                  edit
-                </button>
-              </td>
-              <td class="p-0" width="50rem">
-                <button id="clients-entry-delete" class="py-1 form-inps">
-                  delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <form id="client-entry-form">
+          <table class="table" width="100%">
+            <thead>
+              <tr>
+                <th scope="col">date</th>
+                <th scope="col">product</th>
+                <th scope="col">size</th>
+                <th scope="col">bundles</th>
+                <th scope="col">FT</th>
+                <th scope="col">price</th>
+                <th scope="col">total price</th>
+                <th scope="col">amount receivable</th>
+                <th scope="col">received by client</th>
+                <th scope="col">outstanding amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-0" width="50rem">
+                  <input
+                    type="date"
+                    id="client-entry-date"
+                    class="form-inps py-1"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <select id="client-entry-product" class="form-inps py-1">
+                    <option value="product 1">product 1</option>
+                    <option value="product 2">product 2</option>
+                    <option value="product 3">product 3</option>
+                    <option value="product 4">product 4</option>
+                    <option value="product 5">product 5</option>
+                  </select>
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="text"
+                    id="client-entry-size"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-bundles"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-ft"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-price"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-total-price"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-amount-receivable"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-received-by-client"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="client-entry-outstanding-amount"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+                <td class="p-0" width="50rem">
+                  <button class="py-1 form-inps">save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-12 added-data-ctnr"></div>
+        </form>
       </section>
     </div>
   </body>

@@ -223,13 +223,14 @@ let num = 0;
 const createDiv = () => {
   num++;
   let mainDiv = document.createElement("div");
-  mainDiv.classList.add("added-data-ctnr-inner", "col-12");
+  mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
   mainDiv.innerHTML = `
+  <div class='col-11'>
     <p class='added-data'>${num}.</p>
-  <div></div>
-  <div>
-    <button id="edit-data">edit</button>
-    <button id="delete-data">delete</button>
+  </div>
+  <div class='col-1 p-0'>
+    <button id="edit-data-btn">edit</button>
+    <button id="delete-data-btn">delete</button>
   </div>`;
   return mainDiv;
 };
@@ -245,7 +246,7 @@ const printAddedDataFun = (updatedObj) => {
       let pera = document.createElement("p");
       pera.innerText = ValArr[index];
       pera.classList.add("added-data");
-      addedDataDiv.children[1].append(pera);
+      addedDataDiv.children[0].append(pera);
     }
     addedDataDivMain.append(addedDataDiv);
     return ValArr;
@@ -268,17 +269,84 @@ const getAddedDataFunc = (targForm) => {
   return [obj, inps.length];
 };
 
-const ctnrOfAddedDataFunc = (targElem) => {
+const ctnrFuncOfAddedDataFunc = (targElem) => {
   let updatedObj = getAddedDataFunc(targElem);
   let ValArr = printAddedDataFun(updatedObj);
   return [updatedObj, ValArr];
 };
 
+const deleteDataFunc = (targElem) => {
+  num--;
+  let targDelElem = targElem.closest(".added-data-ctnr-inner");
+  targDelElem.remove();
+};
+
+const editDataFunc = (targElem) => {
+  let prElem = targElem.closest(".added-data-ctnr-inner");
+  let inps = subForm.querySelectorAll("input , select");
+  let peras = prElem.querySelectorAll("p");
+
+  inps.forEach((inp, i) => {
+    inp.value = peras[i + 1].innerText;
+  });
+};
+
+const findTotalPrice = (targElem, mainID, elemID, elemID2) => {
+  let inpPrice = targElem;
+  let inpBundles = targElem.closest(mainID).querySelector(elemID);
+  let inpTotalPrice = targElem.closest(mainID).querySelector(elemID2);
+
+  let totalVal = inpPrice.value * inpBundles.value;
+  inpTotalPrice.value = totalVal;
+  return totalVal;
+};
+
+const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
+  if (targID === "add-product-price") {
+    findTotalPrice(
+      targElem,
+      "#add-product-form",
+      "#add-product-num-of-bundles",
+      "#add-product-total-price"
+    );
+  } else if (targID === "vendor-transaction-price") {
+    findTotalPrice(
+      targElem,
+      "#vendor-transaction-form",
+      "#vendor-transaction-bags",
+      "#vendor-transaction-total-price"
+    );
+  } else if (targID === "client-entry-price") {
+    findTotalPrice(
+      targElem,
+      "#client-entry-form",
+      "#client-entry-bundles",
+      "#client-entry-total-price"
+    );
+  }
+};
+
 if (subForm) {
   subForm.addEventListener("click", (e) => {
-    if (e.target.closest("button")) {
+    if (e.target.id === "delete-data-btn") {
       e.preventDefault();
-      ctnrOfAddedDataFunc(subForm);
+      deleteDataFunc(e.target);
+    } else if (e.target.id === "edit-data-btn") {
+      e.preventDefault();
+      editDataFunc(e.target);
+    } else if (e.target.closest("button")) {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(subForm);
+    }
+  });
+
+  subForm.addEventListener("input", (e) => {
+    if (e.target.id === "add-product-price") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "vendor-transaction-price") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "client-entry-price") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     }
   });
 }

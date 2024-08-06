@@ -51,6 +51,7 @@
                 <th scope="col">num of bundles</th>
                 <th scope="col">KGs</th>
                 <th scope="col">price</th>
+                <th scope="col">total price</th>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +80,7 @@
                     autocomplete="off"
                   />
                 </td>
+
                 <td class="p-0" width="200rem">
                   <input
                     type="number"
@@ -86,6 +88,7 @@
                     class="py-1 form-inps"
                   />
                 </td>
+
                 <td class="p-0" width="200rem">
                   <input
                     type="number"
@@ -93,16 +96,25 @@
                     class="py-1 form-inps"
                   />
                 </td>
+
                 <td class="p-0" width="200rem">
                   <input
                     type="number"
                     id="add-product-price"
                     class="py-1 form-inps"
-                    readonly
                   />
                 </td>
 
                 <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-product-total-price"
+                    class="py-1 form-inps"
+                    readonly
+                  />
+                </td>
+
+                <td class="p-0" width="50rem">
                   <button class="py-1 form-inps">save</button>
                 </td>
               </tr>

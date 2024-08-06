@@ -41,68 +41,68 @@
     <div class="container">
       <section>
         <h1 class="d-form-head my-5">Add Employee</h1>
-        <table class="table" width="100%">
-          <thead>
-            <tr>
-              <th scope="col">s.no</th>
-              <th scope="col">date</th>
-              <th scope="col">employee name</th>
-              <th scope="col">designation</th>
-              <th scope="col">emp's cell num</th>
-              <th scope="col">emp's salary</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="p-0" width="50rem">
-                <input
-                  type="text"
-                  id="add-employee-sno"
-                  class="py-1 form-inps"
-                  readonly
-                />
-              </td>
-              <td class="p-0" width="50rem">
-                <input
-                  type="date"
-                  id="add-employee-date"
-                  class="form-inps py-1"
-                />
-              </td>
-              <td class="p-0" width="300rem">
-                <select id="add-employee-employee-name" class="form-inps py-1">
-                  <option value="employee 1">employee 1</option>
-                  <option value="employee 2">employee 2</option>
-                  <option value="employee 3">employee 3</option>
-                  <option value="employee 4">employee 4</option>
-                  <option value="employee 5">employee 5</option>
-                </select>
-              </td>
-              <td class="p-0" width="300rem">
-                <input
-                  type="text"
-                  id="add-employee-designation"
-                  class="py-1 form-inps"
-                  autocomplete="off"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="add-employee-cell-num"
-                  class="py-1 form-inps"
-                />
-              </td>
-              <td class="p-0" width="200rem">
-                <input
-                  type="number"
-                  id="add-employee-salary"
-                  class="py-1 form-inps"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <form id="add-employee-form">
+          <table class="table" width="100%">
+            <thead>
+              <tr>
+                <th scope="col">date</th>
+                <th scope="col">employee name</th>
+                <th scope="col">designation</th>
+                <th scope="col">emp's cell num</th>
+                <th scope="col">emp's salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-0" width="50rem">
+                  <input
+                    type="date"
+                    id="add-employee-date"
+                    class="form-inps py-1"
+                  />
+                </td>
+                <td class="p-0" width="300rem">
+                  <select
+                    id="add-employee-employee-name"
+                    class="form-inps py-1"
+                  >
+                    <option value="employee 1">employee 1</option>
+                    <option value="employee 2">employee 2</option>
+                    <option value="employee 3">employee 3</option>
+                    <option value="employee 4">employee 4</option>
+                    <option value="employee 5">employee 5</option>
+                  </select>
+                </td>
+                <td class="p-0" width="300rem">
+                  <input
+                    type="text"
+                    id="add-employee-designation"
+                    class="py-1 form-inps"
+                    autocomplete="off"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-employee-cell-num"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="200rem">
+                  <input
+                    type="number"
+                    id="add-employee-salary"
+                    class="py-1 form-inps"
+                  />
+                </td>
+                <td class="p-0" width="50rem">
+                  <button class="py-1 form-inps">save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-12 added-data-ctnr"></div>
+        </form>
       </section>
     </div>
   </body>
