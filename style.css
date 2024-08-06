@@ -348,35 +348,36 @@ th {
   color: var(--web-main-color-dark) !important;
 }
 
-.added-data{
+.added-data {
   color: var(--web-main-color-dark);
   font-size: var(--web-fS-md);
   font-weight: 600;
 }
 
-.added-data-ctnr-inner{
+.added-data-ctnr-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: .1rem solid var(--web-main-color-dark);
-  border-top: .1rem solid var(--web-main-color-dark);
+  border-bottom: 0.1rem solid var(--web-main-color-dark);
+  border-top: 0.1rem solid var(--web-main-color-dark);
+  margin: 1rem 0;
 }
 
-.added-data-ctnr-inner :nth-child(2){
+.added-data-ctnr-inner :nth-child(2) {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: baseline;
   gap: 10rem;
 }
 
-.added-data-ctnr-inner :nth-child(3){
+.added-data-ctnr-inner :nth-child(3) {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
 
-.added-data-ctnr-inner :nth-child(3) button{
+.added-data-ctnr-inner :nth-child(3) button {
   border: none;
   background-color: var(--web-main-color-light);
   color: var(--web-main-color-dark);

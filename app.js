@@ -216,61 +216,56 @@ if (optCtnr) {
 }
 // dashboard end
 
-
-
-
-
-
-
-
-
 // form controlling of all pages's forms
 const obj = {};
 let num = 0;
-// <div class='col-1'>
-//   <p class='added-data'>${num}.</p>
-// </div>
-// <div class='col-9'></div>
-// <div class='col-2'>
-//   <button id="edit-data">edit</button>
-//   <button id="delete-data">delete</button>
-// </div>`
 
 const createDiv = () => {
   num++;
   let mainDiv = document.createElement("div");
-  mainDiv.classList.add("added-data-ctnr-inner" ,"col-12");
+  mainDiv.classList.add("added-data-ctnr-inner", "col-12");
   mainDiv.innerHTML = `
     <p class='added-data'>${num}.</p>
   <div></div>
   <div>
     <button id="edit-data">edit</button>
     <button id="delete-data">delete</button>
-  </div>`
+  </div>`;
   return mainDiv;
-}
+};
 
 const printAddedDataFun = (updatedObj) => {
+  let [inpsObj, inpsLength] = updatedObj;
   let addedDataDivMain = subForm.querySelector(".added-data-ctnr");
-  let addedDataDiv = createDiv();
-  let ValArr = Object.values(updatedObj);
-  for (let index = 0; index < ValArr.length ; index++) {
-    let pera = document.createElement("p");
-    pera.innerText = ValArr[index];
-    pera.classList.add("added-data");
-    addedDataDiv.children[1].append(pera);
+  let ValArr = Object.values(inpsObj);
+
+  if (inpsLength === ValArr.length) {
+    let addedDataDiv = createDiv();
+    for (let index = 0; index < ValArr.length; index++) {
+      let pera = document.createElement("p");
+      pera.innerText = ValArr[index];
+      pera.classList.add("added-data");
+      addedDataDiv.children[1].append(pera);
+    }
+    addedDataDivMain.append(addedDataDiv);
+    return ValArr;
+  } else {
+    alert("You can't save empty data!");
+    return;
   }
-  addedDataDivMain.append(addedDataDiv);  
-  return ValArr;
 };
 
 const getAddedDataFunc = (targForm) => {
   let inps = targForm.querySelectorAll("input , select");
-  inps.forEach((inp, i) => {
-    obj[inp.id] = inp.value;
-    inp.value = '';
+  inps.forEach((inp) => {
+    if (inp.value !== "") {
+      obj[inp.id] = inp.value;
+      inp.value = "";
+    } else {
+      return;
+    }
   });
-  return obj;
+  return [obj, inps.length];
 };
 
 const ctnrOfAddedDataFunc = (targElem) => {
@@ -283,7 +278,7 @@ if (subForm) {
   subForm.addEventListener("click", (e) => {
     if (e.target.closest("button")) {
       e.preventDefault();
-      ctnrOfAddedDataFunc(subForm)
+      ctnrOfAddedDataFunc(subForm);
     }
   });
 }
