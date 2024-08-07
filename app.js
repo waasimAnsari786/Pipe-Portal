@@ -217,9 +217,14 @@ if (optCtnr) {
 // dashboard end
 
 // form controlling of all pages's forms
+
+// i used this object below for handling the values of all forms's inputs
 const obj = {};
+
+// this variable is for printing the serial numbers in all forms
 let num = 0;
 
+// this function creates a div for taking all the printed data of inputs of all forms
 const createDiv = () => {
   num++;
   let mainDiv = document.createElement("div");
@@ -235,6 +240,7 @@ const createDiv = () => {
   return mainDiv;
 };
 
+// this fucntion prints peragraph tags according to the presented quantity of inputs in each form by getting some returned values from the function named "getAddedDataFunc()" which invoked below.
 const printAddedDataFun = (updatedObj) => {
   let [inpsObj, inpsLength] = updatedObj;
   let addedDataDivMain = subForm.querySelector(".added-data-ctnr");
@@ -256,6 +262,7 @@ const printAddedDataFun = (updatedObj) => {
   }
 };
 
+// this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
 const getAddedDataFunc = (targForm) => {
   let inps = targForm.querySelectorAll("input , select");
   inps.forEach((inp) => {
@@ -269,18 +276,21 @@ const getAddedDataFunc = (targForm) => {
   return [obj, inps.length];
 };
 
+// this function holds 2 functions which involed above. i created this function for enhancing the readability
 const ctnrFuncOfAddedDataFunc = (targElem) => {
   let updatedObj = getAddedDataFunc(targElem);
   let ValArr = printAddedDataFun(updatedObj);
   return [updatedObj, ValArr];
 };
 
+// printed data of forms is removed through this function
 const deleteDataFunc = (targElem) => {
   num--;
   let targDelElem = targElem.closest(".added-data-ctnr-inner");
   targDelElem.remove();
 };
 
+// printed data of forms is edited through this function. this function fetchs the printed data then print it in inputs for editting
 const editDataFunc = (targElem) => {
   let prElem = targElem.closest(".added-data-ctnr-inner");
   let inps = subForm.querySelectorAll("input , select");
@@ -291,14 +301,38 @@ const editDataFunc = (targElem) => {
   });
 };
 
-const findTotalPrice = (targElem, mainID, elemID, elemID2) => {
+const findOutstandingAmt = (targElem, mainID, elemID, elemID2) => {
+  let inpAdv = targElem;
+  let inpTotalPrice = targElem.closest(mainID).querySelector(elemID);
+  let inpOutPbl = targElem.closest(mainID).querySelector(elemID2);
+  let totalVal = inpTotalPrice.value - inpAdv.value;
+  inpOutPbl.value = totalVal;
+};
+
+const findTotalPrice = (targElem, mainID, elemID, elemID2, elemID3) => {
   let inpPrice = targElem;
   let inpBundles = targElem.closest(mainID).querySelector(elemID);
   let inpTotalPrice = targElem.closest(mainID).querySelector(elemID2);
-
+  let inpAmtPbl = targElem.closest(mainID).querySelector(elemID3);
   let totalVal = inpPrice.value * inpBundles.value;
   inpTotalPrice.value = totalVal;
-  return totalVal;
+  inpAmtPbl ? (inpAmtPbl.value = totalVal) : "";
+};
+
+const findLeaves = (targElem, mainID, elemID, elemID2) => {
+  let inpEmpDays = targElem;
+  let inpMonDays = targElem.closest(mainID).querySelector(elemID);
+  let inpLeaves = targElem.closest(mainID).querySelector(elemID2);
+  let totalDays = inpMonDays.value - inpEmpDays.value;
+  inpLeaves.value = totalDays;
+};
+
+const findNetSalary = (targElem, mainID, elemID, elemID2) => {
+  let inpEmpAdv = targElem;
+  let inpSalary = targElem.closest(mainID).querySelector(elemID);
+  let inpNetSalary = targElem.closest(mainID).querySelector(elemID2);
+  let netSalary = inpSalary.value - inpEmpAdv.value;
+  inpNetSalary.value = netSalary;
 };
 
 const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
@@ -307,21 +341,52 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
       targElem,
       "#add-product-form",
       "#add-product-num-of-bundles",
-      "#add-product-total-price"
+      "#add-product-total-price",
+      undefined
     );
   } else if (targID === "vendor-transaction-price") {
     findTotalPrice(
       targElem,
       "#vendor-transaction-form",
       "#vendor-transaction-bags",
-      "#vendor-transaction-total-price"
+      "#vendor-transaction-total-price",
+      "#vendor-transaction-amount-payable"
     );
   } else if (targID === "client-entry-price") {
     findTotalPrice(
       targElem,
       "#client-entry-form",
       "#client-entry-bundles",
-      "#client-entry-total-price"
+      "#client-entry-total-price",
+      "#client-entry-amount-receivable"
+    );
+  } else if (targID === "vendor-transaction-advance-payment") {
+    findOutstandingAmt(
+      targElem,
+      "#vendor-transaction-form",
+      "#vendor-transaction-total-price",
+      "#vendor-transaction-outstanding-payable"
+    );
+  } else if (targID === "client-entry-received-by-client") {
+    findOutstandingAmt(
+      targElem,
+      "#client-entry-form",
+      "#client-entry-total-price",
+      "#client-entry-outstanding-amount"
+    );
+  } else if (targID === "payroll-entry-emp-working-days") {
+    findLeaves(
+      targElem,
+      "#payroll-entry-form",
+      "#payroll-entry-month-working-days",
+      "#payroll-entry-leaves"
+    );
+  } else if (targID === "payroll-entry-advance") {
+    findNetSalary(
+      targElem,
+      "#payroll-entry-form",
+      "#payroll-entry-salary",
+      "#payroll-entry-net-salary"
     );
   }
 };
@@ -346,6 +411,14 @@ if (subForm) {
     } else if (e.target.id === "vendor-transaction-price") {
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "client-entry-price") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "vendor-transaction-advance-payment") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "client-entry-received-by-client") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "payroll-entry-emp-working-days") {
+      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
+    } else if (e.target.id === "payroll-entry-advance") {
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     }
   });
