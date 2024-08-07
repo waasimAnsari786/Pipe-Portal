@@ -346,41 +346,31 @@ th {
   text-transform: capitalize;
   font-size: var(--web-fS-md);
   color: var(--web-main-color-dark) !important;
-  text-align: center !important;
 }
 
 .added-data {
-  color: var(--web-main-color-dark);
+  color: var(--web-main-color-dark) !important;
   font-size: var(--web-fS-md);
   font-weight: 600;
-  /* border-right: 0.1rem solid var(--web-main-color-dark);
-  padding: 0 1rem; */
+  border: 0.1rem solid var(--web-main-color-dark) !important;
 }
 
 .added-data-ctnr-inner {
-  border-bottom: 0.1rem solid var(--web-main-color-dark);
-  border-top: 0.1rem solid var(--web-main-color-dark);
-  margin: 1rem 0;
+  border: 0.1rem solid var(--web-main-color-dark) !important;
 }
 
-.added-data-ctnr-inner :nth-child(1) {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.form-h-row {
+  border: 0.1rem solid var(--web-main-color-dark) !important;
+  background-color: var(--web-main-color-light) !important;
+  color: var(--web-main-color-dark) !important;
 }
 
-.added-data-ctnr-inner :nth-child(2) {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.added-data-ctnr-inner :nth-child(2) button {
+.added-data-ctnr-inner #edit-data-btn,
+.added-data-ctnr-inner #delete-data-btn {
   border: none;
   background-color: var(--web-main-color-light);
   color: var(--web-main-color-dark);
   font-size: var(--web-fS-sm);
   font-weight: 600;
   border-radius: 0.5rem;
-  height: 100%;
 }

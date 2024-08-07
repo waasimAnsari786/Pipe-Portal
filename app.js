@@ -225,18 +225,34 @@ const obj = {};
 let num = 0;
 
 // this function creates a div for taking all the printed data of inputs of all forms
+
+// const createDiv = () => {
+//   num++;
+//   let mainDiv = document.createElement("div");
+//   mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
+//   mainDiv.innerHTML = `
+//   <div class='col-11'>
+//     <p class='added-data'>${num}.</p>
+//   </div>
+//   <div class='col-1 p-0'>
+//     <button id="edit-data-btn">edit</button>
+//     <button id="delete-data-btn">delete</button>
+//   </div>`;
+//   return mainDiv;
+// };
+
 const createDiv = () => {
   num++;
-  let mainDiv = document.createElement("div");
-  mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
+  let mainDiv = document.createElement("tr");
+  mainDiv.classList.add("added-data-ctnr-inner");
   mainDiv.innerHTML = `
-  <div class='col-11'>
-    <p class='added-data'>${num}.</p>
-  </div>
-  <div class='col-1 p-0'>
-    <button id="edit-data-btn">edit</button>
-    <button id="delete-data-btn">delete</button>
-  </div>`;
+  <td class='p-0 text-center added-data' width='20rem'>
+    ${num}.
+  </td>
+  <td class='p-0' width='100rem'>
+  <button id="edit-data-btn">edit</button>
+  <button id="delete-data-btn">delete</button>
+  </td>`;
   return mainDiv;
 };
 
@@ -249,10 +265,10 @@ const printAddedDataFun = (updatedObj) => {
   if (inpsLength === ValArr.length) {
     let addedDataDiv = createDiv();
     for (let index = 0; index < ValArr.length; index++) {
-      let pera = document.createElement("p");
+      let pera = document.createElement("td");
       pera.innerText = ValArr[index];
       pera.classList.add("added-data");
-      addedDataDiv.children[0].append(pera);
+      addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
     }
     addedDataDivMain.append(addedDataDiv);
     return ValArr;
@@ -294,60 +310,96 @@ const deleteDataFunc = (targElem) => {
 const editDataFunc = (targElem) => {
   let prElem = targElem.closest(".added-data-ctnr-inner");
   let inps = subForm.querySelectorAll("input , select");
-  let peras = prElem.querySelectorAll("p");
+  let peras = prElem.querySelectorAll("td");
 
   inps.forEach((inp, i) => {
     inp.value = peras[i + 1].innerText;
   });
 };
 
-const findOutstandingAmt = (targElem, mainID, elemID, elemID2) => {
-  let inpAdv = targElem;
-  let inpTotalPrice = targElem.closest(mainID).querySelector(elemID);
-  let inpOutPbl = targElem.closest(mainID).querySelector(elemID2);
+//this function is being used in functions below for fething targeted variables for calculating he values.
+const fetchVariables = (targElem, mainID, IDsArr) => {
+  let arr = [];
+  for (let index = 0; index < IDsArr.length; index++) {
+    arr.push(targElem.closest(mainID).querySelector(IDsArr[index]));
+  }
+  return arr;
+};
+
+// this function is used for calculating outstanding payablles and receievables with the help of a callback function named "fetchVariables()"
+const findOutstandingAmt = (targElem, mainID, elemID, elemID2, elemID3) => {
+  let [inpAdv, inpTotalPrice, inpOutPbl] = fetchVariables(targElem, mainID, [
+    elemID,
+    elemID2,
+    elemID3,
+  ]);
   let totalVal = inpTotalPrice.value - inpAdv.value;
   inpOutPbl.value = totalVal;
 };
 
-const findTotalPrice = (targElem, mainID, elemID, elemID2, elemID3) => {
-  let inpPrice = targElem;
-  let inpBundles = targElem.closest(mainID).querySelector(elemID);
-  let inpTotalPrice = targElem.closest(mainID).querySelector(elemID2);
-  let inpAmtPbl = targElem.closest(mainID).querySelector(elemID3);
+// this function is used for calculating total prices and print it in amount payables as well with the help of a callback function named "fetchVariables()"
+const findTotalPrice = (
+  targElem,
+  mainID,
+  elemID,
+  elemID2,
+  elemID3,
+  elemID4
+) => {
+  let [inpPrice, inpBundles, inpTotalPrice, inpAmtPbl] = fetchVariables(
+    targElem,
+    mainID,
+    [elemID, elemID2, elemID3, elemID4]
+  );
   let totalVal = inpPrice.value * inpBundles.value;
   inpTotalPrice.value = totalVal;
   inpAmtPbl ? (inpAmtPbl.value = totalVal) : "";
 };
 
-const findLeaves = (targElem, mainID, elemID, elemID2) => {
-  let inpEmpDays = targElem;
-  let inpMonDays = targElem.closest(mainID).querySelector(elemID);
-  let inpLeaves = targElem.closest(mainID).querySelector(elemID2);
+// this function is used for calculating leaves of employees with the help of a callback function named "fetchVariables()"
+const findLeaves = (targElem, mainID, elemID, elemID2, elemID3) => {
+  let [inpEmpDays, inpMonDays, inpLeaves] = fetchVariables(targElem, mainID, [
+    elemID,
+    elemID2,
+    elemID3,
+  ]);
   let totalDays = inpMonDays.value - inpEmpDays.value;
   inpLeaves.value = totalDays;
 };
 
-const findNetSalary = (targElem, mainID, elemID, elemID2) => {
-  let inpEmpAdv = targElem;
-  let inpSalary = targElem.closest(mainID).querySelector(elemID);
-  let inpNetSalary = targElem.closest(mainID).querySelector(elemID2);
+// this function is used for calculating Net Salaries of employees with the help of a callback function named "fetchVariables()"
+const findNetSalary = (targElem, mainID, elemID, elemID2, elemID3) => {
+  let [inpEmpAdv, inpSalary, inpNetSalary] = fetchVariables(targElem, mainID, [
+    elemID,
+    elemID2,
+    elemID3,
+  ]);
   let netSalary = inpSalary.value - inpEmpAdv.value;
   inpNetSalary.value = netSalary;
 };
 
+// this function holds all functions for calculating all the values (salaries , leaves and so on) at time of input in targeted input based on targeted ID's or elements
 const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
+  // those strings which i used in this function with "#", they al are "IDs" of required input elements
+  // if i have need of calculate total price, i passed the "IDs" of ("total price" , "price" , "num of bundles")'s input
+  // with their targeted elements to the desired function then that unction is passing these arguments to the function named "fetchVariables()"
+  // for fetching the targeted inputs
+
   if (targID === "add-product-price") {
     findTotalPrice(
       targElem,
       "#add-product-form",
+      `#${targID}`,
       "#add-product-num-of-bundles",
       "#add-product-total-price",
+      // i used "undefined" here fr controlling the error because here is one argument is missing
       undefined
     );
   } else if (targID === "vendor-transaction-price") {
     findTotalPrice(
       targElem,
       "#vendor-transaction-form",
+      `#${targID}`,
       "#vendor-transaction-bags",
       "#vendor-transaction-total-price",
       "#vendor-transaction-amount-payable"
@@ -356,6 +408,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
     findTotalPrice(
       targElem,
       "#client-entry-form",
+      `#${targID}`,
       "#client-entry-bundles",
       "#client-entry-total-price",
       "#client-entry-amount-receivable"
@@ -364,6 +417,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
     findOutstandingAmt(
       targElem,
       "#vendor-transaction-form",
+      `#${targID}`,
       "#vendor-transaction-total-price",
       "#vendor-transaction-outstanding-payable"
     );
@@ -371,6 +425,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
     findOutstandingAmt(
       targElem,
       "#client-entry-form",
+      `#${targID}`,
       "#client-entry-total-price",
       "#client-entry-outstanding-amount"
     );
@@ -378,6 +433,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
     findLeaves(
       targElem,
       "#payroll-entry-form",
+      `#${targID}`,
       "#payroll-entry-month-working-days",
       "#payroll-entry-leaves"
     );
@@ -385,13 +441,16 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
     findNetSalary(
       targElem,
       "#payroll-entry-form",
+      `#${targID}`,
       "#payroll-entry-salary",
       "#payroll-entry-net-salary"
     );
   }
 };
 
+// these event listeners are for printing forms data on click of "save" button, edit data on click on "edit" button and delete data on click on "delete" button of each form
 if (subForm) {
+  // this event listener  hold "save" , "delete" , "edit" data function on click on desired buttons
   subForm.addEventListener("click", (e) => {
     if (e.target.id === "delete-data-btn") {
       e.preventDefault();
@@ -405,6 +464,7 @@ if (subForm) {
     }
   });
 
+  // this event listener holds the main fuction which holds the funtions for calculating salaries, leaves , net salary , total prices , outstanding payables, receivables and so on
   subForm.addEventListener("input", (e) => {
     if (e.target.id === "add-product-price") {
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
