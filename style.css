@@ -355,10 +355,6 @@ th {
   border: 0.1rem solid var(--web-main-color-dark) !important;
 }
 
-.added-data-ctnr-inner {
-  border: 0.1rem solid var(--web-main-color-dark) !important;
-}
-
 .form-h-row {
   border: 0.1rem solid var(--web-main-color-dark) !important;
   background-color: var(--web-main-color-light) !important;
@@ -373,4 +369,14 @@ th {
   font-size: var(--web-fS-sm);
   font-weight: 600;
   border-radius: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  margin: 0.4rem 0.2rem;
+}
+
+.ed-dl-btn-ctnr {
+  border: 0.1rem solid var(--web-main-color-dark) !important;
+  position: relative;
+}
+.s-no {
+  margin: 0.5rem;
 }

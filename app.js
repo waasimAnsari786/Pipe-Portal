@@ -246,10 +246,10 @@ const createDiv = () => {
   let mainDiv = document.createElement("tr");
   mainDiv.classList.add("added-data-ctnr-inner");
   mainDiv.innerHTML = `
-  <td class='p-0 text-center added-data' width='20rem'>
-    ${num}.
+  <td class='text-center p-0 added-data s-no-ctnr' width='20rem'>
+  <p class='s-no'>${num}.</p>
   </td>
-  <td class='p-0' width='100rem'>
+  <td class='text-end p-0 ed-dl-btn-ctnr'>
   <button id="edit-data-btn">edit</button>
   <button id="delete-data-btn">delete</button>
   </td>`;
