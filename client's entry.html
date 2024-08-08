@@ -38,7 +38,8 @@
   </head>
 
   <body>
-    <div class="container">
+    <!-- <div class="container">
+
       <section>
         <h1 class="d-form-head py-5">Client's Entry</h1>
         <form id="client-entry-form">
@@ -161,7 +162,99 @@
           </table>
         </form>
       </section>
-    </div>
+    </div> -->
+
+    <form id="client-entry-form">
+      <div class="container">
+        <!-- Header for Client's Entry Form -->
+        <h1 class="d-form-head py-5">Client's Entry</h1>
+        <div class="row">
+          <!-- Column 1: Date Input -->
+          <div class="col-3">
+            <div class="col-12 my-2">
+              <label for="client-entry-date" class="form-label">Date :</label>
+              <input
+                type="date"
+                id="client-entry-date"
+                class="form-inps py-1 w-100"
+              />
+            </div>
+          </div>
+
+          <!-- Column 2: Product Select -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="client-entry-product" class="form-label"
+                >Product :</label
+              >
+              <select id="client-entry-product" class="form-inps py-1 w-100">
+                <option value="product 1">Product 1</option>
+                <option value="product 2">Product 2</option>
+                <option value="product 3">Product 3</option>
+                <option value="product 4">Product 4</option>
+                <option value="product 5">Product 5</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Column 3: Size Input -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="client-entry-size" class="form-label">Size :</label>
+              <input
+                type="text"
+                id="client-entry-size"
+                class="py-1 form-inps w-100"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Column 4: Bundles Input -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="client-entry-bundles" class="form-label"
+                >Bundles :</label
+              >
+              <input
+                type="number"
+                id="client-entry-bundles"
+                class="py-1 form-inps w-100"
+              />
+            </div>
+          </div>
+
+          <!-- Column 5: FT Input -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="client-entry-ft" class="form-label">FT :</label>
+              <input
+                type="number"
+                id="client-entry-ft"
+                class="py-1 form-inps w-100"
+              />
+            </div>
+          </div>
+
+          <!-- Column 6: Price Input -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="client-entry-price" class="form-label">Price :</label>
+              <input
+                type="number"
+                id="client-entry-price"
+                class="py-1 form-inps w-100"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="col-1 mt-5 mx-auto">
+          <button class="add-data-btn">Save</button>
+        </div>
+      </div>
+    </form>
   </body>
 
   <script type="module" src="app.js"></script>

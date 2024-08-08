@@ -38,7 +38,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <!-- <div class="container">
       <section>
         <h1 class="d-form-head my-5">Payroll Entry</h1>
         <form id="payroll-entry-form">
@@ -155,6 +155,156 @@
 
             <tbody class="added-data-ctnr mt-5"></tbody>
           </table>
+        </form>
+      </section>
+    </div> -->
+
+    <div class="container">
+      <section>
+        <h1 class="d-form-head my-5">Payroll Entry</h1>
+        <form id="payroll-entry-form">
+          <div class="row">
+            <!-- Column 1: Date Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-date" class="form-label"
+                  >Date :</label
+                >
+                <input
+                  type="date"
+                  id="payroll-entry-date"
+                  class="py-1 form-inps w-100"
+                />
+              </div>
+            </div>
+
+            <!-- Column 2: Employee Name Select -->
+            <div class="col-3">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-employee-name" class="form-label"
+                  >Employee Name :</label
+                >
+                <select
+                  id="payroll-entry-employee-name"
+                  class="form-inps py-1 w-100"
+                >
+                  <option value="employee 1">Employee 1</option>
+                  <option value="employee 2">Employee 2</option>
+                  <option value="employee 3">Employee 3</option>
+                  <option value="employee 4">Employee 4</option>
+                  <option value="employee 5">Employee 5</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Column 3: Designation Input -->
+            <div class="col-3">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-designation" class="form-label"
+                  >Designation :</label
+                >
+                <input
+                  type="text"
+                  id="payroll-entry-designation"
+                  class="py-1 form-inps w-100"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <!-- Column 4: Month Working Days Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-month-working-days" class="form-label"
+                  >Mon Working Days :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-month-working-days"
+                  class="py-1 form-inps w-100"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <!-- Column 5: Employee Working Days Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-emp-working-days" class="form-label"
+                  >Emp Working Days :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-emp-working-days"
+                  class="py-1 form-inps w-100"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <!-- Column 6: Leaves Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-leaves" class="form-label"
+                  >Leaves :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-leaves"
+                  class="py-1 form-inps w-100"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <!-- Column 7: Salary Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-salary" class="form-label"
+                  >Salary :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-salary"
+                  class="py-1 form-inps w-100"
+                />
+              </div>
+            </div>
+
+            <!-- Column 8: Advance Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-advance" class="form-label"
+                  >Advance :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-advance"
+                  class="py-1 form-inps w-100"
+                />
+              </div>
+            </div>
+
+            <!-- Column 9: Net Salary Input -->
+            <div class="col-2">
+              <div class="col-12 my-2">
+                <label for="payroll-entry-net-salary" class="form-label"
+                  >Net Salary :</label
+                >
+                <input
+                  type="number"
+                  id="payroll-entry-net-salary"
+                  class="py-1 form-inps w-100"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Save Button -->
+          </div>
+          <div class="col-1 mt-5 mx-auto">
+            <button class="add-data-btn">Save</button>
+          </div>
         </form>
       </section>
     </div>

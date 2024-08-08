@@ -221,7 +221,7 @@ html {
 .sub-opts {
   background-color: transparent;
   font-size: var(--web-fS-md);
-  padding: 1.5rem;
+  padding: 1.2rem;
   text-align: left;
   border: none;
   color: var(--web-main-color-dark);
@@ -229,6 +229,17 @@ html {
   font-weight: bold;
   transition: 0.5s;
   position: relative;
+  border-left: 0.5rem solid transparent;
+}
+
+.sub-opts::before {
+  content: "";
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--web-main-color-dark); /* Bullet color */
+  border-radius: 50%;
+  margin-right: 0.5rem;
 }
 
 .opts:hover,
@@ -236,9 +247,19 @@ html {
   background-color: white;
 }
 
+.opts:focus,
+.sub-opts:focus {
+  border-left: 0.5rem solid var(--web-main-color-dark);
+  background-color: #fab75f;
+}
+
 .opt-ctnr {
   background-color: var(--web-main-color-light);
   padding: 2rem;
+}
+
+.logo-ctnr {
+  border-radius: 1rem;
 }
 
 .sub-opt-ctnr {
@@ -253,23 +274,12 @@ html {
 }
 
 .form-inps {
-  background-color: var(--web-main-color-light);
-  border: 0.1rem solid var(--web-main-color-dark);
-  font-size: var(--web-fS-sm);
-  color: var(--web-main-color-dark);
+  background-color: transparent;
+  border: 0.2rem solid #dcdcdc;
+  font-size: var(--web-fS-md);
+  color: black;
   font-weight: 500;
-  width: 100%;
-}
-
-.form-inps:focus {
-  background-color: var(--web-main-color-dark);
-  color: var(--web-main-color-light);
-}
-
-.form-inps::placeholder {
-  color: var(--web-main-color-dark);
-  font-weight: 500;
-  text-transform: capitalize;
+  padding: 1rem;
 }
 
 .head-ctnr {
@@ -333,7 +343,7 @@ html {
 
 .d-form-head {
   text-transform: capitalize;
-  color: var(--web-main-color-dark);
+  color: black;
   font-weight: bold;
 }
 /* dashbord end */
@@ -379,4 +389,34 @@ th {
 }
 .s-no {
   margin: 0.5rem;
+}
+
+.form-ctnr {
+  overflow: hidden;
+  position: relative;
+}
+
+.my-form {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-10rem);
+  opacity: 0;
+}
+
+.form-label {
+  color: black;
+  font-size: var(--web-fS-md);
+  font-weight: bold;
+}
+
+.add-data-btn {
+  color: white;
+  background-color: black;
+  border-radius: 1rem;
+  font-size: var(--web-fS-md);
+  border: none;
+  padding: 1rem;
+  font-weight: bold;
+  width: 100%;
 }

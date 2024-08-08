@@ -74,7 +74,6 @@ let graphCtnr2 = document.querySelector(".graph-ctnr-2");
 const addAniFunc = (targElem, myHeight, num) => {
   requestAnimationFrame(() => {
     targElem.style.height = myHeight;
-    targElem.style.marginBottom = "2.5rem";
     if (num === 0) {
       setTimeout(() => {
         targElem.style.opacity = "1";
@@ -87,9 +86,30 @@ const addAniFunc = (targElem, myHeight, num) => {
 const remAniFunc = (targElem) => {
   targElem.style.height = "0rem";
   targElem.style.opacity = "0";
-  targElem.style.marginBottom = "0";
   targElem.innerHTML = "";
 };
+
+// const bringForwAni = (targElem, targElem2) => {
+//   requestAnimationFrame(() => {
+//     targElem.style.transition = "1s";
+//     targElem.style.transform = "translateX(-50rem)";
+//     targElem.style.opacity = "0";
+
+//     setTimeout(() => {
+//       targElem2.style.transition = "1s";
+//       targElem2.style.transform = "translateX(0rem)";
+//       targElem2.style.opacity = "1";
+//     }, 1000);
+
+//     setTimeout(() => {
+//       targElem.style.position = "absolute";
+//       targElem.style.left = "0";
+//       targElem.style.top = "0";
+//       targElem.style.opacity = "0";
+//       targElem2.style.transform = "translateX(-10rem)";
+//     }, 2100);
+//   });
+// };
 
 // this is "Chart.Js" library's code for inserting charts
 if (graphCtnr) {
@@ -141,7 +161,8 @@ if (graphCtnr2) {
 
 const handleOnClick = (targElem, type, btnText) => {
   if (type === "vendor") {
-    targElem.innerHTML = `<button class="w-100 sub-opts">add ${btnText}</button>
+    targElem.innerHTML = `
+      <button class="w-100 sub-opts">add ${btnText}</button>
       <button class="w-100 sub-opts">add product</button>
       <button class="w-100 sub-opts">${btnText}'s transaction</button>
       <button class="w-100 sub-opts">${btnText}'s ledger</button>`;
@@ -483,3 +504,20 @@ if (subForm) {
     }
   });
 }
+
+// document.querySelectorAll(".toggle-btn").forEach((button) => {
+//   button.addEventListener("click", () => {
+//     const targetId = button.getAttribute("data-target");
+
+//     document.querySelectorAll(".form-container").forEach((form) => {
+//       if (form.id !== targetId) {
+//         form.classList.remove("open");
+//       }
+//     });
+
+//     const targetForm = document.getElementById(targetId);
+//     if (targetForm) {
+//       targetForm.classList.add("open");
+//     }
+//   });
+// });

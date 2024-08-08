@@ -38,7 +38,77 @@
   </head>
 
   <body>
-    <div class="container">
+    <form>
+      <div class="container">
+        <!-- Header for Vendor Details Form -->
+        <h1 class="my-5 d-form-head">Vendor's Details</h1>
+        <div class="row">
+          <!-- Column 1: Date Input -->
+          <div class="col-2">
+            <div class="col-12 my-2">
+              <label for="add-vendor-date" class="form-label">Date :</label>
+              <input
+                type="date"
+                id="add-vendor-date"
+                class="form-inps py-1 w-100"
+              />
+            </div>
+          </div>
+
+          <!-- Column 2: Vendor Name Input -->
+          <div class="col-3">
+            <div class="col-12 my-2">
+              <label for="add-vendor-vendor-name" class="form-label"
+                >Vendor Name :</label
+              >
+              <input
+                type="text"
+                id="add-vendor-vendor-name"
+                class="py-1 form-inps w-100"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Column 3: Address Input -->
+          <div class="col-4">
+            <div class="col-12 my-2">
+              <label for="add-vendor-address" class="form-label"
+                >Address :</label
+              >
+              <input
+                type="text"
+                id="add-vendor-address"
+                class="py-1 form-inps w-100"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Column 4: Cell Number Input -->
+          <div class="col-3">
+            <div class="col-12 my-2">
+              <label for="add-vendor-vendor-cell-num" class="form-label"
+                >Cell Number :</label
+              >
+              <input
+                type="number"
+                id="add-vendor-vendor-cell-num"
+                class="py-1 form-inps w-100"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Column 5: Save Button -->
+        </div>
+        <div class="col-1 mt-5 mx-auto">
+          <button class="add-data-btn">Save</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- <div class="container">
       <div
         class="col-12 d-flex justify-content-between align-items-center heading-ctnr"
       >
@@ -112,7 +182,7 @@
           <tbody class="added-data-ctnr mt-5"></tbody>
         </table>
       </form>
-    </div>
+    </div> -->
   </body>
 
   <script type="module" src="app.js"></script>

@@ -38,7 +38,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <!-- <div class="container">
       <section>
         <h1 class="d-form-head my-5">Add Product</h1>
         <form id="add-product-form">
@@ -138,6 +138,112 @@
           </table>
         </form>
       </section>
+    </div> -->
+
+    <div class="container">
+      <!-- Header for Add Product Form -->
+      <h1 class="my-5 d-form-head">Add Product</h1>
+
+      <div class="row">
+        <!-- Column 1: Date Input -->
+        <div class="col-2">
+          <div class="col-12 my-2">
+            <label for="add-product-date" class="form-label">Date :</label>
+            <input
+              type="date"
+              id="add-product-date"
+              class="form-inps py-1 w-100"
+            />
+          </div>
+        </div>
+
+        <!-- Column 2: Product Name Input -->
+        <div class="col-3">
+          <div class="col-12 my-2">
+            <label for="add-product-product-name" class="form-label"
+              >Product Name :</label
+            >
+            <select id="add-product-product-name" class="form-inps py-1 w-100">
+              <option value="product 1">Product 1</option>
+              <option value="product 2">Product 2</option>
+              <option value="product 3">Product 3</option>
+              <option value="product 4">Product 4</option>
+              <option value="product 5">Product 5</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Column 3: Product Size Input -->
+        <div class="col-4">
+          <div class="col-12 my-2">
+            <label for="add-product-product-size" class="form-label"
+              >Product Size :</label
+            >
+            <input
+              type="text"
+              id="add-product-product-size"
+              class="py-1 form-inps w-100"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- Column 4: Number of Bundles Input -->
+        <div class="col-2">
+          <div class="col-12 my-2">
+            <label for="add-product-num-of-bundles" class="form-label"
+              >Num of Bundles :</label
+            >
+            <input
+              type="number"
+              id="add-product-num-of-bundles"
+              class="py-1 form-inps w-100"
+            />
+          </div>
+        </div>
+
+        <!-- Column 5: KG Input -->
+        <div class="col-2">
+          <div class="col-12 my-2">
+            <label for="add-product-kgs" class="form-label">KGs :</label>
+            <input
+              type="number"
+              id="add-product-kgs"
+              class="py-1 form-inps w-100"
+            />
+          </div>
+        </div>
+
+        <!-- Column 6: Price Input -->
+        <div class="col-2">
+          <div class="col-12 my-2">
+            <label for="add-product-price" class="form-label">Price :</label>
+            <input
+              type="number"
+              id="add-product-price"
+              class="py-1 form-inps w-100"
+            />
+          </div>
+        </div>
+
+        <!-- Column 7: Total Price Input -->
+        <div class="col-2">
+          <div class="col-12 my-2">
+            <label for="add-product-total-price" class="form-label"
+              >Total Price :</label
+            >
+            <input
+              type="number"
+              id="add-product-total-price"
+              class="py-1 form-inps w-100"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-2 mt-5 mx-auto">
+        <button class="add-data-btn w-100">Save</button>
+      </div>
     </div>
   </body>
 
