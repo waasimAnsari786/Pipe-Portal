@@ -235,6 +235,7 @@ html {
 .opts:hover,
 .sub-opts:hover {
   background-color: black;
+  border-left: 0.5rem solid white;
 }
 
 .opts:focus,
@@ -338,28 +339,29 @@ th {
 }
 
 .added-data {
-  color: var(--web-main-color-dark) !important;
+  color: black !important;
   font-size: var(--web-fS-md);
   font-weight: 600;
   border: 0.1rem solid var(--web-main-color-dark) !important;
+  text-transform: capitalize;
 }
 
 .form-h-row {
-  border: 0.1rem solid var(--web-main-color-dark) !important;
-  background-color: var(--web-main-color-light) !important;
-  color: var(--web-main-color-dark) !important;
+  border: 0.1rem solid white !important;
+  background-color: black !important;
+  color: white !important;
 }
 
-.added-data-ctnr-inner #edit-data-btn,
-.added-data-ctnr-inner #delete-data-btn {
+.edit-btn,
+.delete-btn {
   border: none;
-  background-color: var(--web-main-color-light);
-  color: var(--web-main-color-dark);
-  font-size: var(--web-fS-sm);
+  background-color: black;
+  color: white;
+  font-size: var(--web-fS-md);
   font-weight: 600;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.7rem;
-  margin: 0.4rem 0.2rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  width: 48%;
 }
 
 .ed-dl-btn-ctnr {
@@ -394,9 +396,12 @@ th {
   color: white;
   background-color: black;
   border-radius: 1rem;
-  font-size: var(--web-fS-md);
+  font-size: 1.5rem;
   border: none;
   padding: 1rem;
   font-weight: bold;
-  width: 100%;
+}
+
+.hide {
+  display: none;
 }

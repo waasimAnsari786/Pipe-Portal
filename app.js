@@ -2,7 +2,8 @@
 let homeForm = document.querySelector("#loginForm");
 let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
-let subForm = document.querySelector("form");
+let formCtnr = document.querySelector(".form-ctnr");
+
 let dbCtnr = document.querySelector("#db-ctnr");
 
 // this function is for navigate new page
@@ -96,7 +97,7 @@ const showDiv = (targElem) => {
   targElem.style.opacity = "1";
 };
 
-showDiv(dbCtnr);
+dbCtnr ? showDiv(dbCtnr) : "";
 
 const bringForwAni = (targId) => {
   let slides = document.querySelectorAll(".slide-ctnr");
@@ -250,89 +251,6 @@ if (optCtnr) {
 }
 // dashboard end
 
-// form controlling of all pages's forms
-
-// i used this object below for handling the values of all forms's inputs
-const obj = {};
-
-// this variable is for printing the serial numbers in all forms
-let num = 0;
-
-// this function creates a div for taking all the printed data of inputs of all forms
-
-// const createDiv = () => {
-//   num++;
-//   let mainDiv = document.createElement("div");
-//   mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
-//   mainDiv.innerHTML = `
-//   <div class='col-11'>
-//     <p class='added-data'>${num}.</p>
-//   </div>
-//   <div class='col-1 p-0'>
-//     <button id="edit-data-btn">edit</button>
-//     <button id="delete-data-btn">delete</button>
-//   </div>`;
-//   return mainDiv;
-// };
-
-const createDiv = () => {
-  num++;
-  let mainDiv = document.createElement("tr");
-  mainDiv.classList.add("added-data-ctnr-inner");
-  mainDiv.innerHTML = `
-  <td class='text-center p-0 added-data s-no-ctnr' width='20rem'>
-  <p class='s-no'>${num}.</p>
-  </td>
-  <td class='text-end p-0 ed-dl-btn-ctnr'>
-  <button id="edit-data-btn">edit</button>
-  <button id="delete-data-btn">delete</button>
-  </td>`;
-  return mainDiv;
-};
-
-// this fucntion prints peragraph tags according to the presented quantity of inputs in each form by getting some returned values from the function named "getAddedDataFunc()" which invoked below.
-const printAddedDataFun = (updatedObj) => {
-  let [inpsObj, inpsLength] = updatedObj;
-  let addedDataDivMain = subForm.querySelector(".added-data-ctnr");
-  let ValArr = Object.values(inpsObj);
-
-  if (inpsLength === ValArr.length) {
-    let addedDataDiv = createDiv();
-    for (let index = 0; index < ValArr.length; index++) {
-      let pera = document.createElement("td");
-      pera.innerText = ValArr[index];
-      pera.classList.add("added-data");
-      addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
-    }
-    addedDataDivMain.append(addedDataDiv);
-    return ValArr;
-  } else {
-    alert("You can't save empty data!");
-    return;
-  }
-};
-
-// this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
-const getAddedDataFunc = (targForm) => {
-  let inps = targForm.querySelectorAll("input , select");
-  inps.forEach((inp) => {
-    if (inp.value !== "") {
-      obj[inp.id] = inp.value;
-      inp.value = "";
-    } else {
-      return;
-    }
-  });
-  return [obj, inps.length];
-};
-
-// this function holds 2 functions which involed above. i created this function for enhancing the readability
-const ctnrFuncOfAddedDataFunc = (targElem) => {
-  let updatedObj = getAddedDataFunc(targElem);
-  let ValArr = printAddedDataFun(updatedObj);
-  return [updatedObj, ValArr];
-};
-
 // printed data of forms is removed through this function
 const deleteDataFunc = (targElem) => {
   num--;
@@ -343,7 +261,7 @@ const deleteDataFunc = (targElem) => {
 // printed data of forms is edited through this function. this function fetchs the printed data then print it in inputs for editting
 const editDataFunc = (targElem) => {
   let prElem = targElem.closest(".added-data-ctnr-inner");
-  let inps = subForm.querySelectorAll("input , select");
+  let inps = formCtnr.querySelectorAll("input , select");
   let peras = prElem.querySelectorAll("td");
 
   inps.forEach((inp, i) => {
@@ -482,24 +400,123 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
   }
 };
 
+// form controlling of all pages's forms
+
+// i used this object below for handling the values of all forms's inputs
+const obj = {};
+
+// this variable is for printing the serial numbers in all forms
+let num = 0;
+
+// this function creates a div for taking all the printed data of inputs of all forms
+
+// const createDiv = () => {
+//   num++;
+//   let mainDiv = document.createElement("div");
+//   mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
+//   mainDiv.innerHTML = `
+//   <div class='col-11'>
+//     <p class='added-data'>${num}.</p>
+//   </div>
+//   <div class='col-1 p-0'>
+//     <button id="edit-data-btn">edit</button>
+//     <button id="delete-data-btn">delete</button>
+//   </div>`;
+//   return mainDiv;
+// };
+
+const createDiv = () => {
+  num++;
+  let mainDiv = document.createElement("tr");
+  mainDiv.classList.add("added-data-ctnr-inner");
+  mainDiv.innerHTML = `
+  <td class='text-center p-0 added-data s-no-ctnr' width='20rem'>
+  <p class='s-no'>${num}.</p>
+  </td>
+  <td class='text-end p-0 ed-dl-btn-ctnr'>
+  <button id="edit-data-btn">edit</button>
+  <button id="delete-data-btn">delete</button>
+  </td>`;
+  return mainDiv;
+};
+
+// this fucntion prints peragraph tags according to the presented quantity of inputs in each form by getting some returned values from the function named "getAddedDataFunc()" which invoked below.
+const printAddedDataFun = (updatedObj, mainID) => {
+  let [inpsObj, inpsLength] = updatedObj;
+  let addedDataDivMain = document.querySelector(mainID);
+  let ValArr = Object.values(inpsObj);
+
+  if (inpsLength === ValArr.length) {
+    let addedDataDiv = createDiv();
+    for (let index = 0; index < ValArr.length; index++) {
+      let pera = document.createElement("td");
+      pera.innerText = ValArr[index];
+      pera.classList.add("added-data");
+      addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
+    }
+    addedDataDivMain ? addedDataDivMain.append(addedDataDiv) : "";
+    return ValArr;
+  } else {
+    alert("You can't save empty data!");
+    return;
+  }
+};
+
+// this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
+const getAddedDataFunc = (targElem, mainID) => {
+  let inps = targElem.querySelector(mainID).querySelectorAll("input , select");
+  inps.forEach((inp) => {
+    if (inp.value !== "") {
+      obj[inp.id] = inp.value;
+      inp.value = "";
+    } else {
+      return;
+    }
+  });
+  return [obj, inps.length];
+};
+
+// this function holds 2 functions which involed above. i created this function for enhancing the readability
+const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
+  let updatedObj = getAddedDataFunc(targElem, mainID);
+  let ValArr = printAddedDataFun(updatedObj, mainID2);
+  return [updatedObj, ValArr];
+};
+
 // these event listeners are for printing forms data on click of "save" button, edit data on click on "edit" button and delete data on click on "delete" button of each form
-if (subForm) {
+if (formCtnr) {
   // this event listener  hold "save" , "delete" , "edit" data function on click on desired buttons
-  subForm.addEventListener("click", (e) => {
-    if (e.target.id === "delete-data-btn") {
-      e.preventDefault();
-      deleteDataFunc(e.target);
-    } else if (e.target.id === "edit-data-btn") {
-      e.preventDefault();
-      editDataFunc(e.target);
-    } else if (e.target.closest("button")) {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(subForm);
+
+  formCtnr.addEventListener("click", (e) => {
+    e.preventDefault();
+    // if (e.target.id === "add-vendor-save-btn") {
+    //   e.preventDefault();
+    //   ctnrFuncOfAddedDataFunc(
+    //     formCtnr,
+    //     "#add-vendor-form",
+    //     "#add-vendor-data-ctnr"
+    //   );
+    // }
+
+    if (e.target.innerText === "View Vendor") {
+      navigateToNextPageFunc("add vendor.html");
+    } else if (e.target.innerText === "View Products") {
+      navigateToNextPageFunc("add product.html");
+    } else if (e.target.innerText === "View Transactions") {
+      navigateToNextPageFunc("vendor's transaction.html");
+    } else if (e.target.innerText === "View Clients") {
+      navigateToNextPageFunc("add client.html");
+    } else if (e.target.innerText === "View Entries") {
+      navigateToNextPageFunc("client's entry.html");
+    } else if (e.target.innerText === "View Employees") {
+      navigateToNextPageFunc("add employee.html");
+    } else if (e.target.innerText === "View Salaries") {
+      navigateToNextPageFunc("advance salary.html");
     }
   });
 
   // this event listener holds the main fuction which holds the funtions for calculating salaries, leaves , net salary , total prices , outstanding payables, receivables and so on
-  subForm.addEventListener("input", (e) => {
+  formCtnr.addEventListener("input", (e) => {
     if (e.target.id === "add-product-price") {
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "vendor-transaction-price") {

@@ -38,12 +38,64 @@
   </head>
 
   <body>
-    <form>
+    <div class="container">
+      <h1 class="my-5 fw-bold">vendor list</h1>
+      <form>
+        <table class="mt-5 table">
+          <thead>
+            <tr>
+              <th scope="col" class="form-h-row">s.no</th>
+              <th scope="col" class="form-h-row">date</th>
+              <th scope="col" class="form-h-row">vendor name</th>
+              <th scope="col" class="form-h-row">address</th>
+              <th scope="col" class="form-h-row">cell num</th>
+              <th scope="col" class="form-h-row">buttons</th>
+            </tr>
+          </thead>
+
+          <tbody class="added-data-ctnr" id="add-vendor-data-ctnr">
+            <tr>
+              <td class="added-data">1.</td>
+              <td class="added-data">8/7/2024</td>
+              <td class="added-data">abdul ghafoor</td>
+              <td class="added-data">Karachi</td>
+              <td class="added-data">0391-1478954</td>
+              <td class="added-data">
+                <button class="edit-btn" id="edit-data-btn">edit</button>
+                <button class="delete-btn" id="delete-data-btn">delete</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="added-data">1.</td>
+              <td class="added-data">8/7/2024</td>
+              <td class="added-data">abdul ghafoor</td>
+              <td class="added-data">Karachi</td>
+              <td class="added-data">0391-1478954</td>
+              <td class="added-data">
+                <button class="edit-btn" id="edit-data-btn">edit</button>
+                <button class="delete-btn" id="delete-data-btn">delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="added-data">1.</td>
+              <td class="added-data">8/7/2024</td>
+              <td class="added-data">abdul ghafoor</td>
+              <td class="added-data">Karachi</td>
+              <td class="added-data">0391-1478954</td>
+              <td class="added-data">
+                <button class="edit-btn" id="edit-data-btn">edit</button>
+                <button class="delete-btn" id="delete-data-btn">delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <!-- <form>
       <div class="container">
-        <!-- Header for Vendor Details Form -->
         <h1 class="my-5 d-form-head">Vendor's Details</h1>
         <div class="row">
-          <!-- Column 1: Date Input -->
           <div class="col-2">
             <div class="col-12 my-2">
               <label for="add-vendor-date" class="form-label">Date :</label>
@@ -55,7 +107,6 @@
             </div>
           </div>
 
-          <!-- Column 2: Vendor Name Input -->
           <div class="col-3">
             <div class="col-12 my-2">
               <label for="add-vendor-vendor-name" class="form-label"
@@ -70,7 +121,6 @@
             </div>
           </div>
 
-          <!-- Column 3: Address Input -->
           <div class="col-4">
             <div class="col-12 my-2">
               <label for="add-vendor-address" class="form-label"
@@ -85,7 +135,6 @@
             </div>
           </div>
 
-          <!-- Column 4: Cell Number Input -->
           <div class="col-3">
             <div class="col-12 my-2">
               <label for="add-vendor-vendor-cell-num" class="form-label"
@@ -100,13 +149,12 @@
             </div>
           </div>
 
-          <!-- Column 5: Save Button -->
         </div>
         <div class="col-1 mt-5 mx-auto">
           <button class="add-data-btn">Save</button>
         </div>
       </div>
-    </form>
+    </form> -->
 
     <!-- <div class="container">
       <div
