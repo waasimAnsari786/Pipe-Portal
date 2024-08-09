@@ -34,7 +34,7 @@
       <div class="col-12 bg-primary py-5"></div>
 
       <!-- dashboard buttons container -->
-      <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 p-0 opt-ctnr">
+      <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 p-0 opt-ctnr bg-dark ">
         <div class="col-8 d-flex justify-content-center align-items-center mt-5 bg-light p-2 mx-auto logo-ctnr">
           <img src="img/logo 2.png" alt="logo" class="w-100">
         </div>
@@ -71,13 +71,14 @@
 
 
 
-      <!-- dashboard chart and clients data section -->
-      <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9 pb-5 px-4 form-ctnr">
-        <div class="col-12 ctnr">
-          <div class="row d-flex justify-content-center align-items-center py-5">
+      <!-- this container contains all the forms divs -->
+      <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9 form-ctnr">
 
+        <!-- dashboard charts and graphs container -->
+        <div class="col-12 slide-ctnr" id="db-ctnr">
+          <div class="row d-flex justify-content-center align-items-center py-5">
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
-              <div class="col-12 d-data-ctnr">
+              <div class="col-12 d-data-ctnr bg-primary">
                 <div class="row d-flex justify-content-between align-items-center">
                   <div class="col-4 d-num-data ">
                     <p>1217</p>
@@ -91,7 +92,7 @@
             </div>
 
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
-              <div class="col-12 d-data-ctnr">
+              <div class="col-12 d-data-ctnr bg-success">
                 <div class="row d-flex justify-content-between align-items-center">
                   <div class="col-4 d-num-data ">
                     <p>1000</p>
@@ -105,7 +106,7 @@
             </div>
 
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
-              <div class="col-12 d-data-ctnr">
+              <div class="col-12 d-data-ctnr bg-dark">
                 <div class="row d-flex justify-content-between align-items-center">
                   <div class="col-4 d-num-data">
                     <p>68</p>
@@ -119,7 +120,7 @@
             </div>
 
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
-              <div class="col-12 d-data-ctnr">
+              <div class="col-12 d-data-ctnr bg-danger">
                 <div class="row d-flex justify-content-between align-items-center">
                   <div class="col-4 d-num-data">
                     <p>4500</p>
@@ -149,13 +150,633 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-12 inp-ctnr">
-          <h1 class="my-5 d-form-head"></h1>
-        </div> -->
-      </div>
 
+        <!-- add vendor form -->
+        <form class="slide-ctnr" id="add-vendor-form">
+          <div class="container">
+            <!-- Header for Vendor Details Form -->
+            <h1 class="my-5 d-form-head">Vendor's Details</h1>
+            <div class="row">
+              <!-- Column 1: Date Input -->
+              <div class="col-2">
+                <div class="col-12 my-2">
+                  <label for="add-vendor-date" class="form-label">Date :</label>
+                  <input type="date" id="add-vendor-date" class="form-inps py-1 w-100" />
+                </div>
+              </div>
+
+              <!-- Column 2: Vendor Name Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-vendor-vendor-name" class="form-label">Vendor Name :</label>
+                  <input type="text" id="add-vendor-vendor-name" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 3: Address Input -->
+              <div class="col-4">
+                <div class="col-12 my-2">
+                  <label for="add-vendor-address" class="form-label">Address :</label>
+                  <input type="text" id="add-vendor-address" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 4: Cell Number Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-vendor-vendor-cell-num" class="form-label">Cell Number :</label>
+                  <input type="number" id="add-vendor-vendor-cell-num" class="py-1 form-inps w-100"
+                    autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 5: Save Button -->
+            </div>
+            <div class="col-1 mt-5 mx-auto">
+              <button class="add-data-btn">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- add vendor form end-->
+
+
+        <!-- add product form -->
+        <form class="slide-ctnr" id="add-product-form">
+          <div class="container">
+            <!-- Header for Add Product Form -->
+            <h1 class="my-5 d-form-head">Add Product</h1>
+
+            <div class="row">
+              <!-- Column 1: Date Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-date" class="form-label">Date :</label>
+                  <input type="date" id="add-product-date" class="form-inps py-1 w-100" />
+                </div>
+              </div>
+
+              <!-- Column 2: Product Name Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-product-name" class="form-label">Product Name :</label>
+                  <select id="add-product-product-name" class="form-inps py-1 w-100">
+                    <option value="product 1">Product 1</option>
+                    <option value="product 2">Product 2</option>
+                    <option value="product 3">Product 3</option>
+                    <option value="product 4">Product 4</option>
+                    <option value="product 5">Product 5</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Column 3: Product Size Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-product-size" class="form-label">Product Size :</label>
+                  <input type="text" id="add-product-product-size" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 4: Number of Bundles Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-num-of-bundles" class="form-label">Num of Bundles :</label>
+                  <input type="number" id="add-product-num-of-bundles" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <!-- Column 5: KG Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-kgs" class="form-label">KGs :</label>
+                  <input type="number" id="add-product-kgs" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <!-- Column 6: Price Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-price" class="form-label">Price :</label>
+                  <input type="number" id="add-product-price" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <!-- Column 7: Total Price Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-product-total-price" class="form-label">Total Price :</label>
+                  <input type="number" id="add-product-total-price" class="py-1 form-inps w-100" readonly />
+                </div>
+              </div>
+            </div>
+            <div class="col-1 mt-5 mx-auto">
+              <button class="add-data-btn w-100">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- add product form end -->
+
+        <!-- vendor transaction form -->
+        <form class="slide-ctnr" id="vendor-transaction-form">
+          <div class="container">
+            <!-- Header for Vendor Transaction Form -->
+            <h1 class="my-5 d-form-head">Vendor's Transaction</h1>
+            <div class="row">
+              <!-- Column 1: Product Select -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-product" class="form-label">Product :</label>
+                  <select id="vendor-transaction-product" class="form-inps py-1 w-100">
+                    <option value="product 1">Product 1</option>
+                    <option value="product 2">Product 2</option>
+                    <option value="product 3">Product 3</option>
+                    <option value="product 4">Product 4</option>
+                    <option value="product 5">Product 5</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Column 2: Bags Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-bags" class="form-label">Bags :</label>
+                  <input type="number" id="vendor-transaction-bags" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 3: Bags Weight Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-bags-weight" class="form-label">Bags Weight :</label>
+                  <input type="number" id="vendor-transaction-bags-weight" class="py-1 form-inps w-100"
+                    autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 4: Price Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-price" class="form-label">Price :</label>
+                  <input type="number" id="vendor-transaction-price" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 5: Total Price Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-total-price" class="form-label">Total Price :</label>
+                  <input type="number" id="vendor-transaction-total-price" class="py-1 form-inps w-100"
+                    autocomplete="off" readonly />
+                </div>
+              </div>
+
+              <!-- Column 6: Amount Payable Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-amount-payable" class="form-label">Amount Payable :</label>
+                  <input type="number" id="vendor-transaction-amount-payable" class="py-1 form-inps w-100"
+                    autocomplete="off" readonly />
+                </div>
+              </div>
+
+              <!-- Column 7: Advance Payment Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-advance-payment" class="form-label">Advance Payment :</label>
+                  <input type="number" id="vendor-transaction-advance-payment" class="py-1 form-inps w-100"
+                    autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 8: Outstanding Payable Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="vendor-transaction-outstanding-payable" class="form-label">Outstanding Payable :</label>
+                  <input type="number" id="vendor-transaction-outstanding-payable" class="py-1 form-inps w-100"
+                    autocomplete="off" readonly />
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="col-1 mt-5 mx-auto">
+              <button class="add-data-btn">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- vendor transaction form end-->
+
+        <!-- add client form -->
+        <form class="slide-ctnr" id="add-client-form">
+          <div class="container">
+            <!-- Header for Add Client Form -->
+            <h1 class="d-form-head my-5">Add Client</h1>
+            <div class="row">
+              <!-- Column 1: Date Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-client-date" class="form-label">Date :</label>
+                  <input type="date" id="add-client-date" class="form-inps py-1 w-100" />
+                </div>
+              </div>
+
+              <!-- Column 2: Client Name Select -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="add-client-client-name" class="form-label">Client Name :</label>
+                  <select id="add-client-client-name" class="form-inps py-1 w-100">
+                    <option value="client 1">Client 1</option>
+                    <option value="client 2">Client 2</option>
+                    <option value="client 3">Client 3</option>
+                    <option value="client 4">Client 4</option>
+                    <option value="client 5">Client 5</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Column 3: Address Input -->
+              <div class="col-4">
+                <div class="col-12 my-2">
+                  <label for="add-client-address" class="form-label">Address :</label>
+                  <input type="text" id="add-client-address" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 4: Cell Number Input -->
+              <div class="col-2">
+                <div class="col-12 my-2">
+                  <label for="add-client-client-cell-num" class="form-label">Cell Number :</label>
+                  <input type="number" id="add-client-client-cell-num" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="col-1 mt-5 mx-auto">
+              <button class="add-data-btn">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- add client form end-->
+
+
+        <!-- client entry form -->
+        <form class="slide-ctnr" id="client-entry-form">
+          <div class="container">
+            <!-- Header for Client's Entry Form -->
+            <h1 class="d-form-head py-5">Client's Entry</h1>
+            <div class="row">
+              <!-- Column 1: Date Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-date" class="form-label">Date :</label>
+                  <input type="date" id="client-entry-date" class="form-inps py-1 w-100" />
+                </div>
+              </div>
+
+              <!-- Column 2: Product Select -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-product" class="form-label">Product :</label>
+                  <select id="client-entry-product" class="form-inps py-1 w-100">
+                    <option value="product 1">Product 1</option>
+                    <option value="product 2">Product 2</option>
+                    <option value="product 3">Product 3</option>
+                    <option value="product 4">Product 4</option>
+                    <option value="product 5">Product 5</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Column 3: Size Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-size" class="form-label">Size :</label>
+                  <input type="text" id="client-entry-size" class="py-1 form-inps w-100" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Column 4: Bundles Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-bundles" class="form-label">Bundles :</label>
+                  <input type="number" id="client-entry-bundles" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <!-- Column 5: FT Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-ft" class="form-label">FT :</label>
+                  <input type="number" id="client-entry-ft" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <!-- Column 6: Price Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-price" class="form-label">Price :</label>
+                  <input type="number" id="client-entry-price" class="py-1 form-inps w-100" />
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-total-price" class="form-label"
+                    >Total Price :</label
+                  >
+                  <input
+                    type="number"
+                    id="client-entry-total-price"
+                    class="py-1 form-inps w-100"
+                    autocomplete="off"
+                    readonly
+                  />
+                </div>
+              </div>
+    
+              <!-- Column 6: Amount Payable Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-amount-receivable" class="form-label"
+                    >Amount Receivable :</label
+                  >
+                  <input
+                    type="number"
+                    id="client-entry-amount-receivable"
+                    class="py-1 form-inps w-100"
+                    autocomplete="off"
+                    readonly
+                  />
+                </div>
+              </div>
+    
+              <!-- Column 7: Advance Payment Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label for="client-entry-received-by-client" class="form-label"
+                    >Received By Client :</label
+                  >
+                  <input
+                    type="number"
+                    id="client-entry-received-by-client"
+                    class="py-1 form-inps w-100"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+    
+              <!-- Column 8: Outstanding Payable Input -->
+              <div class="col-3">
+                <div class="col-12 my-2">
+                  <label
+                    for="client-entry-outstanding-amount"
+                    class="form-label"
+                    >Outstanding Amount :</label
+                  >
+                  <input
+                    type="number"
+                    id="client-entry-outstanding-amount"
+                    class="py-1 form-inps w-100"
+                    autocomplete="off"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="col-1 mt-5 mx-auto">
+              <button class="add-data-btn">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- client entry form end-->
+
+
+        <!-- add employees form -->
+        <form class="slide-ctnr" id="add-employee-form">
+          <div class="container">
+            <section>
+              <h1 class="d-form-head my-5">Add Employee</h1>
+              <div class="row">
+                <!-- Column 1: Date Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-date" class="form-label">Date :</label>
+                    <input type="date" id="add-employee-date" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 2: Employee Name Select -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-employee-name" class="form-label">Employee Name :</label>
+                    <select id="add-employee-employee-name" class="form-inps py-1 w-100">
+                      <option value="employee 1">Employee 1</option>
+                      <option value="employee 2">Employee 2</option>
+                      <option value="employee 3">Employee 3</option>
+                      <option value="employee 4">Employee 4</option>
+                      <option value="employee 5">Employee 5</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Column 3: Designation Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-designation" class="form-label">Designation :</label>
+                    <input type="text" id="add-employee-designation" class="py-1 form-inps w-100" autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 4: Employee Cell Number Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-cell-num" class="form-label">Cell Number :</label>
+                    <input type="number" id="add-employee-cell-num" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 5: Employee Salary Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-salary" class="form-label">Salary :</label>
+                    <input type="number" id="add-employee-salary" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="col-1 mt-5 mx-auto">
+                  <button class="add-data-btn">Save</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </form>
+        <!-- add employees form end-->
+
+        <!-- advace salary form -->
+        <form class="slide-ctnr" id="advance-salary-form">
+          <div class="container">
+            <section>
+              <h1 class="d-form-head my-5">Add Employee</h1>
+              <div class="row">
+                <!-- Column 1: Date Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-date" class="form-label">Date :</label>
+                    <input type="date" id="add-employee-date" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 2: Employee Name Select -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-employee-name" class="form-label">Employee Name :</label>
+                    <select id="add-employee-employee-name" class="form-inps py-1 w-100">
+                      <option value="employee 1">Employee 1</option>
+                      <option value="employee 2">Employee 2</option>
+                      <option value="employee 3">Employee 3</option>
+                      <option value="employee 4">Employee 4</option>
+                      <option value="employee 5">Employee 5</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Column 3: Designation Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-designation" class="form-label">Designation :</label>
+                    <input type="text" id="add-employee-designation" class="py-1 form-inps w-100" autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 4: Employee Cell Number Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-cell-num" class="form-label">Cell Number :</label>
+                    <input type="number" id="add-employee-cell-num" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 5: Employee Salary Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="add-employee-salary" class="form-label">Salary :</label>
+                    <input type="number" id="add-employee-salary" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="col-1 mt-5 mx-auto">
+                  <button class="add-data-btn">Save</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </form>
+        <!-- advance salary form end-->
+
+        <!-- payroll entry form -->
+        <form class="slide-ctnr" id="payroll-entry-form">
+          <div class="container">
+            <section>
+              <h1 class="d-form-head my-5">Payroll Entry</h1>
+              <div class="row">
+                <!-- Column 1: Date Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-date" class="form-label">Date :</label>
+                    <input type="date" id="payroll-entry-date" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 2: Employee Name Select -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-employee-name" class="form-label">Employee Name :</label>
+                    <select id="payroll-entry-employee-name" class="form-inps py-1 w-100">
+                      <option value="employee 1">Employee 1</option>
+                      <option value="employee 2">Employee 2</option>
+                      <option value="employee 3">Employee 3</option>
+                      <option value="employee 4">Employee 4</option>
+                      <option value="employee 5">Employee 5</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Column 3: Designation Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-designation" class="form-label">Designation :</label>
+                    <input type="text" id="payroll-entry-designation" class="py-1 form-inps w-100" autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 4: Month Working Days Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-month-working-days" class="form-label">Mon Working Days :</label>
+                    <input type="number" id="payroll-entry-month-working-days" class="py-1 form-inps w-100"
+                      autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 5: Employee Working Days Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-emp-working-days" class="form-label">Emp Working Days :</label>
+                    <input type="number" id="payroll-entry-emp-working-days" class="py-1 form-inps w-100"
+                      autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 6: Leaves Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-leaves" class="form-label">Leaves :</label>
+                    <input type="number" id="payroll-entry-leaves" class="py-1 form-inps w-100" autocomplete="off" />
+                  </div>
+                </div>
+
+                <!-- Column 7: Salary Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-salary" class="form-label">Salary :</label>
+                    <input type="number" id="payroll-entry-salary" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 8: Advance Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-advance" class="form-label">Advance :</label>
+                    <input type="number" id="payroll-entry-advance" class="py-1 form-inps w-100" />
+                  </div>
+                </div>
+
+                <!-- Column 9: Net Salary Input -->
+                <div class="col-3">
+                  <div class="col-12 my-2">
+                    <label for="payroll-entry-net-salary" class="form-label">Net Salary :</label>
+                    <input type="number" id="payroll-entry-net-salary" class="py-1 form-inps w-100" readonly />
+                  </div>
+                </div>
+
+                <!-- Save Button -->
+              </div>
+              <div class="col-1 mt-5 mx-auto">
+                <button class="add-data-btn">Save</button>
+              </div>
+            </section>
+          </div>
+        </form>
+        <!-- payroll entry form end-->
+
+
+      </div>
     </div>
-  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

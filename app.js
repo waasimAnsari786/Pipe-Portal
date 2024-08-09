@@ -3,6 +3,7 @@ let homeForm = document.querySelector("#loginForm");
 let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
 let subForm = document.querySelector("form");
+let dbCtnr = document.querySelector("#db-ctnr");
 
 // this function is for navigate new page
 const navigateToNextPageFunc = (page) => {
@@ -89,27 +90,39 @@ const remAniFunc = (targElem) => {
   targElem.innerHTML = "";
 };
 
-// const bringForwAni = (targElem, targElem2) => {
-//   requestAnimationFrame(() => {
-//     targElem.style.transition = "1s";
-//     targElem.style.transform = "translateX(-50rem)";
-//     targElem.style.opacity = "0";
+const showDiv = (targElem) => {
+  targElem.style.transition = "1s";
+  targElem.style.transform = "translateX(0rem)";
+  targElem.style.opacity = "1";
+};
 
-//     setTimeout(() => {
-//       targElem2.style.transition = "1s";
-//       targElem2.style.transform = "translateX(0rem)";
-//       targElem2.style.opacity = "1";
-//     }, 1000);
+showDiv(dbCtnr);
 
-//     setTimeout(() => {
-//       targElem.style.position = "absolute";
-//       targElem.style.left = "0";
-//       targElem.style.top = "0";
-//       targElem.style.opacity = "0";
-//       targElem2.style.transform = "translateX(-10rem)";
-//     }, 2100);
-//   });
-// };
+const bringForwAni = (targId) => {
+  let slides = document.querySelectorAll(".slide-ctnr");
+  slides.forEach((slide) => {
+    requestAnimationFrame(() => {
+      if (slide.id === targId) {
+        setTimeout(() => {
+          slide.style.transition = "1s";
+          slide.style.transform = "translateX(0rem)";
+          slide.style.opacity = "1";
+          slide.style.zIndex = "2";
+        }, 1000);
+      } else {
+        slide.style.transition = "1s";
+        slide.style.transform = "translateX(-100%)";
+        slide.style.opacity = "0";
+        slide.style.zIndex = "-2";
+        setTimeout(() => {
+          slide.style.transform = "translateX(100%)";
+          slide.style.opacity = "0";
+          slide.style.zIndex = "-2";
+        }, 1100);
+      }
+    });
+  });
+};
 
 // this is "Chart.Js" library's code for inserting charts
 if (graphCtnr) {
@@ -217,21 +230,21 @@ if (optCtnr) {
     ) {
       handleOnClick(subBtnCtnr, "payroll", e.target.innerText);
     } else if (e.target.innerText === "Add Vendor") {
-      navigateToNextPageFunc("add vendor.html");
+      bringForwAni("add-vendor-form");
     } else if (e.target.innerText === "Add Product") {
-      navigateToNextPageFunc("add product.html");
+      bringForwAni("add-product-form");
     } else if (e.target.innerText === "Vendor's Transaction") {
-      navigateToNextPageFunc("vendor's transaction.html");
+      bringForwAni("vendor-transaction-form");
     } else if (e.target.innerText === "Add Client") {
-      navigateToNextPageFunc("add client.html");
+      bringForwAni("add-client-form");
     } else if (e.target.innerText === "Client's Entry") {
-      navigateToNextPageFunc("client's entry.html");
+      bringForwAni("client-entry-form");
     } else if (e.target.innerText === "Add Employee") {
-      navigateToNextPageFunc("add employee.html");
+      bringForwAni("add-employee-form");
     } else if (e.target.innerText === "Advance Salary") {
-      navigateToNextPageFunc("advance salary.html");
+      bringForwAni("advance-salary-form");
     } else if (e.target.innerText === "Payroll Entry") {
-      navigateToNextPageFunc("payroll entry.html");
+      bringForwAni("payroll-entry-form");
     }
   });
 }
