@@ -3,8 +3,20 @@ let homeForm = document.querySelector("#loginForm");
 let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
 let formCtnr = document.querySelector(".form-ctnr");
-
 let dbCtnr = document.querySelector("#db-ctnr");
+
+const setCurDate = () => {
+  let dateInps = document.querySelectorAll("input[type='date']");
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;
+  dateInps.forEach((dateInp) => {
+    dateInp.value = formattedDate;
+  });
+};
+setCurDate();
 
 // this function is for navigate new page
 const navigateToNextPageFunc = (page) => {
@@ -32,6 +44,31 @@ const chkEmailPswdOnClick = (CBEmailFunc, CBPswdFunc, a, b) => {
   return [checkedEmail, checkedPswd, a, b];
 };
 
+// this is the ripple effect's funcion
+const createRipple = (event) => {
+  const button = event.currentTarget;
+  console.log(button);
+
+  const ripple = document.createElement("span");
+  const rect = button.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height); // Use the larger dimension for the ripple size
+  const x = event.clientX - rect.left - size / 2; // Center the ripple
+  const y = event.clientY - rect.top - size / 2; // Center the ripple
+
+  ripple.classList.add("ripple");
+  ripple.style.position = "absolute";
+  ripple.style.zIndex = "-1";
+  ripple.style.width = ripple.style.height = `${size / 25}rem`;
+  ripple.style.left = `${x / 25}rem`;
+  ripple.style.top = `${y / 25}rem`;
+
+  button.querySelector("#submit-btn").appendChild(ripple);
+
+  ripple.addEventListener("animationend", () => {
+    ripple.remove();
+  });
+};
+
 // this is for prevnting the submit functionality of forms
 if (homeForm) {
   homeForm.addEventListener("submit", (e) => {
@@ -41,31 +78,33 @@ if (homeForm) {
   // this event listener is for targeting the submit button of login page and then check user's email and password through the function which are defined at above
   homeForm.addEventListener("click", (e) => {
     if (e.target.id === "submit-btn") {
-      // i used callback hell in this line of code
-      let [finalValue1, finalValue2, emInpVal, psInpVal] = chkEmailPswdOnClick(
-        validateEmailFunc,
-        validatePswdfunc,
-        emailInp.value,
-        pswdInp.value
-      );
+      navigateToNextPageFunc("dashbord.html");
+      // // i used callback hell in this line of code
+      // let [finalValue1, finalValue2, emInpVal, psInpVal] = chkEmailPswdOnClick(
+      //   validateEmailFunc,
+      //   validatePswdfunc,
+      //   emailInp.value,
+      //   pswdInp.value
+      // );
 
-      // these are the conditions for alerting the user that what mistake is he doing at the time of login
-      if (emInpVal && psInpVal) {
-        if (finalValue1 && finalValue2) {
-          navigateToNextPageFunc("dashbord.html");
-        } else if (!finalValue1 && !finalValue2) {
-          alert("Both email and password are incorrect!");
-        } else if (!finalValue1) {
-          alert("Your email is incorrect!");
-        } else if (!finalValue2) {
-          alert("Your password is incorrect!");
-        }
-      } else {
-        alert("You can't login without enter your email and password!");
-      }
+      // // these are the conditions for alerting the user that what mistake is he doing at the time of login
+      // if (emInpVal && psInpVal) {
+      //   if (finalValue1 && finalValue2) {
+      //     navigateToNextPageFunc("dashbord.html");
+      //   } else if (!finalValue1 && !finalValue2) {
+      //     alert("Both email and password are incorrect!");
+      //   } else if (!finalValue1) {
+      //     alert("Your email is incorrect!");
+      //   } else if (!finalValue2) {
+      //     alert("Your password is incorrect!");
+      //   }
+      // } else {
+      //   alert("You can't login without enter your email and password!");
+      // }
     }
   });
 }
+
 // login page's code end
 
 // dashboard start
@@ -409,22 +448,6 @@ const obj = {};
 let num = 0;
 
 // this function creates a div for taking all the printed data of inputs of all forms
-
-// const createDiv = () => {
-//   num++;
-//   let mainDiv = document.createElement("div");
-//   mainDiv.classList.add("added-data-ctnr-inner", "row", "py-2");
-//   mainDiv.innerHTML = `
-//   <div class='col-11'>
-//     <p class='added-data'>${num}.</p>
-//   </div>
-//   <div class='col-1 p-0'>
-//     <button id="edit-data-btn">edit</button>
-//     <button id="delete-data-btn">delete</button>
-//   </div>`;
-//   return mainDiv;
-// };
-
 const createDiv = () => {
   num++;
   let mainDiv = document.createElement("tr");
@@ -468,7 +491,9 @@ const getAddedDataFunc = (targElem, mainID) => {
   inps.forEach((inp) => {
     if (inp.value !== "") {
       obj[inp.id] = inp.value;
-      inp.value = "";
+      if (inp.getAttribute("type") !== "date") {
+        inp.value = "";
+      }
     } else {
       return;
     }
@@ -486,68 +511,61 @@ const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
 // these event listeners are for printing forms data on click of "save" button, edit data on click on "edit" button and delete data on click on "delete" button of each form
 if (formCtnr) {
   // this event listener  hold "save" , "delete" , "edit" data function on click on desired buttons
-
   formCtnr.addEventListener("click", (e) => {
-    e.preventDefault();
-    // if (e.target.id === "add-vendor-save-btn") {
-    //   e.preventDefault();
-    //   ctnrFuncOfAddedDataFunc(
-    //     formCtnr,
-    //     "#add-vendor-form",
-    //     "#add-vendor-data-ctnr"
-    //   );
-    // }
-
     if (e.target.innerText === "View Vendor") {
-      navigateToNextPageFunc("add vendor.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Products") {
-      navigateToNextPageFunc("add product.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Transactions") {
-      navigateToNextPageFunc("vendor's transaction.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Clients") {
-      navigateToNextPageFunc("add client.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Entries") {
-      navigateToNextPageFunc("client's entry.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Employees") {
-      navigateToNextPageFunc("add employee.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Salaries") {
-      navigateToNextPageFunc("advance salary.html");
+      e.preventDefault();
+      bringForwAni("add-vendor-data-ctnr");
+    } else if (e.target.id === "add-vendor-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#add-vendor-form",
+        "#add-vendor-added-data-ctnr"
+      );
     }
   });
 
   // this event listener holds the main fuction which holds the funtions for calculating salaries, leaves , net salary , total prices , outstanding payables, receivables and so on
   formCtnr.addEventListener("input", (e) => {
     if (e.target.id === "add-product-price") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "vendor-transaction-price") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "client-entry-price") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "vendor-transaction-advance-payment") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "client-entry-received-by-client") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "payroll-entry-emp-working-days") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "payroll-entry-advance") {
+      e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     }
   });
 }
-
-// document.querySelectorAll(".toggle-btn").forEach((button) => {
-//   button.addEventListener("click", () => {
-//     const targetId = button.getAttribute("data-target");
-
-//     document.querySelectorAll(".form-container").forEach((form) => {
-//       if (form.id !== targetId) {
-//         form.classList.remove("open");
-//       }
-//     });
-
-//     const targetForm = document.getElementById(targetId);
-//     if (targetForm) {
-//       targetForm.classList.add("open");
-//     }
-//   });
-// });

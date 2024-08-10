@@ -31,7 +31,16 @@
 
   <div class="container-fluid">
     <div class="row head-ctnr">
-      <div class="col-12 bg-primary py-5"></div>
+      <div class="col-12 bg-primary">
+        <div class="row">
+          <div class="col-2 logo-ctnr-2">
+            <h3 class="d-form-head text-light fs-1 py-4">pipe factory  </h3>
+          </div>
+          <div class="col-10 d-flex justify-content-center align-items-center">
+            <p class="head-content text-light fs-4 text-center">Leading the way in high-quality plastic pipe manufacturing for diverse industrial needs</p>
+          </div>
+        </div>
+      </div>
 
       <!-- dashboard buttons container -->
       <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 p-0 opt-ctnr bg-dark ">
@@ -75,7 +84,7 @@
       <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9 form-ctnr">
 
         <!-- dashboard charts and graphs container -->
-        <div class="col-12 slide-ctnr" id="db-ctnr">
+        <div class="col-12 slide-ctnr px-4" id="db-ctnr">
           <div class="row d-flex justify-content-center align-items-center py-5">
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 d-data-ctnr-prnt">
               <div class="col-12 d-data-ctnr bg-primary">
@@ -154,19 +163,7 @@
         <!-- add vendor form -->
         <form class="slide-ctnr" id="add-vendor-form">
           <div class="container">
-            <!-- Header for Vendor Details Form -->
-            <div class="col-12 mt-5">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-3">
-                  <h1 class="my-5 d-form-head">add vendor</h1>
-                </div>
-
-                <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                  <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                  <button class="add-data-btn">view vendor</button>
-                </div>
-              </div>
-            </div>
+            <h1 class="my-5 d-form-head">add vendor</h1>
             <div class="row">
               <!-- Column 1: Date Input -->
               <div class="col-2">
@@ -203,6 +200,10 @@
 
               <!-- Column 5: Save Button -->
             </div>
+            <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn">view vendor</button>
+            </div>
             
           </div>
         </form>
@@ -213,19 +214,7 @@
         <form class="slide-ctnr" id="add-product-form">
           <div class="container">
             <!-- Header for Add Product Form -->
-            <div class="col-12 mt-5">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-3">
-                  <h1 class="my-5 d-form-head">add product</h1>
-                </div>
-
-                <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                  <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                  <button class="add-data-btn" id="add-vendor-save-btn">view products</button>
-                </div>
-              </div>
-            </div>
-
+            <h1 class="my-5 d-form-head">add product</h1>
             <div class="row">
               <!-- Column 1: Date Input -->
               <div class="col-3">
@@ -289,6 +278,10 @@
                 </div>
               </div>
             </div>
+            <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-vendor-save-btn">view products</button>
+            </div>
           </div>
         </form>
         <!-- add product form end -->
@@ -297,18 +290,7 @@
         <form class="slide-ctnr" id="vendor-transaction-form">
           <div class="container">
             <!-- Header for Vendor Transaction Form -->
-            <div class="col-12 mt-5">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-3">
-                  <h1 class="my-5 d-form-head">Vendor's transactions</h1>
-                </div>
-
-                <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                  <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                  <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
-                </div>
-              </div>
-            </div>
+            <h1 class="my-5 d-form-head">Vendor's transactions</h1>
             <div class="row">
               <!-- Column 1: Product Select -->
               <div class="col-3">
@@ -385,6 +367,10 @@
                 </div>
               </div>
             </div>
+            <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+            </div>
           </div>
         </form>
         <!-- vendor transaction form end-->
@@ -393,18 +379,7 @@
         <form class="slide-ctnr" id="add-client-form">
           <div class="container">
             <!-- Header for Add Client Form -->
-            <div class="col-12 mt-5">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-3">
-                  <h1 class="my-5 d-form-head">add client</h1>
-                </div>
-
-                <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                  <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                  <button class="add-data-btn" id="add-vendor-save-btn">view clients</button>
-                </div>
-              </div>
-            </div>
+            <h1 class="my-5 d-form-head">add client</h1>
             <div class="row">
               <!-- Column 1: Date Input -->
               <div class="col-3">
@@ -444,6 +419,10 @@
                 </div>
               </div>
             </div>
+            <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+            </div>
           </div>
         </form>
         <!-- add client form end-->
@@ -453,18 +432,7 @@
         <form class="slide-ctnr" id="client-entry-form">
           <div class="container">
             <!-- Header for Client's Entry Form -->
-                        <div class="col-12 mt-5">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-3">
-                  <h1 class="my-5 d-form-head">client's entry</h1>
-                </div>
-
-                <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                  <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                  <button class="add-data-btn" id="add-vendor-save-btn">view entries</button>
-                </div>
-              </div>
-            </div>
+            <h1 class="my-5 d-form-head">client's entry</h1>
             <div class="row">
               <!-- Column 1: Date Input -->
               <div class="col-3">
@@ -584,6 +552,10 @@
                 </div>
               </div>
             </div>
+            <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+            </div>
           </div>
         </form>
         <!-- client entry form end-->
@@ -593,18 +565,7 @@
         <form class="slide-ctnr" id="add-employee-form">
           <div class="container">
             <section>
-              <div class="col-12 mt-5">
-                <div class="row d-flex justify-content-between align-items-center">
-                  <div class="col-3">
-                    <h1 class="my-5 d-form-head">add employee</h1>
-                  </div>
-  
-                  <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                    <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                    <button class="add-data-btn" id="add-vendor-save-btn">view employees</button>
-                  </div>
-                </div>
-              </div>
+              <h1 class="my-5 d-form-head">add employee</h1>
               <div class="row">
                 <!-- Column 1: Date Input -->
                 <div class="col-3">
@@ -651,6 +612,10 @@
                     <input type="number" id="add-employee-salary" class="py-1 form-inps w-100" />
                   </div>
                 </div>
+              </div>
+              <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
               </div>
             </section>
           </div>
@@ -661,18 +626,7 @@
         <form class="slide-ctnr" id="advance-salary-form">
           <div class="container">
             <section>
-              <div class="col-12 mt-5">
-                <div class="row d-flex justify-content-between align-items-center">
-                  <div class="col-3">
-                    <h1 class="my-5 d-form-head">advance salary</h1>
-                  </div>
-  
-                  <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                    <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                    <button class="add-data-btn" id="add-vendor-save-btn">view salaries</button>
-                  </div>
-                </div>
-              </div>
+              <h1 class="my-5 d-form-head">advance salary</h1>
               <div class="row">
                 <!-- Column 1: Date Input -->
                 <div class="col-3">
@@ -720,6 +674,10 @@
                   </div>
                 </div>
               </div>
+              <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+              </div>
             </section>
           </div>
         </form>
@@ -729,18 +687,7 @@
         <form class="slide-ctnr" id="payroll-entry-form">
           <div class="container">
             <section>
-              <div class="col-12 mt-5">
-                <div class="row d-flex justify-content-between align-items-center">
-                  <div class="col-3">
-                    <h1 class="my-5 d-form-head">payroll entry</h1>
-                  </div>
-  
-                  <div class="col-3 d-flex justify-content-end align-items-center gap-2">
-                    <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                    <button class="add-data-btn" id="add-vendor-save-btn">view entries</button>
-                  </div>
-                </div>
-              </div>
+              <h1 class="my-5 d-form-head">payroll entry</h1>
               <div class="row">
                 <!-- Column 1: Date Input -->
                 <div class="col-3">
@@ -822,10 +769,56 @@
                   </div>
                 </div>
               </div>
+              <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
+                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+              </div>
             </section>
           </div>
         </form>
         <!-- payroll entry form end-->
+
+
+
+        <!-- view vendor container -->
+        <div class="container slide-ctnr px-4" id="add-vendor-data-ctnr">
+          <h1 class="my-5 fw-bold">Vendor List</h1>
+          <table class="mt-5 table">
+            <thead>
+              <tr>
+                <th scope="col" class="form-h-row">s.no</th>
+                <th scope="col" class="form-h-row">date</th>
+                <th scope="col" class="form-h-row">vendor name</th>
+                <th scope="col" class="form-h-row">address</th>
+                <th scope="col" class="form-h-row">cell num</th>
+                <th scope="col" class="form-h-row">buttons</th>
+              </tr>
+            </thead>
+    
+            <tbody id="add-vendor-added-data-ctnr"></tbody>
+          </table>
+        </div>
+        <!-- view vendor container end-->
+        
+        
+        
+        
+        
+       
+
+
+        
+        
+        
+
+
+
+
+
+
+
+
+
 
 
       </div>
