@@ -7,6 +7,8 @@
 
   <link rel="stylesheet" href="style.css" />
 
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
@@ -34,10 +36,11 @@
       <div class="col-12 bg-primary">
         <div class="row">
           <div class="col-2 logo-ctnr-2">
-            <h3 class="d-form-head text-light fs-1 py-4">pipe factory  </h3>
+            <h3 class="d-form-head text-light fs-1 py-4">pipe factory </h3>
           </div>
           <div class="col-10 d-flex justify-content-center align-items-center">
-            <p class="head-content text-light fs-4 text-center">Leading the way in high-quality plastic pipe manufacturing for diverse industrial needs</p>
+            <p class="head-content text-light fs-4 text-center">Leading the way in high-quality plastic pipe
+              manufacturing for diverse industrial needs</p>
           </div>
         </div>
       </div>
@@ -204,7 +207,7 @@
               <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
               <button class="add-data-btn">view vendor</button>
             </div>
-            
+
           </div>
         </form>
         <!-- add vendor form end-->
@@ -279,7 +282,7 @@
               </div>
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-product-save-btn">Save</button>
               <button class="add-data-btn" id="add-vendor-save-btn">view products</button>
             </div>
           </div>
@@ -368,7 +371,7 @@
               </div>
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="vendor-transaction-save-btn">Save</button>
               <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
             </div>
           </div>
@@ -393,13 +396,7 @@
               <div class="col-3">
                 <div class="col-12 my-2">
                   <label for="add-client-client-name" class="form-label">Client Name :</label>
-                  <select id="add-client-client-name" class="form-inps py-1 w-100">
-                    <option value="client 1">Client 1</option>
-                    <option value="client 2">Client 2</option>
-                    <option value="client 3">Client 3</option>
-                    <option value="client 4">Client 4</option>
-                    <option value="client 5">Client 5</option>
-                  </select>
+                  <input type="text" id="add-client-client-name" class="form-inps py-1 w-100">
                 </div>
               </div>
 
@@ -420,7 +417,7 @@
               </div>
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
+              <button class="add-data-btn" id="add-client-save-btn">Save</button>
               <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
             </div>
           </div>
@@ -490,65 +487,36 @@
 
               <div class="col-3">
                 <div class="col-12 my-2">
-                  <label for="client-entry-total-price" class="form-label"
-                    >Total Price :</label
-                  >
-                  <input
-                    type="number"
-                    id="client-entry-total-price"
-                    class="py-1 form-inps w-100"
-                    autocomplete="off"
-                    readonly
-                  />
+                  <label for="client-entry-total-price" class="form-label">Total Price :</label>
+                  <input type="number" id="client-entry-total-price" class="py-1 form-inps w-100" autocomplete="off"
+                    readonly />
                 </div>
               </div>
-    
+
               <!-- Column 6: Amount Payable Input -->
               <div class="col-3">
                 <div class="col-12 my-2">
-                  <label for="client-entry-amount-receivable" class="form-label"
-                    >Amount Receivable :</label
-                  >
-                  <input
-                    type="number"
-                    id="client-entry-amount-receivable"
-                    class="py-1 form-inps w-100"
-                    autocomplete="off"
-                    readonly
-                  />
+                  <label for="client-entry-amount-receivable" class="form-label">Amount Receivable :</label>
+                  <input type="number" id="client-entry-amount-receivable" class="py-1 form-inps w-100"
+                    autocomplete="off" readonly />
                 </div>
               </div>
-    
+
               <!-- Column 7: Advance Payment Input -->
               <div class="col-3">
                 <div class="col-12 my-2">
-                  <label for="client-entry-received-by-client" class="form-label"
-                    >Received By Client :</label
-                  >
-                  <input
-                    type="number"
-                    id="client-entry-received-by-client"
-                    class="py-1 form-inps w-100"
-                    autocomplete="off"
-                  />
+                  <label for="client-entry-received-by-client" class="form-label">Received By Client :</label>
+                  <input type="number" id="client-entry-received-by-client" class="py-1 form-inps w-100"
+                    autocomplete="off" />
                 </div>
               </div>
-    
+
               <!-- Column 8: Outstanding Payable Input -->
               <div class="col-3">
                 <div class="col-12 my-2">
-                  <label
-                    for="client-entry-outstanding-amount"
-                    class="form-label"
-                    >Outstanding Amount :</label
-                  >
-                  <input
-                    type="number"
-                    id="client-entry-outstanding-amount"
-                    class="py-1 form-inps w-100"
-                    autocomplete="off"
-                    readonly
-                  />
+                  <label for="client-entry-outstanding-amount" class="form-label">Outstanding Amount :</label>
+                  <input type="number" id="client-entry-outstanding-amount" class="py-1 form-inps w-100"
+                    autocomplete="off" readonly />
                 </div>
               </div>
             </div>
@@ -794,22 +762,81 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </tr>
             </thead>
-    
+
             <tbody id="add-vendor-added-data-ctnr"></tbody>
           </table>
         </div>
         <!-- view vendor container end-->
+
+        <!-- view product container -->
+        <div class="container slide-ctnr px-4" id="add-product-data-ctnr">
+          <table class="mt-5 table">
+            <thead>
+              <th scope="col" class="form-h-row">s.no</th>
+              <th scope="col" class="form-h-row">date</th>
+              <th scope="col" class="form-h-row">product name</th>
+              <th scope="col" class="form-h-row">product size</th>
+              <th scope="col" class="form-h-row">num of bundles</th>
+              <th scope="col" class="form-h-row">KGs</th>
+              <th scope="col" class="form-h-row">price</th>
+              <th scope="col" class="form-h-row">total price</th>
+              <th scope="col" class="form-h-row">buttons</th>
+            </thead>
+
+            <tbody id="add-product-added-data-ctnr"></tbody>
+          </table>
+        </div>
+        <!-- view product container end-->
+
         
-        
-        
-        
-        
-       
+        <!-- view vendors container-->
+        <div class="container slide-ctnr px-4" id="vendor-transaction-data-ctnr">
+          <table class="mt-5 table">
+            <thead>
+              <th scope="col" class="form-h-row">s.no</th>
+              <th scope="col" class="form-h-row">product</th>
+              <th scope="col" class="form-h-row">bags</th>
+              <th scope="col" class="form-h-row">bags weight</th>
+              <th scope="col" class="form-h-row">price</th>
+              <th scope="col" class="form-h-row">total price</th>
+              <th scope="col" class="form-h-row">amount payable</th>
+              <th scope="col" class="form-h-row">advance payment</th>
+              <th scope="col" class="form-h-row">outstanding payable</th>
+              <th scope="col" class="form-h-row">buttons</th>
+            </thead>
+            <tbody id="vendor-transaction-added-data-ctnr"></tbody>
+          </table>
+        </div>
+        <!-- view product container end-->
+
+        <!-- view client container-->
+         <div class="container slide-ctnr" id="view-client-data-ctnr">
+          <table class="mt-5 table">
+            <thead>
+              <th scope="col" class="form-h-row">s.no</th>
+              <th scope="col" class="form-h-row">date</th>
+              <th scope="col" class="form-h-row">client name</th>
+              <th scope="col" class="form-h-row">address</th>
+              <th scope="col" class="form-h-row">client's cell num</th>
+              <th scope="col" class="form-h-row">buttons</th>
+            </thead>
+  
+            <tbody class="add-client-added-data-ctnr mt-5"></tbody>
+          </table>
+         </div>
+        <!-- view client container end-->
 
 
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -825,8 +852,12 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>

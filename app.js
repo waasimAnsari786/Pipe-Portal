@@ -145,19 +145,22 @@ const bringForwAni = (targId) => {
       if (slide.id === targId) {
         setTimeout(() => {
           slide.style.transition = "1s";
-          slide.style.transform = "translateX(0rem)";
+          slide.style.transform = "translateX(0%)";
           slide.style.opacity = "1";
           slide.style.zIndex = "2";
+          slide.style.visibility = "visible";
         }, 1000);
       } else {
         slide.style.transition = "1s";
         slide.style.transform = "translateX(-100%)";
         slide.style.opacity = "0";
         slide.style.zIndex = "-2";
+        slide.style.visibility = "hidden";
         setTimeout(() => {
           slide.style.transform = "translateX(100%)";
           slide.style.opacity = "0";
           slide.style.zIndex = "-2";
+          slide.style.visibility = "hidden";
         }, 1100);
       }
     });
@@ -488,11 +491,15 @@ const printAddedDataFun = (updatedObj, mainID) => {
 // this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
 const getAddedDataFunc = (targElem, mainID) => {
   let inps = targElem.querySelector(mainID).querySelectorAll("input , select");
+  console.log(inps);
+
   inps.forEach((inp) => {
     if (inp.value !== "") {
       obj[inp.id] = inp.value;
       if (inp.getAttribute("type") !== "date") {
         inp.value = "";
+      } else {
+        setCurDate();
       }
     } else {
       return;
@@ -517,10 +524,10 @@ if (formCtnr) {
       bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Products") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
+      bringForwAni("add-product-data-ctnr");
     } else if (e.target.innerText === "View Transactions") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
+      bringForwAni("vendor-transaction-data-ctnr");
     } else if (e.target.innerText === "View Clients") {
       e.preventDefault();
       bringForwAni("add-vendor-data-ctnr");
@@ -539,6 +546,27 @@ if (formCtnr) {
         formCtnr,
         "#add-vendor-form",
         "#add-vendor-added-data-ctnr"
+      );
+    } else if (e.target.id === "add-product-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#add-product-form",
+        "#add-product-added-data-ctnr"
+      );
+    } else if (e.target.id === "vendor-transaction-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#vendor-transaction-form",
+        "#vendor-transaction-added-data-ctnr"
+      );
+    } else if (e.target.id === "add-client-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#add-client-form",
+        "#add-client-added-data-ctnr"
       );
     }
   });
