@@ -26,6 +26,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <title>Pipe Portal Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body class='d-body'>
@@ -283,7 +286,7 @@
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
               <button class="add-data-btn" id="add-product-save-btn">Save</button>
-              <button class="add-data-btn" id="add-vendor-save-btn">view products</button>
+              <button class="add-data-btn">view products</button>
             </div>
           </div>
         </form>
@@ -372,7 +375,7 @@
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
               <button class="add-data-btn" id="vendor-transaction-save-btn">Save</button>
-              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+              <button class="add-data-btn">view transactions</button>
             </div>
           </div>
         </form>
@@ -418,7 +421,7 @@
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
               <button class="add-data-btn" id="add-client-save-btn">Save</button>
-              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+              <button class="add-data-btn">view clients</button>
             </div>
           </div>
         </form>
@@ -521,8 +524,8 @@
               </div>
             </div>
             <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-              <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-              <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+              <button class="add-data-btn" id="client-entry-save-btn">Save</button>
+              <button class="add-data-btn">view clients entries</button>
             </div>
           </div>
         </form>
@@ -547,13 +550,7 @@
                 <div class="col-3">
                   <div class="col-12 my-2">
                     <label for="add-employee-employee-name" class="form-label">Employee Name :</label>
-                    <select id="add-employee-employee-name" class="form-inps py-1 w-100">
-                      <option value="employee 1">Employee 1</option>
-                      <option value="employee 2">Employee 2</option>
-                      <option value="employee 3">Employee 3</option>
-                      <option value="employee 4">Employee 4</option>
-                      <option value="employee 5">Employee 5</option>
-                    </select>
+                    <input type="text" id="add-employee-employee-name" class="py-1 form-inps w-100" />
                   </div>
                 </div>
 
@@ -582,8 +579,8 @@
                 </div>
               </div>
               <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+                <button class="add-data-btn" id="add-employee-save-btn">Save</button>
+                <button class="add-data-btn">view employees</button>
               </div>
             </section>
           </div>
@@ -599,56 +596,52 @@
                 <!-- Column 1: Date Input -->
                 <div class="col-3">
                   <div class="col-12 my-2">
-                    <label for="add-employee-date" class="form-label">Date :</label>
-                    <input type="date" id="add-employee-date" class="py-1 form-inps w-100" />
+                    <label for="advance-salary-date" class="form-label">Date :</label>
+                    <input type="date" id="advance-salary-date" class="py-1 form-inps w-100" />
                   </div>
                 </div>
 
                 <!-- Column 2: Employee Name Select -->
                 <div class="col-3">
                   <div class="col-12 my-2">
-                    <label for="add-employee-employee-name" class="form-label">Employee Name :</label>
-                    <select id="add-employee-employee-name" class="form-inps py-1 w-100">
-                      <option value="employee 1">Employee 1</option>
-                      <option value="employee 2">Employee 2</option>
-                      <option value="employee 3">Employee 3</option>
-                      <option value="employee 4">Employee 4</option>
-                      <option value="employee 5">Employee 5</option>
-                    </select>
+                    <label for="advance-salary-employee-name" class="form-label">Employee Name :</label>
+                    <input type="text" id="advance-salary-employee-name" class="py-1 form-inps w-100" />
                   </div>
                 </div>
 
                 <!-- Column 3: Designation Input -->
                 <div class="col-3">
                   <div class="col-12 my-2">
-                    <label for="add-employee-designation" class="form-label">Designation :</label>
-                    <input type="text" id="add-employee-designation" class="py-1 form-inps w-100" autocomplete="off" />
+                    <label for="advance-salary-designation" class="form-label">Designation :</label>
+                    <input type="text" id="advance-salary-designation" class="py-1 form-inps w-100"
+                      autocomplete="off" />
                   </div>
                 </div>
 
                 <!-- Column 4: Employee Cell Number Input -->
                 <div class="col-3">
                   <div class="col-12 my-2">
-                    <label for="add-employee-cell-num" class="form-label">Cell Number :</label>
-                    <input type="number" id="add-employee-cell-num" class="py-1 form-inps w-100" />
+                    <label for="advance-salary-cell-num" class="form-label">Cell Number :</label>
+                    <input type="number" id="advance-salary-cell-num" class="py-1 form-inps w-100" />
                   </div>
                 </div>
 
                 <!-- Column 5: Employee Salary Input -->
                 <div class="col-3">
                   <div class="col-12 my-2">
-                    <label for="add-employee-salary" class="form-label">Salary :</label>
-                    <input type="number" id="add-employee-salary" class="py-1 form-inps w-100" />
+                    <label for="advance-salary-salary" class="form-label">Salary :</label>
+                    <input type="number" id="advance-salary-salary" class="py-1 form-inps w-100" />
                   </div>
                 </div>
               </div>
               <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+                <button class="add-data-btn" id="advance-salary-save-btn">Save</button>
+                <button class="add-data-btn">view advance salaries</button>
               </div>
             </section>
           </div>
         </form>
+
         <!-- advance salary form end-->
 
         <!-- payroll entry form -->
@@ -738,8 +731,8 @@
                 </div>
               </div>
               <div class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2">
-                <button class="add-data-btn" id="add-vendor-save-btn">Save</button>
-                <button class="add-data-btn" id="add-vendor-save-btn">view transactions</button>
+                <button class="add-data-btn" id="payroll-enttry-save-btn">Save</button>
+                <button class="add-data-btn">view payroll entries</button>
               </div>
             </section>
           </div>
@@ -749,82 +742,196 @@
 
 
         <!-- view vendor container -->
-        <div class="container slide-ctnr px-4" id="add-vendor-data-ctnr">
-          <h1 class="my-5 fw-bold">Vendor List</h1>
-          <table class="mt-5 table">
-            <thead>
-              <tr>
-                <th scope="col" class="form-h-row">s.no</th>
-                <th scope="col" class="form-h-row">date</th>
-                <th scope="col" class="form-h-row">vendor name</th>
-                <th scope="col" class="form-h-row">address</th>
-                <th scope="col" class="form-h-row">cell num</th>
-                <th scope="col" class="form-h-row">buttons</th>
-              </tr>
-            </thead>
+        <div class="container slide-ctnr pe-4" id="add-vendor-data-ctnr">
+          <div class="table-responsive">
+            <h1 class="my-5 fw-bold">Vendor List</h1>
+            <table class="mt-5 table">
+              <thead>
+                <tr>
+                  <th scope="col" class="form-h-row">s.no</th>
+                  <th scope="col" class="form-h-row">date</th>
+                  <th scope="col" class="form-h-row">vendor name</th>
+                  <th scope="col" class="form-h-row">address</th>
+                  <th scope="col" class="form-h-row">cell num</th>
+                  <th scope="col" class="form-h-row">buttons</th>
+                </tr>
+              </thead>
 
-            <tbody id="add-vendor-added-data-ctnr"></tbody>
-          </table>
+              <tbody id="add-vendor-added-data-ctnr"></tbody>
+            </table>
+          </div>
         </div>
         <!-- view vendor container end-->
 
-        <!-- view product container -->
-        <div class="container slide-ctnr px-4" id="add-product-data-ctnr">
-          <table class="mt-5 table">
-            <thead>
-              <th scope="col" class="form-h-row">s.no</th>
-              <th scope="col" class="form-h-row">date</th>
-              <th scope="col" class="form-h-row">product name</th>
-              <th scope="col" class="form-h-row">product size</th>
-              <th scope="col" class="form-h-row">num of bundles</th>
-              <th scope="col" class="form-h-row">KGs</th>
-              <th scope="col" class="form-h-row">price</th>
-              <th scope="col" class="form-h-row">total price</th>
-              <th scope="col" class="form-h-row">buttons</th>
-            </thead>
+        <!-- view product container-->
+        <div class="container slide-ctnr pe-4" id="add-product-data-ctnr">
+          <div class="table-responsive">
+            <h1 class="my-5 fw-bold">Product List</h1>
+            <table class="table">
+              <thead>
+                <th scope="col" class="form-h-row">s.no</th>
+                <th scope="col" class="form-h-row">date</th>
+                <th scope="col" class="form-h-row">product name</th>
+                <th scope="col" class="form-h-row">product size</th>
+                <th scope="col" class="form-h-row">num of bundles</th>
+                <th scope="col" class="form-h-row">KGs</th>
+                <th scope="col" class="form-h-row">price</th>
+                <th scope="col" class="form-h-row">total price</th>
+                <th scope="col" class="form-h-row">buttons</th>
+              </thead>
 
-            <tbody id="add-product-added-data-ctnr"></tbody>
-          </table>
+              <tbody id="add-product-added-data-ctnr"></tbody>
+            </table>
+          </div>
         </div>
         <!-- view product container end-->
 
-        
-        <!-- view vendors container-->
-        <div class="container slide-ctnr px-4" id="vendor-transaction-data-ctnr">
-          <table class="mt-5 table">
-            <thead>
-              <th scope="col" class="form-h-row">s.no</th>
-              <th scope="col" class="form-h-row">product</th>
-              <th scope="col" class="form-h-row">bags</th>
-              <th scope="col" class="form-h-row">bags weight</th>
-              <th scope="col" class="form-h-row">price</th>
-              <th scope="col" class="form-h-row">total price</th>
-              <th scope="col" class="form-h-row">amount payable</th>
-              <th scope="col" class="form-h-row">advance payment</th>
-              <th scope="col" class="form-h-row">outstanding payable</th>
-              <th scope="col" class="form-h-row">buttons</th>
-            </thead>
-            <tbody id="vendor-transaction-added-data-ctnr"></tbody>
-          </table>
-        </div>
-        <!-- view product container end-->
+<!-- view vendor transaction container-->
+<div class="container slide-ctnr pe-4" id="vendor-transaction-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Vendors Transaction List</h1>
+    <table class="table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">product</th>
+        <th scope="col" class="form-h-row">bags</th>
+        <th scope="col" class="form-h-row">bags weight</th>
+        <th scope="col" class="form-h-row">price</th>
+        <th scope="col" class="form-h-row">total price</th>
+        <th scope="col" class="form-h-row">amount payable</th>
+        <th scope="col" class="form-h-row">advance payment</th>
+        <th scope="col" class="form-h-row">outstanding payable</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
 
-        <!-- view client container-->
-         <div class="container slide-ctnr" id="view-client-data-ctnr">
-          <table class="mt-5 table">
-            <thead>
-              <th scope="col" class="form-h-row">s.no</th>
-              <th scope="col" class="form-h-row">date</th>
-              <th scope="col" class="form-h-row">client name</th>
-              <th scope="col" class="form-h-row">address</th>
-              <th scope="col" class="form-h-row">client's cell num</th>
-              <th scope="col" class="form-h-row">buttons</th>
-            </thead>
-  
-            <tbody class="add-client-added-data-ctnr mt-5"></tbody>
-          </table>
-         </div>
-        <!-- view client container end-->
+      <tbody id="vendor-transaction-added-data-ctnr"></tbody>
+    </table>
+    </table>
+  </div>
+</div>
+<!-- view vendor transaction container end-->
+
+<!-- view client container-->
+<div class="container slide-ctnr pe-4" id="add-client-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Client List</h1>
+    <table class="mt-5 table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">date</th>
+        <th scope="col" class="form-h-row">client name</th>
+        <th scope="col" class="form-h-row">address</th>
+        <th scope="col" class="form-h-row">client's cell num</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
+
+      <tbody class="added-data-ctnr"></tbody>
+    </table>
+  </div>
+</div>
+<!-- view client container end-->
+
+
+<!-- view client entries container-->
+<div class="container slide-ctnr pe-4" id="client-entry-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Client Entries List</h1>
+    <table class="mt-5 table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">date</th>
+        <th scope="col" class="form-h-row">product</th>
+        <th scope="col" class="form-h-row">size</th>
+        <th scope="col" class="form-h-row">bundles</th>
+        <th scope="col" class="form-h-row">FT</th>
+        <th scope="col" class="form-h-row">price</th>
+        <th scope="col" class="form-h-row">total price</th>
+        <th scope="col" class="form-h-row">amount receivable</th>
+        <th scope="col" class="form-h-row">received by client</th>
+        <th scope="col" class="form-h-row">outstanding amount</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
+
+      <tbody class="added-data-ctnr mt-5"></tbody>
+    </table>
+  </div>
+</div>
+<!-- view client entries container end-->
+
+<!-- view employees container-->
+<div class="container slide-ctnr pe-4" id="add-employee-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Employees List</h1>
+    <table class="mt-5 table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">date</th>
+        <th scope="col" class="form-h-row">employee name</th>
+        <th scope="col" class="form-h-row">designation</th>
+        <th scope="col" class="form-h-row">emp's cell num</th>
+        <th scope="col" class="form-h-row">emp's salary</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
+
+      <tbody class="added-data-ctnr mt-5"></tbody>
+    </table>
+    </table>
+  </div>
+</div>
+<!-- view employees container end-->
+
+
+<!-- view advace salaries container-->
+<div class="container slide-ctnr pe-4" id="advance-salary-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Advance Salaries List</h1>
+    <table class="mt-5 table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">date</th>
+        <th scope="col" class="form-h-row">employee name</th>
+        <th scope="col" class="form-h-row">designation</th>
+        <th scope="col" class="form-h-row">emp's cell num</th>
+        <th scope="col" class="form-h-row">emp's salary</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
+
+      <tbody class="added-data-ctnr mt-5"></tbody>
+    </table>
+  </div>
+</div>
+<!-- view advace salaries container end-->
+
+
+<!-- view payroll entry container-->
+<div class="container slide-ctnr pe-4" id="payroll-entry-data-ctnr">
+  <div class="table-responsive">
+    <h1 class="my-5 fw-bold">Payroll Entries List</h1>
+    <table class="mt-5 table">
+      <thead>
+        <th scope="col" class="form-h-row">s.no</th>
+        <th scope="col" class="form-h-row">date</th>
+        <th scope="col" class="form-h-row">employee name</th>
+        <th scope="col" class="form-h-row">designation</th>
+        <th scope="col" class="form-h-row">month working days</th>
+        <th scope="col" class="form-h-row">emp working days</th>
+        <th scope="col" class="form-h-row">leaves</th>
+        <th scope="col" class="form-h-row">salary</th>
+        <th scope="col" class="form-h-row">advance</th>
+        <th scope="col" class="form-h-row">net salary</th>
+        <th scope="col" class="form-h-row">buttons</th>
+      </thead>
+
+      <tbody class="added-data-ctnr mt-5"></tbody>
+    </table>
+  </div>
+</div>
+<!-- view payroll entry container end-->
+
+
+
+
+
 
 
 
@@ -853,8 +960,7 @@
   </div>
 
   <script type="module" src="app.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <script>
     AOS.init();
   </script>

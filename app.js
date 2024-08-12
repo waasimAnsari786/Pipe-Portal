@@ -47,8 +47,6 @@ const chkEmailPswdOnClick = (CBEmailFunc, CBPswdFunc, a, b) => {
 // this is the ripple effect's funcion
 const createRipple = (event) => {
   const button = event.currentTarget;
-  console.log(button);
-
   const ripple = document.createElement("span");
   const rect = button.getBoundingClientRect();
   const size = Math.max(rect.width, rect.height); // Use the larger dimension for the ripple size
@@ -244,7 +242,7 @@ const handleOnClick = (targElem, type, btnText) => {
   });
 };
 
-// this variable is g=for getting the dashbord's page button's section
+// this variable is for getting the dashbord's page button's section
 let optCtnr = document.querySelector(".opt-ctnr");
 
 // all the sub buttons and all forms will be printed through this function
@@ -294,21 +292,22 @@ if (optCtnr) {
 // dashboard end
 
 // printed data of forms is removed through this function
+
 const deleteDataFunc = (targElem) => {
-  num--;
   let targDelElem = targElem.closest(".added-data-ctnr-inner");
   targDelElem.remove();
 };
 
 // printed data of forms is edited through this function. this function fetchs the printed data then print it in inputs for editting
-const editDataFunc = (targElem) => {
-  let prElem = targElem.closest(".added-data-ctnr-inner");
-  let inps = formCtnr.querySelectorAll("input , select");
+const editDataFunc = (targElem, mainID) => {
+  let prElem = targElem.closest("tbody");
+  let inps = document.querySelector(mainID).querySelectorAll("input , select");
   let peras = prElem.querySelectorAll("td");
-
   inps.forEach((inp, i) => {
     inp.value = peras[i + 1].innerText;
   });
+
+  formsDataAPI.find((curObj) => curObj["add-vendor-added-data-ctnr"]);
 };
 
 //this function is being used in functions below for fething targeted variables for calculating he values.
@@ -450,14 +449,22 @@ const obj = {};
 // this variable is for printing the serial numbers in all forms
 let num = 0;
 
+let formsDataAPI = [
+  {
+    "add-vendor-added-data-ctnr": [],
+  },
+  {
+    "add-product-added-data-ctnr": [],
+  },
+];
+
 // this function creates a div for taking all the printed data of inputs of all forms
-const createDiv = () => {
-  num++;
+const createDiv = (SNo) => {
   let mainDiv = document.createElement("tr");
   mainDiv.classList.add("added-data-ctnr-inner");
   mainDiv.innerHTML = `
   <td class='text-center p-0 added-data s-no-ctnr' width='20rem'>
-  <p class='s-no'>${num}.</p>
+  <p class='s-no'>${SNo}</p>
   </td>
   <td class='text-end p-0 ed-dl-btn-ctnr'>
   <button id="edit-data-btn">edit</button>
@@ -470,17 +477,47 @@ const createDiv = () => {
 const printAddedDataFun = (updatedObj, mainID) => {
   let [inpsObj, inpsLength] = updatedObj;
   let addedDataDivMain = document.querySelector(mainID);
+  let ID = addedDataDivMain.id;
   let ValArr = Object.values(inpsObj);
-
   if (inpsLength === ValArr.length) {
-    let addedDataDiv = createDiv();
-    for (let index = 0; index < ValArr.length; index++) {
-      let pera = document.createElement("td");
-      pera.innerText = ValArr[index];
-      pera.classList.add("added-data");
-      addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
+    let matchVal = formsDataAPI.find((curObj) => {
+      return curObj.hasOwnProperty(ID);
+    });
+
+    if (matchVal[ID].length <= 0) {
+      matchVal[ID].push(inpsObj);
+    } else {
+      let arr = matchVal[ID].map((curObj) => {
+        return Object.values(curObj);
+      });
+
+      let checking = arr.map((curELem) => {
+        return curELem.map((innElem, i) => {
+          return innElem !== ValArr[i];
+        });
+      });
+
+      let finalCheck = checking[checking.length - 1].some(
+        (curElem) => curElem !== false
+      );
+
+      if (finalCheck) {
+        matchVal[ID].push(inpsObj);
+      }
     }
-    addedDataDivMain ? addedDataDivMain.append(addedDataDiv) : "";
+
+    addedDataDivMain.innerHTML = "";
+    matchVal[ID].forEach((curObj, i) => {
+      let vals = Object.values(curObj);
+      let addedDataDiv = createDiv(i + 1);
+      for (let index = 0; index < vals.length; index++) {
+        let pera = document.createElement("td");
+        pera.innerText = vals[index];
+        pera.classList.add("added-data");
+        addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
+      }
+      addedDataDivMain ? addedDataDivMain.append(addedDataDiv) : "";
+    });
     return ValArr;
   } else {
     alert("You can't save empty data!");
@@ -491,11 +528,11 @@ const printAddedDataFun = (updatedObj, mainID) => {
 // this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
 const getAddedDataFunc = (targElem, mainID) => {
   let inps = targElem.querySelector(mainID).querySelectorAll("input , select");
-  console.log(inps);
-
+  let newObj = new Object();
   inps.forEach((inp) => {
     if (inp.value !== "") {
-      obj[inp.id] = inp.value;
+      inp.value = inp.value.split(" ").join("").toLowerCase();
+      newObj[inp.id] = inp.value;
       if (inp.getAttribute("type") !== "date") {
         inp.value = "";
       } else {
@@ -505,7 +542,7 @@ const getAddedDataFunc = (targElem, mainID) => {
       return;
     }
   });
-  return [obj, inps.length];
+  return [newObj, inps.length];
 };
 
 // this function holds 2 functions which involed above. i created this function for enhancing the readability
@@ -530,16 +567,19 @@ if (formCtnr) {
       bringForwAni("vendor-transaction-data-ctnr");
     } else if (e.target.innerText === "View Clients") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
-    } else if (e.target.innerText === "View Entries") {
+      bringForwAni("add-client-data-ctnr");
+    } else if (e.target.innerText === "View Clients Entries") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
+      bringForwAni("client-entry-data-ctnr");
     } else if (e.target.innerText === "View Employees") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
-    } else if (e.target.innerText === "View Salaries") {
+      bringForwAni("add-employee-data-ctnr");
+    } else if (e.target.innerText === "View Advance Salaries") {
       e.preventDefault();
-      bringForwAni("add-vendor-data-ctnr");
+      bringForwAni("advance-salary-data-ctnr");
+    } else if (e.target.innerText === "View Payroll Entries") {
+      e.preventDefault();
+      bringForwAni("payroll-entry-data-ctnr");
     } else if (e.target.id === "add-vendor-save-btn") {
       e.preventDefault();
       ctnrFuncOfAddedDataFunc(
@@ -554,20 +594,27 @@ if (formCtnr) {
         "#add-product-form",
         "#add-product-added-data-ctnr"
       );
-    } else if (e.target.id === "vendor-transaction-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#vendor-transaction-form",
-        "#vendor-transaction-added-data-ctnr"
-      );
-    } else if (e.target.id === "add-client-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#add-client-form",
-        "#add-client-added-data-ctnr"
-      );
+    }
+    //  else if (e.target.id === "vendor-transaction-save-btn") {
+    //   e.preventDefault();
+    //   ctnrFuncOfAddedDataFunc(
+    //     formCtnr,
+    //     "#vendor-transaction-form",
+    //     "#vendor-transaction-added-data-ctnr"
+    //   );
+    // } else if (e.target.id === "add-client-save-btn") {
+    //   e.preventDefault();
+    //   ctnrFuncOfAddedDataFunc(
+    //     formCtnr,
+    //     "#add-client-form",
+    //     "#add-client-added-data-ctnr"
+    //   );
+    // }
+    else if (e.target.innerText === "Edit") {
+      bringForwAni("add-vendor-form");
+      editDataFunc(e.target, "#add-vendor-form");
+    } else if (e.target.innerText === "Delete") {
+      deleteDataFunc(e.target);
     }
   });
 

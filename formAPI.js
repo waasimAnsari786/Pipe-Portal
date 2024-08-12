@@ -1,23 +1,6 @@
 let formsDataAPI = [
   {
-    "Add Vendor": [
-      "s.no",
-      "date",
-      "vendor name",
-      "address",
-      "cell num",
-      "product",
-      "bags",
-      "bags weight",
-      "price",
-      "total value",
-      "advance payment",
-      "amount payable",
-      "outstanding payable",
-      "balance",
-      "edit",
-      "delete",
-    ],
+    "add-vendor-added-data": [],
   },
 
   {
