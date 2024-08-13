@@ -360,7 +360,7 @@ th {
   color: var(--web-main-color-dark) !important;
 }
 
-.added-data {
+td {
   color: black !important;
   font-size: var(--web-fS-md);
   font-weight: 600;
@@ -375,14 +375,12 @@ th {
 
 .ed-dl-btn-ctnr button {
   border: none;
-  background-color: black;
-  color: white;
   font-size: var(--web-fS-sm);
   font-weight: 600;
   border-radius: 1rem;
   padding: 0.5rem;
   width: 48%;
-  margin: 0.5rem 0;
+  margin: 0.1rem;
 }
 
 .s-no {
@@ -416,8 +414,4 @@ th {
   border: none;
   padding: 1rem;
   font-weight: bold;
-}
-
-.hide {
-  display: none;
 }
