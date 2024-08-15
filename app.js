@@ -44,29 +44,6 @@ const chkEmailPswdOnClick = (CBEmailFunc, CBPswdFunc, a, b) => {
   return [checkedEmail, checkedPswd, a, b];
 };
 
-// this is the ripple effect's funcion
-const createRipple = (event) => {
-  const button = event.currentTarget;
-  const ripple = document.createElement("span");
-  const rect = button.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height); // Use the larger dimension for the ripple size
-  const x = event.clientX - rect.left - size / 2; // Center the ripple
-  const y = event.clientY - rect.top - size / 2; // Center the ripple
-
-  ripple.classList.add("ripple");
-  ripple.style.position = "absolute";
-  ripple.style.zIndex = "-1";
-  ripple.style.width = ripple.style.height = `${size / 25}rem`;
-  ripple.style.left = `${x / 25}rem`;
-  ripple.style.top = `${y / 25}rem`;
-
-  button.querySelector("#submit-btn").appendChild(ripple);
-
-  ripple.addEventListener("animationend", () => {
-    ripple.remove();
-  });
-};
-
 // this is for prevnting the submit functionality of forms
 if (homeForm) {
   homeForm.addEventListener("submit", (e) => {
@@ -233,7 +210,20 @@ const handleOnClick = (targElem, type, btnText) => {
       <button class="w-100 sub-opts">advance salary</button>
       <button class="w-100 sub-opts">${btnText} entry</button>
       <button class="w-100 sub-opts">${btnText} ledger</button>`;
-    addAniFunc(targElem, "20rem", 1);
+    addAniFunc(targElem, "20rem", 0);
+  } else if (type === "show-data") {
+    targElem.innerHTML = `
+      <button class="w-100 sub-opts">vendor list</button>
+      <button class="w-100 sub-opts">product list</button>
+      <button class="w-100 sub-opts">vendor Transaction</button>
+      <button class="w-100 sub-opts">vendor Ledger</button>
+      <button class="w-100 sub-opts">client list</button>
+      <button class="w-100 sub-opts">client entries</button>
+      <button class="w-100 sub-opts">client ledger</button>
+      <button class="w-100 sub-opts">employees list</button>
+      <button class="w-100 sub-opts">advance salaries</button>
+      <button class="w-100 sub-opts">payroll entries</button>`;
+    addAniFunc(targElem, "50rem", 0);
   }
 
   let allSubOptCtrns = document.querySelectorAll(".sub-opt-ctnr");
@@ -272,6 +262,12 @@ if (optCtnr) {
       e.target.id === "payroll-icon"
     ) {
       handleOnClick(subBtnCtnr, "payroll", e.target.innerText);
+    } else if (
+      e.target.id === "show-data-btn" ||
+      e.target.innerText === "Show Data" ||
+      e.target.id === "show-data-icon"
+    ) {
+      handleOnClick(subBtnCtnr, "show-data", undefined);
     } else if (e.target.innerText === "Add Vendor") {
       bringForwAni("add-vendor-form");
     } else if (e.target.innerText === "Add Product") {
@@ -288,6 +284,22 @@ if (optCtnr) {
       bringForwAni("advance-salary-form");
     } else if (e.target.innerText === "Payroll Entry") {
       bringForwAni("payroll-entry-form");
+    } else if (e.target.innerText === "Vendor List") {
+      bringForwAni("add-vendor-data-ctnr");
+    } else if (e.target.innerText === "Product List") {
+      bringForwAni("add-product-data-ctnr");
+    } else if (e.target.innerText === "Vendor Transaction") {
+      bringForwAni("vendor-transaction-data-ctnr");
+    } else if (e.target.innerText === "Client List") {
+      bringForwAni("add-client-data-ctnr");
+    } else if (e.target.innerText === "Client Entries") {
+      bringForwAni("client-entry-data-ctnr");
+    } else if (e.target.innerText === "Employees List") {
+      bringForwAni("add-employee-data-ctnr");
+    } else if (e.target.innerText === "Advance Salaries") {
+      bringForwAni("advance-salary-data-ctnr");
+    } else if (e.target.innerText === "Payroll Entries") {
+      bringForwAni("payroll-entry-data-ctnr");
     }
   });
 }
@@ -436,7 +448,11 @@ const getAddedDataFunc = (targElem, mainID) => {
   let newObj = new Object();
   inps.forEach((inp) => {
     if (inp.value !== "") {
-      newObj[inp.id] = inp.value.split(/\s+/).join(" ").toLowerCase();
+      newObj[inp.id] = inp.value
+        .split(/\s+/)
+        .filter((char) => char !== "")
+        .join(" ")
+        .toLowerCase();
       if (inp.getAttribute("type") !== "date") {
         inp.value = "";
       } else {
@@ -467,40 +483,37 @@ const editDataFunc = (targElem, mainID, btnID) => {
   });
 
   let btn = document.querySelector(`#${mainID}`).querySelector(`#${btnID}`);
+  btn.setAttribute("id", `${btn.id}-1`);
+  if (btn.id === `${btnID}-1`) {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      let [newObj, inpsLength, ValArrLength] = getAddedDataFunc(
+        formCtnr,
+        `#${mainID}`
+      );
 
-  if (btn.id === btnID) {
-    btn.setAttribute("id", `${btn.id}-1`);
-    if (btn.id === `${btnID}-1`) {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        let [newObj, inpsLength, ValArrLength] = getAddedDataFunc(
-          formCtnr,
-          `#${mainID}`
-        );
-        if (inpsLength === ValArrLength) {
-          let getedData = JSON.parse(localStorage.getItem("formsDataAPI"));
-
+      if (inpsLength === ValArrLength) {
+        let getedData = JSON.parse(localStorage.getItem("formsDataAPI"));
+        if (!isDataPresent(getedData[prElem.id], newObj)) {
           const filteredArray = getedData[prElem.id].filter(
             (item) => JSON.stringify(item) !== JSON.stringify(oldData)
           );
           filteredArray.push(newObj);
           getedData[prElem.id] = filteredArray;
           localStorage.setItem("formsDataAPI", JSON.stringify(getedData));
-          formsDataAPI[prElem.id] = filteredArray;
-
+          navigateToNextPageFunc("dashbord.html");
           printDataToTable(prElem.id);
-          setTimeout(() => {
-            btn.setAttribute("id", btnID);
-          }, 1000);
         } else {
-          alert("You can't save empty data");
-          return;
+          alert("This entry is exist in your saved data!");
+          navigateToNextPageFunc("dashbord.html");
         }
-      });
-    }
+      } else {
+        alert("You can't save empty data");
+        return;
+      }
+    });
   }
 };
-
 // this function holds 2 functions which involed above. i created this function for enhancing the readability
 const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
   let updatedObj = getAddedDataFunc(targElem, mainID);

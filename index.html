@@ -44,40 +44,44 @@
     <div class="container-fluid topbar bg-light">
       <div class="container">
         <div class="row">
-          <div
-            class="col-xxl-2 col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 logo py-2"
-          >
+          <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-2 col-sm-3 col-3 py-2">
             <img src="img/logo 2.png" class="w-100" alt="brand logo" />
           </div>
         </div>
       </div>
     </div>
 
-    <div class="form-container mx-auto my-5">
-      <form
-        id="loginForm"
-        class="d-flex justify-content-center align-items-center flex-column"
+    <div
+      class="container main-form-ctnr d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="form-container col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9"
       >
-        <div class="col-12 form-group mb-5">
-          <label class="inp-lbl" for="email">Email:</label>
-          <input
-            type="email"
-            id="email-inp"
-            class="login-inps w-100"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div class="col-12 form-group mb-5">
-          <label class="inp-lbl" for="password">Password:</label>
-          <input
-            type="password"
-            id="pswd-inp"
-            class="login-inps w-100"
-            placeholder="Enter your password"
-          />
-        </div>
-        <button class="sub-btn w-25" id="submit-btn">Login</button>
-      </form>
+        <form
+          id="loginForm"
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <div class="col-12 form-group mb-5">
+            <label class="inp-lbl" for="email">Email:</label>
+            <input
+              type="email"
+              id="email-inp"
+              class="login-inps w-100"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="col-12 form-group mb-5">
+            <label class="inp-lbl" for="password">Password:</label>
+            <input
+              type="password"
+              id="pswd-inp"
+              class="login-inps w-100"
+              placeholder="Enter your password"
+            />
+          </div>
+          <button class="sub-btn w-25" id="submit-btn">Login</button>
+        </form>
+      </div>
     </div>
 
     <script type="module" src="app.js"></script>
