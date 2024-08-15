@@ -165,6 +165,8 @@ const bringForwAni = (targId) => {
   });
 };
 
+bringForwAni("db-ctnr");
+
 // this is "Chart.Js" library's code for inserting charts
 if (graphCtnr) {
   const ctx = document.getElementById("barchart");
@@ -290,20 +292,6 @@ if (optCtnr) {
   });
 }
 // dashboard end
-
-// printed data of forms is edited through this function. this function fetchs the printed data then print it in inputs for editting
-const editDataFunc = (targElem, mainID, btnID) => {
-  let prElem = targElem.closest("tr");
-  let inps = document
-    .querySelector(`#${mainID}`)
-    .querySelectorAll("input , select");
-  let peras = prElem.querySelectorAll("td");
-  inps.forEach((inp, i) => {
-    inp.value = peras[i + 1].innerText;
-  });
-  // let btn = document.querySelector(`#${mainID}`).querySelector(`#${btnID}`);
-  // btn.setAttribute("id", `${btn.id}-1`);
-};
 
 //this function is being used in functions below for fething targeted variables for calculating he values.
 const fetchVariables = (targElem, mainID, IDsArr) => {
@@ -441,72 +429,6 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
 // this variable is for printing the serial numbers in all forms
 let num = 0;
 
-// this function creates a div for taking all the printed data of inputs of all forms
-const createDiv = (SNo) => {
-  let mainDiv = document.createElement("tr");
-  mainDiv.classList.add("added-data-ctnr-inner");
-  mainDiv.innerHTML = `
-  <td class='text-center p-0 added-data s-no-ctnr' width='20rem'>
-  <p class='s-no'>${SNo}</p>
-  </td>
-  <td class='text-end p-0 ed-dl-btn-ctnr'>
-  <button id="edit-data-btn">edit</button>
-  <button id="delete-data-btn">delete</button>
-  </td>`;
-  return mainDiv;
-};
-
-// this fucntion prints peragraph tags according to the presented quantity of inputs in each form by getting some returned values from the function named "getAddedDataFunc()" which invoked below.
-const printAddedDataFun = (updatedObj, mainID, mainID2) => {
-  let [inpsObj, inpsLength] = updatedObj;
-  let addedDataDivMain = document.querySelector(mainID2);
-  let ID = addedDataDivMain.id;
-  let ValArr = Object.values(inpsObj);
-  let str = mainID.replace("#", "");
-  console.log(str);
-
-  if (inpsLength === ValArr.length) {
-    addDataToTable(ID, inpsObj, str);
-    // let matchVal = formsDataAPI.find((curObj) => {
-    //   return curObj.hasOwnProperty(ID);
-    // });
-    // if (matchVal[ID].length <= 0) {
-    //   matchVal[ID].push(inpsObj);
-    // } else {
-    //   let arr = matchVal[ID].map((curObj) => {
-    //     return Object.values(curObj);
-    //   });
-    //   let checking = arr.map((curELem) => {
-    //     return curELem.map((innElem, i) => {
-    //       return innElem !== ValArr[i];
-    //     });
-    //   });
-    //   let finalCheck = checking[checking.length - 1].some(
-    //     (curElem) => curElem !== false
-    //   );
-    //   if (finalCheck) {
-    //     matchVal[ID].push(inpsObj);
-    //   }
-    // }
-    // addedDataDivMain.innerHTML = "";
-    // matchVal[ID].forEach((curObj, i) => {
-    //   let vals = Object.values(curObj);
-    //   let addedDataDiv = createDiv(i + 1);
-    //   for (let index = 0; index < vals.length; index++) {
-    //     let pera = document.createElement("td");
-    //     pera.innerText = vals[index];
-    //     pera.classList.add("added-data");
-    //     addedDataDiv.insertBefore(pera, addedDataDiv.lastElementChild);
-    //   }
-    //   addedDataDivMain ? addedDataDivMain.append(addedDataDiv) : "";
-    // });
-    // return ValArr;
-  } else {
-    alert("You can't save empty data!");
-    return;
-  }
-};
-
 // this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
 const getAddedDataFunc = (targElem, mainID) => {
   let inps = targElem.querySelector(mainID).querySelectorAll("input , select");
@@ -524,14 +446,73 @@ const getAddedDataFunc = (targElem, mainID) => {
       return;
     }
   });
-  return [newObj, inps.length];
+  let ValArr = Object.values(newObj);
+  return [newObj, inps.length, ValArr.length];
+};
+
+// printed data of forms is edited through this function. this function fetchs the printed data then print it in inputs for editting
+const editDataFunc = (targElem, mainID, btnID) => {
+  const oldData = {};
+  let prElem = targElem.closest("tbody");
+  let prElem2 = targElem.closest("tr");
+
+  let inps = document
+    .querySelector(`#${mainID}`)
+    .querySelectorAll("input , select");
+  let peras = prElem2.querySelectorAll(".added-data");
+
+  inps.forEach((inp, i) => {
+    inp.value = peras[i].innerHTML;
+    oldData[inp.id] = peras[i].innerHTML;
+  });
+
+  let btn = document.querySelector(`#${mainID}`).querySelector(`#${btnID}`);
+
+  if (btn.id === btnID) {
+    btn.setAttribute("id", `${btn.id}-1`);
+    if (btn.id === `${btnID}-1`) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let [newObj, inpsLength, ValArrLength] = getAddedDataFunc(
+          formCtnr,
+          `#${mainID}`
+        );
+        if (inpsLength === ValArrLength) {
+          let getedData = JSON.parse(localStorage.getItem("formsDataAPI"));
+
+          const filteredArray = getedData[prElem.id].filter(
+            (item) => JSON.stringify(item) !== JSON.stringify(oldData)
+          );
+          filteredArray.push(newObj);
+          getedData[prElem.id] = filteredArray;
+          localStorage.setItem("formsDataAPI", JSON.stringify(getedData));
+          formsDataAPI[prElem.id] = filteredArray;
+
+          printDataToTable(prElem.id);
+          setTimeout(() => {
+            btn.setAttribute("id", btnID);
+          }, 1000);
+        } else {
+          alert("You can't save empty data");
+          return;
+        }
+      });
+    }
+  }
 };
 
 // this function holds 2 functions which involed above. i created this function for enhancing the readability
 const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
   let updatedObj = getAddedDataFunc(targElem, mainID);
-  let ValArr = printAddedDataFun(updatedObj, mainID, mainID2);
-  return [updatedObj, ValArr];
+  let [newObj, inpsLength, ValArrLength] = updatedObj;
+  let ID = document.querySelector(mainID2).id;
+  if (inpsLength === ValArrLength) {
+    addDataToTable(ID, newObj);
+  } else {
+    alert("You can't save empty data!");
+    return;
+  }
+  return updatedObj;
 };
 
 // these event listeners are for printing forms data on click of "save" button, edit data on click on "edit" button and delete data on click on "delete" button of each form
@@ -592,15 +573,15 @@ if (formCtnr) {
     //     "#add-client-added-data-ctnr"
     //   );
     // }
-    // else if (e.target.classList.contains("edit-add-vendor-added-data-ctnr")) {
-    //   bringForwAni("add-vendor-form");
-    //   editDataFunc(e.target, "add-vendor-form", "add-vendor-save-btn");
-    // } else if (
-    //   e.target.classList.contains("edit-add-product-added-data-ctnr")
-    // ) {
-    //   bringForwAni("add-product-form");
-    //   editDataFunc(e.target, "add-product-form", "add-product-save-btn");
-    // }
+    else if (e.target.classList.contains("edit-add-vendor-added-data-ctnr")) {
+      bringForwAni("add-vendor-form");
+      editDataFunc(e.target, "add-vendor-form", "add-vendor-save-btn");
+    } else if (
+      e.target.classList.contains("edit-add-product-added-data-ctnr")
+    ) {
+      bringForwAni("add-product-form");
+      editDataFunc(e.target, "add-product-form", "add-product-save-btn");
+    }
   });
 
   // this event listener holds the main fuction which holds the funtions for calculating salaries, leaves , net salary , total prices , outstanding payables, receivables and so on
@@ -642,7 +623,7 @@ function isDataPresent(array, newData) {
 }
 
 // Function to add new data and update local storage
-function addDataToTable(key, newData, mainID) {
+function addDataToTable(key, newData) {
   const formArray = formsDataAPI[key] || [];
 
   if (!isDataPresent(formArray, newData)) {
@@ -653,12 +634,15 @@ function addDataToTable(key, newData, mainID) {
     localStorage.setItem("formsDataAPI", JSON.stringify(formsDataAPI));
 
     // Print the updated data to the table
-    printDataToTable(key, mainID);
+    printDataToTable(key);
+  } else {
+    alert("This entry is already exist in your saved data!");
+    return;
   }
 }
 
 // Function to print data to the table
-function printDataToTable(key, mainID) {
+function printDataToTable(key) {
   const tbody = document.getElementById(key);
   tbody.innerHTML = ""; // Clear existing rows
 
@@ -675,6 +659,7 @@ function printDataToTable(key, mainID) {
     // Create TDs for each property
     Object.values(item).forEach((value) => {
       const td = document.createElement("td");
+      td.classList.add("added-data");
       td.textContent = value;
       row.appendChild(td);
     });
@@ -686,9 +671,6 @@ function printDataToTable(key, mainID) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.className = `btn btn-warning btn-lg edit-${key}`;
-    editButton.addEventListener("click", (e) =>
-      editData(key, index, e.target, mainID)
-    );
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
@@ -701,37 +683,6 @@ function printDataToTable(key, mainID) {
     row.appendChild(actionsTd);
     tbody.appendChild(row);
   });
-}
-
-// Function to handle editing data
-function editData(key, index, targElem, mainID) {
-  const formArray = formsDataAPI[key];
-  const item = formArray[index];
-  console.log(formArray);
-  console.log(item);
-  console.log(mainID);
-
-  if (targElem.classList.contains(`edit-${key}`)) {
-    bringForwAni(mainID);
-  }
-
-  // Populate form fields with item data
-  // Example: document.getElementById('name-input').value = item.name;
-
-  // When saving edited data:
-
-  // .addEventListener("click", () => {
-  //   // Update the item with new data from form fields
-  //   // Example: item.name = document.getElementById('name-input').value;
-  //   formArray[index] = item;
-
-  //   // Save updated data to local storage
-  //   formsDataAPI[key] = formArray;
-  //   localStorage.setItem("formsDataAPI", JSON.stringify(formsDataAPI));
-
-  //   // Reprint the updated table
-  //   printDataToTable(key);
-  // });
 }
 
 // Function to handle deleting data
@@ -750,31 +701,3 @@ function deleteData(key, index) {
 // // Initial table population (optional)
 printDataToTable("add-vendor-added-data-ctnr");
 printDataToTable("add-product-added-data-ctnr");
-
-// // Function to check if new data already exists and return an array excluding the existing data
-// function addDataWithFilter(key, newData) {
-//   const formArray = formsDataAPI[key] || [];
-//   console.log(key);
-//   console.log(newData);
-
-//   // Check if newData already exists in the array
-//   if (!isDataPresent(formArray, newData)) {
-//     console.log(true);
-
-//     // Filter out the existing data from the array
-//     const filteredArray = formArray.filter(
-//       (item) => JSON.stringify(item) !== JSON.stringify(newData)
-//     );
-
-//     // Update the array with filtered data
-//     formsDataAPI[key] = filteredArray;
-
-//     // Save updated data to local storage
-//     localStorage.setItem("formsDataAPI", JSON.stringify(formsDataAPI));
-
-//     // Print the updated data to the table
-//     printDataToTable(key);
-//   } else {
-//     console.log(false);
-//   }
-// }
