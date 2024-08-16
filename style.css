@@ -70,6 +70,19 @@ html {
   html {
     font-size: 62.5%;
   }
+  .opt-ctnr {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    overflow: scroll;
+    backdrop-filter: blur(1rem);
+    transform: translateX(-100%);
+  }
+
+  #bars-icon {
+    display: block !important;
+  }
 }
 
 @media (max-width: 992px) {
@@ -91,6 +104,15 @@ html {
 @media (max-width: 576px) {
   html {
     font-size: 43.75%;
+  }
+
+  .dropdown span,
+  .head-content {
+    display: none;
+  }
+
+  .dropdown {
+    background-color: transparent !important;
   }
 }
 
@@ -165,21 +187,21 @@ html {
 
 .dshbd-icon {
   margin-right: 0.5rem;
-  font-size: var(--web-fS-md);
+  font-size: 2rem;
 }
 
 .opts,
 .sub-opts {
   background-color: transparent;
   font-size: var(--web-fS-md);
-  padding: 1rem;
+  padding: 1.2rem;
   text-align: left;
   border: none;
   color: white;
   text-transform: capitalize;
   transition: 0.5s;
   border-left: 0.5rem solid transparent;
-  padding: 1.2rem;
+  width: 100%;
 }
 
 .opts:hover,
@@ -195,7 +217,7 @@ html {
 }
 
 .opt-ctnr {
-  background-color: var(--web-main-color-light);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 2rem;
 }
 
@@ -372,4 +394,21 @@ td {
 .dropdown-item {
   font-size: var(--web-fS-sm);
   font-weight: bold !important;
+}
+
+.comp-name {
+  color: white;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+#bars-icon {
+  display: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  color: white;
+  font-size: 1.7rem;
 }

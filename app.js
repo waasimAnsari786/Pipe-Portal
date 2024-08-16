@@ -4,7 +4,29 @@ let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
 let formCtnr = document.querySelector(".form-ctnr");
 let dbCtnr = document.querySelector("#db-ctnr");
+let optsshowHideBtn = document.querySelector("#bars-icon");
 
+const showHideOptsCtnr = (value) => {
+  requestAnimationFrame(() => {
+    optCtnr.style.transition = "0.5s";
+    optCtnr.style.transform = `translateX(${value}%)`;
+  });
+};
+
+if (optsshowHideBtn) {
+  optsshowHideBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showHideOptsCtnr(0);
+  });
+}
+
+window.addEventListener("click", () => {
+  setTimeout(() => {
+    showHideOptsCtnr(-100);
+  }, 500);
+});
+
+// this function sets the currentdata in those inputs whose type is "data"
 const setCurDate = () => {
   let dateInps = document.querySelectorAll("input[type='date']");
   const now = new Date();
@@ -99,6 +121,7 @@ const addAniFunc = (targElem, myHeight, num) => {
     }
   });
 };
+
 const remAniFunc = (targElem) => {
   targElem.style.height = "0rem";
   targElem.style.opacity = "0";
@@ -195,35 +218,104 @@ if (graphCtnr2) {
 const handleOnClick = (targElem, type, btnText) => {
   if (type === "vendor") {
     targElem.innerHTML = `
-      <button class="w-100 sub-opts">add ${btnText}</button>
-      <button class="w-100 sub-opts">add product</button>
-      <button class="w-100 sub-opts">${btnText}'s transaction</button>
-      <button class="w-100 sub-opts">${btnText}'s ledger</button>`;
+      <button class="w-100 sub-opts">
+        <i class="fa-solid fa-user-plus dshbd-icon"></i>
+        <span>add ${btnText}</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-cart-plus dshbd-icon"></i>
+        <span>add product</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-exchange-alt dshbd-icon"></i>
+        <span>${btnText}'s transaction</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-book dshbd-icon"></i>
+        <span>${btnText}'s ledger</span>
+      </button>`;
     addAniFunc(targElem, "20rem", 0);
   } else if (type === "client") {
-    targElem.innerHTML = `<button class="w-100 sub-opts">add ${btnText}</button>
-                            <button class="w-100 sub-opts">${btnText}'s entry</button>
-                            <button class="w-100 sub-opts">${btnText}'s ledger</button>`;
+    targElem.innerHTML = `
+      <button class="w-100 sub-opts">
+        <i class="fas fa-user-plus dshbd-icon"></i>
+        <span>add ${btnText}</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-sign-in-alt dshbd-icon"></i>
+        <span>${btnText}'s entry</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-address-book dshbd-icon"></i>
+        <span>${btnText}'s ledger</span>
+      </button>`;
     addAniFunc(targElem, "15rem", 0);
   } else if (type === "payroll") {
-    targElem.innerHTML = `<button class="w-100 sub-opts">add employee</button>
-      <button class="w-100 sub-opts">advance salary</button>
-      <button class="w-100 sub-opts">${btnText} entry</button>
-      <button class="w-100 sub-opts">${btnText} ledger</button>`;
+    targElem.innerHTML = `
+      <button class="w-100 sub-opts">
+        <i class="fas fa-user-plus dshbd-icon"></i>
+        <span>add employee</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-hand-holding-usd dshbd-icon"></i>
+        <span>advance salary</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-file-invoice-dollar dshbd-icon"></i>
+        <span>${btnText} entry</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-book-open dshbd-icon"></i>
+        <span>${btnText} ledger</span>
+      </button>`;
     addAniFunc(targElem, "20rem", 0);
   } else if (type === "show-data") {
     targElem.innerHTML = `
-      <button class="w-100 sub-opts">vendor list</button>
-      <button class="w-100 sub-opts">product list</button>
-      <button class="w-100 sub-opts">vendor Transaction</button>
-      <button class="w-100 sub-opts">vendor Ledger</button>
-      <button class="w-100 sub-opts">client list</button>
-      <button class="w-100 sub-opts">client entries</button>
-      <button class="w-100 sub-opts">client ledger</button>
-      <button class="w-100 sub-opts">employees list</button>
-      <button class="w-100 sub-opts">advance salaries</button>
-      <button class="w-100 sub-opts">payroll entries</button>`;
-    addAniFunc(targElem, "50rem", 0);
+      <button class="w-100 sub-opts">
+        <i class="fas fa-list-alt dshbd-icon"></i>
+        <span>vendor list</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-boxes dshbd-icon"></i>
+        <span>product list</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-exchange-alt"></i>
+        <span>vendor Transaction</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-book"></i>
+        <span>vendor Ledger</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="fas fa-users dshbd-icon"></i>
+        <span>client list</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-user-edit"></i>
+        <span>client entries</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-file-invoice-dollar"></i>
+        <span>client ledger</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-address-book"></i>
+        <span>employees list</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-money-check-alt"></i>
+        <span>advance salaries</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-file-alt"></i>
+        <span>payroll entries</span>
+      </button>
+      <button class="w-100 sub-opts">
+        <i class="dshbd-icon fas fa-receipt"></i>
+        <span>payroll ledger</span>
+      </button>`;
+    addAniFunc(targElem, "55rem", 0);
   }
 
   let allSubOptCtrns = document.querySelectorAll(".sub-opt-ctnr");
@@ -240,65 +332,89 @@ let optCtnr = document.querySelector(".opt-ctnr");
 // all the sub buttons and all forms will be printed through this function
 if (optCtnr) {
   optCtnr.addEventListener("click", (e) => {
+    e.stopPropagation();
     let targetedBtn = e.target.closest("button");
     if (!targetedBtn) return;
 
     let subBtnCtnr = targetedBtn.nextElementSibling;
-    if (
-      e.target.id === "vendor-btn" ||
-      e.target.innerText === "Vendor" ||
-      e.target.id === "vendor-icon"
-    ) {
-      handleOnClick(subBtnCtnr, "vendor", e.target.innerText);
-    } else if (
-      e.target.id === "client-btn" ||
-      e.target.innerText === "Client" ||
-      e.target.id === "client-icon"
-    ) {
-      handleOnClick(subBtnCtnr, "client", e.target.innerText);
-    } else if (
-      e.target.id === "payroll-btn" ||
-      e.target.innerText === "Payroll" ||
-      e.target.id === "payroll-icon"
-    ) {
-      handleOnClick(subBtnCtnr, "payroll", e.target.innerText);
-    } else if (
-      e.target.id === "show-data-btn" ||
-      e.target.innerText === "Show Data" ||
-      e.target.id === "show-data-icon"
-    ) {
-      handleOnClick(subBtnCtnr, "show-data", undefined);
-    } else if (e.target.innerText === "Add Vendor") {
+
+    if (e.target.closest("button")?.innerText.trim() === "Vendor") {
+      handleOnClick(
+        subBtnCtnr,
+        "vendor",
+        e.target.closest("button")?.innerText.trim()
+      );
+    } else if (e.target.closest("button")?.innerText.trim() === "Client") {
+      handleOnClick(
+        subBtnCtnr,
+        "client",
+        e.target.closest("button")?.innerText.trim()
+      );
+    } else if (e.target.closest("button")?.innerText.trim() === "Payroll") {
+      handleOnClick(
+        subBtnCtnr,
+        "payroll",
+        e.target.closest("button")?.innerText.trim()
+      );
+    } else if (e.target.closest("button")?.innerText.trim() === "Show Data") {
+      handleOnClick(
+        subBtnCtnr,
+        "show-data",
+        e.target.closest("button")?.innerText.trim()
+      );
+    } else if (e.target.closest("button")?.innerText.trim() === "Add Vendor") {
       bringForwAni("add-vendor-form");
-    } else if (e.target.innerText === "Add Product") {
+    } else if (e.target.closest("button")?.innerText.trim() === "Add Product") {
       bringForwAni("add-product-form");
-    } else if (e.target.innerText === "Vendor's Transaction") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Vendor's Transaction"
+    ) {
       bringForwAni("vendor-transaction-form");
-    } else if (e.target.innerText === "Add Client") {
+    } else if (e.target.closest("button")?.innerText.trim() === "Add Client") {
       bringForwAni("add-client-form");
-    } else if (e.target.innerText === "Client's Entry") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Client's Entry"
+    ) {
       bringForwAni("client-entry-form");
-    } else if (e.target.innerText === "Add Employee") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Add Employee"
+    ) {
       bringForwAni("add-employee-form");
-    } else if (e.target.innerText === "Advance Salary") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Advance Salary"
+    ) {
       bringForwAni("advance-salary-form");
-    } else if (e.target.innerText === "Payroll Entry") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Payroll Entry"
+    ) {
       bringForwAni("payroll-entry-form");
-    } else if (e.target.innerText === "Vendor List") {
+    } else if (e.target.closest("button")?.innerText.trim() === "Vendor List") {
       bringForwAni("add-vendor-data-ctnr");
-    } else if (e.target.innerText === "Product List") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Product List"
+    ) {
       bringForwAni("add-product-data-ctnr");
-    } else if (e.target.innerText === "Vendor Transaction") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Vendor Transaction"
+    ) {
       bringForwAni("vendor-transaction-data-ctnr");
-    } else if (e.target.innerText === "Client List") {
+    } else if (e.target.closest("button")?.innerText.trim() === "Client List") {
       bringForwAni("add-client-data-ctnr");
-    } else if (e.target.innerText === "Client Entries") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Client Entries"
+    ) {
       bringForwAni("client-entry-data-ctnr");
-    } else if (e.target.innerText === "Employees List") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Employees List"
+    ) {
       bringForwAni("add-employee-data-ctnr");
-    } else if (e.target.innerText === "Advance Salaries") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Advance Salaries"
+    ) {
       bringForwAni("advance-salary-data-ctnr");
-    } else if (e.target.innerText === "Payroll Entries") {
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Payroll Entries"
+    ) {
       bringForwAni("payroll-entry-data-ctnr");
     }
   });
@@ -570,15 +686,15 @@ if (formCtnr) {
         "#add-product-form",
         "#add-product-added-data-ctnr"
       );
+    } else if (e.target.id === "vendor-transaction-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#vendor-transaction-form",
+        "#vendor-transaction-added-data-ctnr"
+      );
     }
-    //  else if (e.target.id === "vendor-transaction-save-btn") {
-    //   e.preventDefault();
-    //   ctnrFuncOfAddedDataFunc(
-    //     formCtnr,
-    //     "#vendor-transaction-form",
-    //     "#vendor-transaction-added-data-ctnr"
-    //   );
-    // } else if (e.target.id === "add-client-save-btn") {
+    //  else if (e.target.id === "add-client-save-btn") {
     //   e.preventDefault();
     //   ctnrFuncOfAddedDataFunc(
     //     formCtnr,
@@ -594,6 +710,15 @@ if (formCtnr) {
     ) {
       bringForwAni("add-product-form");
       editDataFunc(e.target, "add-product-form", "add-product-save-btn");
+    } else if (
+      e.target.classList.contains("edit-vendor-transaction-added-data-ctnr")
+    ) {
+      bringForwAni("vendor-transaction-form");
+      editDataFunc(
+        e.target,
+        "vendor-transaction-form",
+        "vendor-trnasaction-save-btn"
+      );
     }
   });
 
@@ -628,6 +753,7 @@ if (formCtnr) {
 const formsDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || {
   "add-vendor-added-data-ctnr": [],
   "add-product-added-data-ctnr": [],
+  "vendor-transaction-added-data-ctnr": [],
 };
 
 // Function to check if new data already exists in the array
