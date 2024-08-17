@@ -64,6 +64,9 @@ html {
   html {
     font-size: 62.5%;
   }
+  .opt-ctnr {
+    transform: translateX(0%) !important;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -80,7 +83,8 @@ html {
     transform: translateX(-100%);
   }
 
-  #bars-icon {
+  #bars-icon,
+  #close-icon {
     display: block !important;
   }
 }
@@ -187,7 +191,7 @@ html {
 
 .dshbd-icon {
   margin-right: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .opts,
@@ -408,7 +412,62 @@ td {
   cursor: pointer;
 }
 
+#close-icon {
+  display: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: -1.5rem;
+  right: -6rem;
+}
+
 .dropdown-toggle {
   color: white;
   font-size: 1.7rem;
+}
+
+.invoice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.invoice-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.invoice-header h1 {
+  margin: 0;
+}
+
+.invoice-details {
+  margin-bottom: 20px;
+}
+
+.invoice-details p {
+  margin: 5px 0;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.invoice-footer {
+  text-align: right;
+}
+
+.invoice-footer p {
+  margin: 5px 0;
 }

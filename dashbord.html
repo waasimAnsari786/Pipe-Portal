@@ -83,8 +83,9 @@
       <!-- dashboard buttons container -->
       <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6 p-0 opt-ctnr">
         <div
-          class="col-xxl-5 col-xl-6 col-lg-5 col-md-5 col-sm-6 col-5 d-flex justify-content-center align-items-center mt-5 bg-light p-2 mx-auto logo-ctnr">
+          class="col-xxl-5 col-xl-6 col-lg-5 col-md-5 col-sm-6 col-5 d-flex justify-content-center align-items-center mt-5 bg-light p-2 mx-auto logo-ctnr position-relative">
           <img src="img/logo 2.png" alt="logo" class="w-100">
+          <i class="fa-solid fa-xmark" id="close-icon"></i>
         </div>
 
         <div class="col-12 p-0 opt-ctnr-inner" id="abc">
@@ -785,6 +786,8 @@
           <div class="table-responsive">
             <h1 class="my-5 fw-bold">Vendor List</h1>
             <table class="mt-5 table">
+
+
               <thead>
                 <tr>
                   <th scope="col" class="form-h-row">s.no</th>
@@ -845,9 +848,10 @@
 
               <tbody id="vendor-transaction-added-data-ctnr"></tbody>
             </table>
-            </table>
           </div>
-        </div>
+
+          
+          
         <!-- view vendor transaction container end-->
 
         <!-- view client container-->
@@ -864,7 +868,7 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </thead>
 
-              <tbody class="added-data-ctnr"></tbody>
+              <tbody id="add-client-added-data-ctnr"></tbody>
             </table>
           </div>
         </div>
@@ -891,7 +895,7 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </thead>
 
-              <tbody class="added-data-ctnr mt-5"></tbody>
+              <tbody id="client-entry-added-data-ctnr"></tbody>
             </table>
           </div>
         </div>
@@ -912,7 +916,7 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </thead>
 
-              <tbody class="added-data-ctnr mt-5"></tbody>
+              <tbody id="add-employee-added-data-ctnr"></tbody>
             </table>
             </table>
           </div>
@@ -935,7 +939,7 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </thead>
 
-              <tbody class="added-data-ctnr mt-5"></tbody>
+              <tbody id="advance-salary-added-data-ctnr"></tbody>
             </table>
           </div>
         </div>
@@ -961,7 +965,7 @@
                 <th scope="col" class="form-h-row">buttons</th>
               </thead>
 
-              <tbody class="added-data-ctnr mt-5"></tbody>
+              <tbody id="payroll-entry-added-data-ctnr"></tbody>
             </table>
           </div>
         </div>
@@ -999,6 +1003,9 @@
   </div>
 
   <script type="module" src="app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.rawgit.com/jasonday/printThis/master/printThis.js"></script>
+
 
   <script>
     AOS.init();

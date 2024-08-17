@@ -4,7 +4,8 @@ let emailInp = document.querySelector("#email-inp");
 let pswdInp = document.querySelector("#pswd-inp");
 let formCtnr = document.querySelector(".form-ctnr");
 let dbCtnr = document.querySelector("#db-ctnr");
-let optsshowHideBtn = document.querySelector("#bars-icon");
+let optShowBtn = document.querySelector("#bars-icon");
+let optHideBtn = document.querySelector("#close-icon");
 
 const showHideOptsCtnr = (value) => {
   requestAnimationFrame(() => {
@@ -13,18 +14,16 @@ const showHideOptsCtnr = (value) => {
   });
 };
 
-if (optsshowHideBtn) {
-  optsshowHideBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+if (optShowBtn) {
+  optShowBtn.addEventListener("click", (e) => {
     showHideOptsCtnr(0);
   });
 }
-
-window.addEventListener("click", () => {
-  setTimeout(() => {
+if (optHideBtn) {
+  optHideBtn.addEventListener("click", (e) => {
     showHideOptsCtnr(-100);
-  }, 500);
-});
+  });
+}
 
 // this function sets the currentdata in those inputs whose type is "data"
 const setCurDate = () => {
@@ -560,7 +559,6 @@ let num = 0;
 // this function gets the vlaues of all inputs on click on "save" button of each form and retuns getted data to the function named "printAddedDataFun()" wich invoked above
 const getAddedDataFunc = (targElem, mainID) => {
   let inps = targElem.querySelector(mainID).querySelectorAll("input , select");
-
   let newObj = new Object();
   inps.forEach((inp) => {
     if (inp.value !== "") {
@@ -693,16 +691,42 @@ if (formCtnr) {
         "#vendor-transaction-form",
         "#vendor-transaction-added-data-ctnr"
       );
-    }
-    //  else if (e.target.id === "add-client-save-btn") {
-    //   e.preventDefault();
-    //   ctnrFuncOfAddedDataFunc(
-    //     formCtnr,
-    //     "#add-client-form",
-    //     "#add-client-added-data-ctnr"
-    //   );
-    // }
-    else if (e.target.classList.contains("edit-add-vendor-added-data-ctnr")) {
+    } else if (e.target.id === "add-client-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#add-client-form",
+        "#add-client-added-data-ctnr"
+      );
+    } else if (e.target.id === "client-entry-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#client-entry-form",
+        "#client-entry-added-data-ctnr"
+      );
+    } else if (e.target.id === "add-employee-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#add-employee-form",
+        "#add-employee-added-data-ctnr"
+      );
+    } else if (e.target.id === "advance-salary-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#advance-salary-form",
+        "#advance-salary-added-data-ctnr"
+      );
+    } else if (e.target.id === "payroll-entry-save-btn") {
+      e.preventDefault();
+      ctnrFuncOfAddedDataFunc(
+        formCtnr,
+        "#payroll-entry-form",
+        "#payroll-entry-added-data-ctnr"
+      );
+    } else if (e.target.classList.contains("edit-add-vendor-added-data-ctnr")) {
       bringForwAni("add-vendor-form");
       editDataFunc(e.target, "add-vendor-form", "add-vendor-save-btn");
     } else if (
@@ -717,8 +741,31 @@ if (formCtnr) {
       editDataFunc(
         e.target,
         "vendor-transaction-form",
-        "vendor-trnasaction-save-btn"
+        "vendor-transaction-save-btn"
       );
+    } else if (e.target.classList.contains("edit-add-client-added-data-ctnr")) {
+      bringForwAni("add-client-form");
+      editDataFunc(e.target, "add-client-form", "add-client-save-btn");
+    } else if (
+      e.target.classList.contains("edit-client-entry-added-data-ctnr")
+    ) {
+      bringForwAni("client-entry-form");
+      editDataFunc(e.target, "client-entry-form", "client-entry-save-btn");
+    } else if (
+      e.target.classList.contains("edit-add-employee-added-data-ctnr")
+    ) {
+      bringForwAni("add-employee-form");
+      editDataFunc(e.target, "add-employee-form", "add-employee-save-btn");
+    } else if (
+      e.target.classList.contains("edit-advance-salary-added-data-ctnr")
+    ) {
+      bringForwAni("advance-salary-form");
+      editDataFunc(e.target, "advance-salary-form", "advance-salary-save-btn");
+    } else if (
+      e.target.classList.contains("edit-payroll-entry-added-data-ctnr")
+    ) {
+      bringForwAni("payroll-entry-form");
+      editDataFunc(e.target, "payroll-entry-form", "payroll-entry-save-btn");
     }
   });
 
@@ -754,6 +801,11 @@ const formsDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || {
   "add-vendor-added-data-ctnr": [],
   "add-product-added-data-ctnr": [],
   "vendor-transaction-added-data-ctnr": [],
+  "add-client-added-data-ctnr": [],
+  "client-entry-added-data-ctnr": [],
+  "add-employee-added-data-ctnr": [],
+  "advance-salary-added-data-ctnr": [],
+  "payroll-entry-added-data-ctnr": [],
 };
 
 // Function to check if new data already exists in the array
@@ -782,6 +834,8 @@ function addDataToTable(key, newData) {
 
 // Function to print data to the table
 function printDataToTable(key) {
+  console.log("executed");
+
   const tbody = document.getElementById(key);
   tbody.innerHTML = ""; // Clear existing rows
 
@@ -840,3 +894,28 @@ function deleteData(key, index) {
 // // Initial table population (optional)
 printDataToTable("add-vendor-added-data-ctnr");
 printDataToTable("add-product-added-data-ctnr");
+printDataToTable("vendor-transaction-added-data-ctnr");
+printDataToTable("add-client-added-data-ctnr");
+printDataToTable("client-entry-added-data-ctnr");
+printDataToTable("add-employee-added-data-ctnr");
+printDataToTable("add-employee-added-data-ctnr");
+printDataToTable("advance-salary-added-data-ctnr");
+printDataToTable("payroll-entry-added-data-ctnr");
+
+// pdf printing code of Jquery
+$(document).ready(function () {
+  $("#dnd-pdf").on("click", function () {
+    $("#vendor-table").printThis({
+      debug: false, // Show the iframe for debugging
+      importCSS: true, // Import page CSS
+      importStyle: true, // Import style tags
+      printContainer: true, // Grab outer container as well as the contents of the selector
+      loadCSS: "Pipe-Portal/style.css", // Path to additional CSS file
+      pageTitle: "My Document", // Add title to print page
+      removeInline: false, // Remove all inline styles
+      copyTagClasses: true, // Copy classes from the HTML & body tag
+      header: null, // Add header content to print page
+      footer: null, // Add footer content to print page
+    });
+  });
+});
