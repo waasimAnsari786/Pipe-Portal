@@ -6,6 +6,7 @@ let formCtnr = document.querySelector(".form-ctnr");
 let dbCtnr = document.querySelector("#db-ctnr");
 let optShowBtn = document.querySelector("#bars-icon");
 let optHideBtn = document.querySelector("#close-icon");
+let printInvoiceBtn = document.querySelector(".print-invoice");
 
 const showHideOptsCtnr = (value) => {
   requestAnimationFrame(() => {
@@ -325,6 +326,17 @@ const handleOnClick = (targElem, type, btnText) => {
   });
 };
 
+// this function is for printing the invoice
+const printInvoice = () => {
+  // navigateToNextPageFunc("current transaction.html");
+  let getedData = JSON.parse(localStorage.getItem("formsDataAPI") || []);
+  let vendorDetails = getedData["add-vendor-added-data-ctnr"];
+  let vendorTransNProducts = getedData["vendor-transaction-added-data-ctnr"];
+  let invoice = document.querySelector(".invoice-ctnr");
+  let invClientDetailsSec = document.querySelector(".customer-details-ctnr");
+  console.log(invClientDetailsSec);
+};
+
 // this variable is for getting the dashbord's page button's section
 let optCtnr = document.querySelector(".opt-ctnr");
 
@@ -415,6 +427,10 @@ if (optCtnr) {
       e.target.closest("button")?.innerText.trim() === "Payroll Entries"
     ) {
       bringForwAni("payroll-entry-data-ctnr");
+    } else if (
+      e.target.closest("button")?.innerText.trim() === "Current Invoice"
+    ) {
+      navigateToNextPageFunc("current transaction.html");
     }
   });
 }
@@ -609,11 +625,16 @@ const editDataFunc = (targElem, mainID, btnID) => {
       if (inpsLength === ValArrLength) {
         let getedData = JSON.parse(localStorage.getItem("formsDataAPI"));
         if (!isDataPresent(getedData[prElem.id], newObj)) {
-          const filteredArray = getedData[prElem.id].filter(
-            (item) => JSON.stringify(item) !== JSON.stringify(oldData)
-          );
-          filteredArray.push(newObj);
-          getedData[prElem.id] = filteredArray;
+          let oneValue = Object.entries(oldData)[1][1];
+          let indexOfOldData = getedData[prElem.id].findIndex((curObj) => {
+            return Object.entries(curObj)[1][1] === oneValue;
+          });
+          getedData[prElem.id].splice(indexOfOldData, 1, newObj);
+          // const filteredArray = getedData[prElem.id].filter(
+          //   (item) => JSON.stringify(item) !== JSON.stringify(oldData)
+          // );
+          // filteredArray.push(newObj);
+          // getedData[prElem.id] = filteredArray;
           localStorage.setItem("formsDataAPI", JSON.stringify(getedData));
           navigateToNextPageFunc("dashbord.html");
           printDataToTable(prElem.id);
@@ -646,7 +667,7 @@ const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
 if (formCtnr) {
   // this event listener  hold "save" , "delete" , "edit" data function on click on desired buttons
   formCtnr.addEventListener("click", (e) => {
-    if (e.target.innerText === "View Vendor") {
+    if (e.target.innerText === "View Vendors") {
       e.preventDefault();
       bringForwAni("add-vendor-data-ctnr");
     } else if (e.target.innerText === "View Products") {
@@ -834,48 +855,48 @@ function addDataToTable(key, newData) {
 
 // Function to print data to the table
 function printDataToTable(key) {
-  console.log("executed");
-
   const tbody = document.getElementById(key);
-  tbody.innerHTML = ""; // Clear existing rows
+  if (tbody) {
+    tbody.innerHTML = ""; // Clear existing rows
 
-  const data = formsDataAPI[key];
+    const data = formsDataAPI[key];
 
-  data.forEach((item, index) => {
-    const row = document.createElement("tr");
+    data.forEach((item, index) => {
+      const row = document.createElement("tr");
 
-    // Create Serial Number TD (first column)
-    const serialTd = document.createElement("td");
-    serialTd.textContent = index + 1; // Serial number starting from 1
-    row.appendChild(serialTd);
+      // Create Serial Number TD (first column)
+      const serialTd = document.createElement("td");
+      serialTd.textContent = index + 1; // Serial number starting from 1
+      row.appendChild(serialTd);
 
-    // Create TDs for each property
-    Object.values(item).forEach((value) => {
-      const td = document.createElement("td");
-      td.classList.add("added-data");
-      td.textContent = value;
-      row.appendChild(td);
+      // Create TDs for each property
+      Object.values(item).forEach((value) => {
+        const td = document.createElement("td");
+        td.classList.add("added-data");
+        td.textContent = value;
+        row.appendChild(td);
+      });
+
+      // Create Edit and Delete buttons
+      const actionsTd = document.createElement("td");
+      actionsTd.classList.add("ed-dl-btn-ctnr");
+
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.className = `btn btn-warning btn-lg edit-${key}`;
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.className = `btn btn-danger btn-lg delete-${key}`;
+      deleteButton.addEventListener("click", () => deleteData(key, index));
+
+      actionsTd.appendChild(editButton);
+      actionsTd.appendChild(deleteButton);
+
+      row.appendChild(actionsTd);
+      tbody.appendChild(row);
     });
-
-    // Create Edit and Delete buttons
-    const actionsTd = document.createElement("td");
-    actionsTd.classList.add("ed-dl-btn-ctnr");
-
-    const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
-    editButton.className = `btn btn-warning btn-lg edit-${key}`;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.className = `btn btn-danger btn-lg delete-${key}`;
-    deleteButton.addEventListener("click", () => deleteData(key, index));
-
-    actionsTd.appendChild(editButton);
-    actionsTd.appendChild(deleteButton);
-
-    row.appendChild(actionsTd);
-    tbody.appendChild(row);
-  });
+  }
 }
 
 // Function to handle deleting data
@@ -903,19 +924,23 @@ printDataToTable("advance-salary-added-data-ctnr");
 printDataToTable("payroll-entry-added-data-ctnr");
 
 // pdf printing code of Jquery
-$(document).ready(function () {
-  $("#dnd-pdf").on("click", function () {
-    $("#vendor-table").printThis({
-      debug: false, // Show the iframe for debugging
-      importCSS: true, // Import page CSS
-      importStyle: true, // Import style tags
-      printContainer: true, // Grab outer container as well as the contents of the selector
-      loadCSS: "Pipe-Portal/style.css", // Path to additional CSS file
-      pageTitle: "My Document", // Add title to print page
-      removeInline: false, // Remove all inline styles
-      copyTagClasses: true, // Copy classes from the HTML & body tag
-      header: null, // Add header content to print page
-      footer: null, // Add footer content to print page
-    });
-  });
+// $(document).ready(function () {
+//   $("#dnd-pdf").on("click", function () {
+//     $("#vendor-table").printThis({
+//       debug: false, // Show the iframe for debugging
+//       importCSS: true, // Import page CSS
+//       importStyle: true, // Import style tags
+//       printContainer: true, // Grab outer container as well as the contents of the selector
+//       loadCSS: "Pipe-Portal/style.css", // Path to additional CSS file
+//       pageTitle: "My Document", // Add title to print page
+//       removeInline: false, // Remove all inline styles
+//       copyTagClasses: true, // Copy classes from the HTML & body tag
+//       header: null, // Add header content to print page
+//       footer: null, // Add footer content to print page
+//     });
+//   });
+// });
+
+printInvoiceBtn.addEventListener("click", (e) => {
+  printInvoice();
 });

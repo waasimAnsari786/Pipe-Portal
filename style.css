@@ -471,3 +471,9 @@ td {
 .invoice-footer p {
   margin: 5px 0;
 }
+
+.invoice-num {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
