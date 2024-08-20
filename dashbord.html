@@ -134,8 +134,8 @@
 
           <div class="col-12 p-0 opt-ctnr-inner" id="abc">
             <button class="opts mt-4" id="vendor-btn">
-              <i class="fa-solid fa-user-tie dshbd-icon"></i>
-              <span>vendor</span>
+              <i class="fa-solid fa-user-plus dshbd-icon"></i>
+              <span>add vendor</span>
             </button>
 
             <div class="sub-opt-ctnr"></div>
@@ -143,8 +143,8 @@
 
           <div class="col-12 p-0 opt-ctnr-inner">
             <button class="opts" id="client-btn">
-              <i class="fa-solid fa-users dshbd-icon" id="client-icon"></i>
-              <span>client</span>
+              <i class="fa-solid fa-user-plus dshbd-icon"></i>
+              <span>add client</span>
             </button>
 
             <div class="sub-opt-ctnr"></div>
@@ -152,8 +152,8 @@
 
           <div class="col-12 p-0 opt-ctnr-inner">
             <button class="opts" id="payroll-btn">
-              <i class="fa-solid fa-user-pen dshbd-icon" id="payroll-icon"></i>
-              <span>payroll</span>
+              <i class="fa-solid fa-user-plus dshbd-icon"></i>
+              <span>add payroll</span>
             </button>
 
             <div class="sub-opt-ctnr"></div>
@@ -281,9 +281,9 @@
           </div>
 
           <!-- add vendor form -->
-          <form class="slide-ctnr" id="add-vendor-form">
-            <div class="container">
-              <h1 class="my-5 d-form-head">add vendor</h1>
+          <form class="slide-ctnr" id="add-vendor-and-product-form">
+            <div class="container" id="add-vendor-form">
+              <h1 class="mt-5 d-form-head">add vendor</h1>
               <div class="row">
                 <!-- Column 1: Date Input -->
                 <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-6">
@@ -343,38 +343,12 @@
                     />
                   </div>
                 </div>
-
-                <div
-                  class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2"
-                >
-                  <button class="add-data-btn" id="add-vendor-save-btn">
-                    Save
-                  </button>
-                  <button class="add-data-btn">view vendors</button>
-                </div>
               </div>
             </div>
-          </form>
-          <!-- add vendor form end-->
 
-          <!-- add product form -->
-          <form class="slide-ctnr" id="add-product-form">
-            <div class="container">
-              <h1 class="my-5 d-form-head">add product</h1>
+            <div class="container" id="add-product-form">
+              <h1 class="mt-4 d-form-head">add product</h1>
               <div class="row">
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label for="add-product-date" class="form-label"
-                      >Date :</label
-                    >
-                    <input
-                      type="date"
-                      id="add-product-date"
-                      class="form-inps py-1 w-100"
-                    />
-                  </div>
-                </div>
-
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                   <div class="col-12 my-2">
                     <label for="add-product-product-name" class="form-label"
@@ -459,113 +433,15 @@
                     />
                   </div>
                 </div>
-              </div>
-              <div
-                class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2"
-              >
-                <button class="add-data-btn" id="add-product-save-btn">
-                  Save
-                </button>
-                <button class="add-data-btn">view products</button>
-              </div>
-            </div>
-          </form>
-          <!-- add product form end -->
-
-          <!-- vendor transaction form -->
-          <form class="slide-ctnr" id="vendor-transaction-form">
-            <div class="container">
-              <h1 class="my-5 d-form-head">Vendor's transactions</h1>
-              <div class="row">
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label for="vendor-transaction-product" class="form-label"
-                      >Product :</label
-                    >
-                    <select
-                      id="vendor-transaction-product"
-                      class="form-inps py-1 w-100"
-                    >
-                      <option value="product 1">Product 1</option>
-                      <option value="product 2">Product 2</option>
-                      <option value="product 3">Product 3</option>
-                      <option value="product 4">Product 4</option>
-                      <option value="product 5">Product 5</option>
-                    </select>
-                  </div>
-                </div>
 
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                   <div class="col-12 my-2">
-                    <label for="vendor-transaction-bags" class="form-label"
-                      >Bags :</label
-                    >
-                    <input
-                      type="number"
-                      id="vendor-transaction-bags"
-                      class="py-1 form-inps w-100"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label
-                      for="vendor-transaction-bags-weight"
-                      class="form-label"
-                      >Bags Weight :</label
-                    >
-                    <input
-                      type="number"
-                      id="vendor-transaction-bags-weight"
-                      class="py-1 form-inps w-100"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label for="vendor-transaction-price" class="form-label"
-                      >Price :</label
-                    >
-                    <input
-                      type="number"
-                      id="vendor-transaction-price"
-                      class="py-1 form-inps w-100"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label
-                      for="vendor-transaction-total-price"
-                      class="form-label"
-                      >Total Price :</label
-                    >
-                    <input
-                      type="number"
-                      id="vendor-transaction-total-price"
-                      class="py-1 form-inps w-100"
-                      autocomplete="off"
-                      readonly
-                    />
-                  </div>
-                </div>
-
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                  <div class="col-12 my-2">
-                    <label
-                      for="vendor-transaction-amount-payable"
-                      class="form-label"
+                    <label for="add-product-amount-payable" class="form-label"
                       >Amount Payable :</label
                     >
                     <input
                       type="number"
-                      id="vendor-transaction-amount-payable"
+                      id="add-product-amount-payable"
                       class="py-1 form-inps w-100"
                       autocomplete="off"
                       readonly
@@ -575,14 +451,12 @@
 
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                   <div class="col-12 my-2">
-                    <label
-                      for="vendor-transaction-advance-payment"
-                      class="form-label"
+                    <label for="add-product-advance-payment" class="form-label"
                       >Advance Payment :</label
                     >
                     <input
                       type="number"
-                      id="vendor-transaction-advance-payment"
+                      id="add-product-advance-payment"
                       class="py-1 form-inps w-100"
                       autocomplete="off"
                     />
@@ -592,13 +466,13 @@
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
                   <div class="col-12 my-2">
                     <label
-                      for="vendor-transaction-outstanding-payable"
+                      for="add-product-outstanding-payable"
                       class="form-label"
                       >Outstanding Payable :</label
                     >
                     <input
                       type="number"
-                      id="vendor-transaction-outstanding-payable"
+                      id="add-product-outstanding-payable"
                       class="py-1 form-inps w-100"
                       autocomplete="off"
                       readonly
@@ -606,17 +480,17 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2"
-              >
-                <button class="add-data-btn" id="vendor-transaction-save-btn">
-                  Save
-                </button>
-                <button class="add-data-btn">view transactions</button>
-              </div>
+            </div>
+            <div
+              class="col-12 mt-5 d-flex justify-content-start align-items-center gap-2"
+            >
+              <button class="add-data-btn" id="add-vendor-save-btn">
+                Save
+              </button>
+              <button class="add-data-btn">view vendors</button>
             </div>
           </form>
-          <!-- vendor transaction form end-->
+          <!-- add vendor form end-->
 
           <!-- add client form -->
           <form class="slide-ctnr" id="add-client-form">
@@ -1223,66 +1097,32 @@
                     <th scope="col" class="form-h-row">vendor name</th>
                     <th scope="col" class="form-h-row">address</th>
                     <th scope="col" class="form-h-row">cell num</th>
-                    <th scope="col" class="form-h-row">buttons</th>
                   </tr>
                 </thead>
 
                 <tbody id="add-vendor-added-data-ctnr"></tbody>
               </table>
+
+              <table class="mt-5 table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="form-h-row">product name</th>
+                    <th scope="col" class="form-h-row">product size</th>
+                    <th scope="col" class="form-h-row">num of bundles</th>
+                    <th scope="col" class="form-h-row">KGs</th>
+                    <th scope="col" class="form-h-row">price</th>
+                    <th scope="col" class="form-h-row">total price</th>
+                    <th scope="col" class="form-h-row">amount payable</th>
+                    <th scope="col" class="form-h-row">advance payment</th>
+                    <th scope="col" class="form-h-row">outstanding payable</th>
+                  </tr>
+                </thead>
+
+                <tbody id="add-vendor-product-added-data-ctnr"></tbody>
+              </table>
             </div>
           </div>
           <!-- view vendor container end-->
-
-          <!-- view product container-->
-          <div class="container slide-ctnr pe-4" id="add-product-data-ctnr">
-            <div class="table-responsive">
-              <h1 class="my-5 fw-bold">Product List</h1>
-              <table class="table">
-                <thead>
-                  <th scope="col" class="form-h-row">s.no</th>
-                  <th scope="col" class="form-h-row">date</th>
-                  <th scope="col" class="form-h-row">product name</th>
-                  <th scope="col" class="form-h-row">product size</th>
-                  <th scope="col" class="form-h-row">num of bundles</th>
-                  <th scope="col" class="form-h-row">KGs</th>
-                  <th scope="col" class="form-h-row">price</th>
-                  <th scope="col" class="form-h-row">total price</th>
-                  <th scope="col" class="form-h-row">buttons</th>
-                </thead>
-
-                <tbody id="add-product-added-data-ctnr"></tbody>
-              </table>
-            </div>
-          </div>
-          <!-- view product container end-->
-
-          <!-- view vendor transaction container-->
-          <div
-            class="container slide-ctnr pe-4"
-            id="vendor-transaction-data-ctnr"
-          >
-            <div class="table-responsive">
-              <h1 class="my-5 fw-bold">Vendors Transaction List</h1>
-              <table class="table">
-                <thead>
-                  <th scope="col" class="form-h-row">s.no</th>
-                  <th scope="col" class="form-h-row">product</th>
-                  <th scope="col" class="form-h-row">bags</th>
-                  <th scope="col" class="form-h-row">bags weight</th>
-                  <th scope="col" class="form-h-row">price</th>
-                  <th scope="col" class="form-h-row">total price</th>
-                  <th scope="col" class="form-h-row">amount payable</th>
-                  <th scope="col" class="form-h-row">advance payment</th>
-                  <th scope="col" class="form-h-row">outstanding payable</th>
-                  <th scope="col" class="form-h-row">buttons</th>
-                </thead>
-
-                <tbody id="vendor-transaction-added-data-ctnr"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- view vendor transaction container end-->
 
           <!-- view client container-->
           <div class="container slide-ctnr pe-4" id="add-client-data-ctnr">

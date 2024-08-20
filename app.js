@@ -216,72 +216,11 @@ if (graphCtnr2) {
 }
 
 const handleOnClick = (targElem, type, btnText) => {
-  if (type === "vendor") {
-    targElem.innerHTML = `
-      <button class="w-100 sub-opts">
-        <i class="fa-solid fa-user-plus dshbd-icon"></i>
-        <span>add ${btnText}</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-cart-plus dshbd-icon"></i>
-        <span>add product</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-exchange-alt dshbd-icon"></i>
-        <span>${btnText}'s transaction</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-book dshbd-icon"></i>
-        <span>${btnText}'s ledger</span>
-      </button>`;
-    addAniFunc(targElem, "20rem", 0);
-  } else if (type === "client") {
-    targElem.innerHTML = `
-      <button class="w-100 sub-opts">
-        <i class="fas fa-user-plus dshbd-icon"></i>
-        <span>add ${btnText}</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-sign-in-alt dshbd-icon"></i>
-        <span>${btnText}'s entry</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-address-book dshbd-icon"></i>
-        <span>${btnText}'s ledger</span>
-      </button>`;
-    addAniFunc(targElem, "15rem", 0);
-  } else if (type === "payroll") {
-    targElem.innerHTML = `
-      <button class="w-100 sub-opts">
-        <i class="fas fa-user-plus dshbd-icon"></i>
-        <span>add employee</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-hand-holding-usd dshbd-icon"></i>
-        <span>advance salary</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-file-invoice-dollar dshbd-icon"></i>
-        <span>${btnText} entry</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-book-open dshbd-icon"></i>
-        <span>${btnText} ledger</span>
-      </button>`;
-    addAniFunc(targElem, "20rem", 0);
-  } else if (type === "show-data") {
+  if (type === "show-data") {
     targElem.innerHTML = `
       <button class="w-100 sub-opts">
         <i class="fas fa-list-alt dshbd-icon"></i>
         <span>vendor list</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="fas fa-boxes dshbd-icon"></i>
-        <span>product list</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="dshbd-icon fas fa-exchange-alt"></i>
-        <span>vendor Transaction</span>
       </button>
       <button class="w-100 sub-opts">
         <i class="dshbd-icon fas fa-book"></i>
@@ -292,20 +231,8 @@ const handleOnClick = (targElem, type, btnText) => {
         <span>client list</span>
       </button>
       <button class="w-100 sub-opts">
-        <i class="dshbd-icon fas fa-user-edit"></i>
-        <span>client entries</span>
-      </button>
-      <button class="w-100 sub-opts">
         <i class="dshbd-icon fas fa-file-invoice-dollar"></i>
         <span>client ledger</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="dshbd-icon fas fa-address-book"></i>
-        <span>employees list</span>
-      </button>
-      <button class="w-100 sub-opts">
-        <i class="dshbd-icon fas fa-money-check-alt"></i>
-        <span>advance salaries</span>
       </button>
       <button class="w-100 sub-opts">
         <i class="dshbd-icon fas fa-file-alt"></i>
@@ -315,7 +242,7 @@ const handleOnClick = (targElem, type, btnText) => {
         <i class="dshbd-icon fas fa-receipt"></i>
         <span>payroll ledger</span>
       </button>`;
-    addAniFunc(targElem, "55rem", 0);
+    addAniFunc(targElem, "30rem", 0);
   }
 
   let allSubOptCtrns = document.querySelectorAll(".sub-opt-ctnr");
@@ -349,80 +276,24 @@ if (optCtnr) {
 
     let subBtnCtnr = targetedBtn.nextElementSibling;
 
-    if (e.target.closest("button")?.innerText.trim() === "Vendor") {
-      handleOnClick(
-        subBtnCtnr,
-        "vendor",
-        e.target.closest("button")?.innerText.trim()
-      );
-    } else if (e.target.closest("button")?.innerText.trim() === "Client") {
-      handleOnClick(
-        subBtnCtnr,
-        "client",
-        e.target.closest("button")?.innerText.trim()
-      );
-    } else if (e.target.closest("button")?.innerText.trim() === "Payroll") {
-      handleOnClick(
-        subBtnCtnr,
-        "payroll",
-        e.target.closest("button")?.innerText.trim()
-      );
-    } else if (e.target.closest("button")?.innerText.trim() === "Show Data") {
+    if (e.target.closest("button")?.innerText.trim() === "Show Data") {
       handleOnClick(
         subBtnCtnr,
         "show-data",
         e.target.closest("button")?.innerText.trim()
       );
     } else if (e.target.closest("button")?.innerText.trim() === "Add Vendor") {
-      bringForwAni("add-vendor-form");
-    } else if (e.target.closest("button")?.innerText.trim() === "Add Product") {
-      bringForwAni("add-product-form");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Vendor's Transaction"
-    ) {
-      bringForwAni("vendor-transaction-form");
+      bringForwAni("add-vendor-and-product-form");
     } else if (e.target.closest("button")?.innerText.trim() === "Add Client") {
       bringForwAni("add-client-form");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Client's Entry"
-    ) {
-      bringForwAni("client-entry-form");
     } else if (
       e.target.closest("button")?.innerText.trim() === "Add Employee"
     ) {
       bringForwAni("add-employee-form");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Advance Salary"
-    ) {
-      bringForwAni("advance-salary-form");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Payroll Entry"
-    ) {
-      bringForwAni("payroll-entry-form");
     } else if (e.target.closest("button")?.innerText.trim() === "Vendor List") {
       bringForwAni("add-vendor-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Product List"
-    ) {
-      bringForwAni("add-product-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Vendor Transaction"
-    ) {
-      bringForwAni("vendor-transaction-data-ctnr");
     } else if (e.target.closest("button")?.innerText.trim() === "Client List") {
       bringForwAni("add-client-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Client Entries"
-    ) {
-      bringForwAni("client-entry-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Employees List"
-    ) {
-      bringForwAni("add-employee-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Advance Salaries"
-    ) {
-      bringForwAni("advance-salary-data-ctnr");
     } else if (
       e.target.closest("button")?.innerText.trim() === "Payroll Entries"
     ) {
@@ -511,17 +382,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
       `#${targID}`,
       "#add-product-num-of-bundles",
       "#add-product-total-price",
-      // i used "undefined" here fr controlling the error because here is one argument is missing
-      undefined
-    );
-  } else if (targID === "vendor-transaction-price") {
-    findTotalPrice(
-      targElem,
-      "#vendor-transaction-form",
-      `#${targID}`,
-      "#vendor-transaction-bags",
-      "#vendor-transaction-total-price",
-      "#vendor-transaction-amount-payable"
+      "#add-product-amount-payable"
     );
   } else if (targID === "client-entry-price") {
     findTotalPrice(
@@ -532,13 +393,13 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
       "#client-entry-total-price",
       "#client-entry-amount-receivable"
     );
-  } else if (targID === "vendor-transaction-advance-payment") {
+  } else if (targID === "add-product-advance-payment") {
     findOutstandingAmt(
       targElem,
-      "#vendor-transaction-form",
+      "#add-product-form",
       `#${targID}`,
-      "#vendor-transaction-total-price",
-      "#vendor-transaction-outstanding-payable"
+      "#add-product-total-price",
+      "#add-product-outstanding-payable"
     );
   } else if (targID === "client-entry-received-by-client") {
     findOutstandingAmt(
@@ -650,12 +511,16 @@ const editDataFunc = (targElem, mainID, btnID) => {
   }
 };
 // this function holds 2 functions which involed above. i created this function for enhancing the readability
-const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
+const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2, mainID3) => {
   let updatedObj = getAddedDataFunc(targElem, mainID);
+  let updatedObj2 = getAddedDataFunc(targElem, mainID2);
+
   let [newObj, inpsLength, ValArrLength] = updatedObj;
-  let ID = document.querySelector(mainID2).id;
-  if (inpsLength === ValArrLength) {
-    addDataToTable(ID, newObj);
+  let [newObj2, inpsLength2, ValArrLength2] = updatedObj2;
+
+  let ID = document.querySelector(mainID3).id;
+  if (inpsLength === ValArrLength && inpsLength2 === ValArrLength2) {
+    addDataToTable(ID, [newObj, newObj2]);
   } else {
     alert("You can't save empty data!");
     return;
@@ -670,24 +535,9 @@ if (formCtnr) {
     if (e.target.innerText === "View Vendors") {
       e.preventDefault();
       bringForwAni("add-vendor-data-ctnr");
-    } else if (e.target.innerText === "View Products") {
-      e.preventDefault();
-      bringForwAni("add-product-data-ctnr");
-    } else if (e.target.innerText === "View Transactions") {
-      e.preventDefault();
-      bringForwAni("vendor-transaction-data-ctnr");
     } else if (e.target.innerText === "View Clients") {
       e.preventDefault();
       bringForwAni("add-client-data-ctnr");
-    } else if (e.target.innerText === "View Clients Entries") {
-      e.preventDefault();
-      bringForwAni("client-entry-data-ctnr");
-    } else if (e.target.innerText === "View Employees") {
-      e.preventDefault();
-      bringForwAni("add-employee-data-ctnr");
-    } else if (e.target.innerText === "View Advance Salaries") {
-      e.preventDefault();
-      bringForwAni("advance-salary-data-ctnr");
     } else if (e.target.innerText === "View Payroll Entries") {
       e.preventDefault();
       bringForwAni("payroll-entry-data-ctnr");
@@ -696,21 +546,8 @@ if (formCtnr) {
       ctnrFuncOfAddedDataFunc(
         formCtnr,
         "#add-vendor-form",
-        "#add-vendor-added-data-ctnr"
-      );
-    } else if (e.target.id === "add-product-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
         "#add-product-form",
-        "#add-product-added-data-ctnr"
-      );
-    } else if (e.target.id === "vendor-transaction-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#vendor-transaction-form",
-        "#vendor-transaction-added-data-ctnr"
+        "#add-vendor-data-ctnr"
       );
     } else if (e.target.id === "add-client-save-btn") {
       e.preventDefault();
@@ -718,27 +555,6 @@ if (formCtnr) {
         formCtnr,
         "#add-client-form",
         "#add-client-added-data-ctnr"
-      );
-    } else if (e.target.id === "client-entry-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#client-entry-form",
-        "#client-entry-added-data-ctnr"
-      );
-    } else if (e.target.id === "add-employee-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#add-employee-form",
-        "#add-employee-added-data-ctnr"
-      );
-    } else if (e.target.id === "advance-salary-save-btn") {
-      e.preventDefault();
-      ctnrFuncOfAddedDataFunc(
-        formCtnr,
-        "#advance-salary-form",
-        "#advance-salary-added-data-ctnr"
       );
     } else if (e.target.id === "payroll-entry-save-btn") {
       e.preventDefault();
@@ -795,13 +611,10 @@ if (formCtnr) {
     if (e.target.id === "add-product-price") {
       e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
-    } else if (e.target.id === "vendor-transaction-price") {
-      e.preventDefault();
-      ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "client-entry-price") {
       e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
-    } else if (e.target.id === "vendor-transaction-advance-payment") {
+    } else if (e.target.id === "add-product-advance-payment") {
       e.preventDefault();
       ctnrFuncOfTotalPriceFunc(e.target, e.target.id);
     } else if (e.target.id === "client-entry-received-by-client") {
@@ -819,13 +632,8 @@ if (formCtnr) {
 
 // Initialize or retrieve data from local storage
 const formsDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || {
-  "add-vendor-added-data-ctnr": [],
-  "add-product-added-data-ctnr": [],
-  "vendor-transaction-added-data-ctnr": [],
+  "add-vendor-data-ctnr": [],
   "add-client-added-data-ctnr": [],
-  "client-entry-added-data-ctnr": [],
-  "add-employee-added-data-ctnr": [],
-  "advance-salary-added-data-ctnr": [],
   "payroll-entry-added-data-ctnr": [],
 };
 
@@ -835,16 +643,22 @@ function isDataPresent(array, newData) {
 }
 
 // Function to add new data and update local storage
-function addDataToTable(key, newData) {
+function addDataToTable(key, newDataArr) {
   const formArray = formsDataAPI[key] || [];
+  let newArr = [];
+  let results = [];
 
-  if (!isDataPresent(formArray, newData)) {
-    formArray.push(newData);
+  for (let index = 0; index < newDataArr.length; index++) {
+    let result = isDataPresent(formArray, newDataArr[index]);
+    results.push(result);
+    newArr.push(newDataArr[index]);
+  }
+
+  if (results.every((result) => result === false)) {
+    formArray.push(newArr);
     formsDataAPI[key] = formArray;
-
     // Save updated data to local storage
     localStorage.setItem("formsDataAPI", JSON.stringify(formsDataAPI));
-
     // Print the updated data to the table
     printDataToTable(key);
   } else {
@@ -854,48 +668,56 @@ function addDataToTable(key, newData) {
 }
 
 // Function to print data to the table
+
+// Function to print data to the table
 function printDataToTable(key) {
-  const tbody = document.getElementById(key);
-  if (tbody) {
-    tbody.innerHTML = ""; // Clear existing rows
+  console.log();
+
+  const prDiv = document.getElementById(key);
+  if (prDiv) {
+    const tbodies = prDiv.querySelectorAll("tbody");
+    tbodies[0].innerHTML = ""; // Clear existing rows
+    tbodies[1].innerHTML = ""; // Clear existing rows
 
     const data = formsDataAPI[key];
 
-    data.forEach((item, index) => {
-      const row = document.createElement("tr");
+    // Create a Serial Number TD (first column)
+    const row = document.createElement("tr");
+    const serialTd = document.createElement("td");
+    serialTd.textContent = data.length; // Serial number based on length of data array
+    row.appendChild(serialTd);
 
-      // Create Serial Number TD (first column)
-      const serialTd = document.createElement("td");
-      serialTd.textContent = index + 1; // Serial number starting from 1
-      row.appendChild(serialTd);
-
-      // Create TDs for each property
-      Object.values(item).forEach((value) => {
-        const td = document.createElement("td");
-        td.classList.add("added-data");
-        td.textContent = value;
-        row.appendChild(td);
+    // Loop through the first object and print it in the first table
+    data.forEach((curArr, index) => {
+      curArr.forEach((curObj, i) => {
+        Object.values(curObj).forEach((element) => {
+          const td = document.createElement("td");
+          td.classList.add("added-data");
+          td.textContent = element;
+          row.appendChild(td);
+          tbodies[i].appendChild(row);
+        });
       });
-
-      // Create Edit and Delete buttons
-      const actionsTd = document.createElement("td");
-      actionsTd.classList.add("ed-dl-btn-ctnr");
-
-      const editButton = document.createElement("button");
-      editButton.textContent = "Edit";
-      editButton.className = `btn btn-warning btn-lg edit-${key}`;
-
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
-      deleteButton.className = `btn btn-danger btn-lg delete-${key}`;
-      deleteButton.addEventListener("click", () => deleteData(key, index));
-
-      actionsTd.appendChild(editButton);
-      actionsTd.appendChild(deleteButton);
-
-      row.appendChild(actionsTd);
-      tbody.appendChild(row);
     });
+
+    // Create Edit and Delete buttons
+    const actionsTr = document.createElement("tr");
+    actionsTr.classList.add("ed-dl-btn-ctnr");
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.className = `btn btn-warning btn-lg edit-${key}`;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.className = `btn btn-danger btn-lg delete-${key}`;
+    deleteButton.addEventListener("click", () => deleteData(key));
+
+    actionsTr.appendChild(editButton);
+    actionsTr.appendChild(deleteButton);
+
+    // Append the action buttons to the first row (since buttons are shared)
+    prDiv.appendChild(actionsTr);
   }
 }
 
@@ -913,15 +735,9 @@ function deleteData(key, index) {
 }
 
 // // Initial table population (optional)
-printDataToTable("add-vendor-added-data-ctnr");
-printDataToTable("add-product-added-data-ctnr");
-printDataToTable("vendor-transaction-added-data-ctnr");
-printDataToTable("add-client-added-data-ctnr");
-printDataToTable("client-entry-added-data-ctnr");
-printDataToTable("add-employee-added-data-ctnr");
-printDataToTable("add-employee-added-data-ctnr");
-printDataToTable("advance-salary-added-data-ctnr");
-printDataToTable("payroll-entry-added-data-ctnr");
+printDataToTable("add-vendor-data-ctnr");
+// printDataToTable("add-client-added-data-ctnr");
+// printDataToTable("payroll-entry-added-data-ctnr");
 
 // pdf printing code of Jquery
 // $(document).ready(function () {
@@ -940,7 +756,3 @@ printDataToTable("payroll-entry-added-data-ctnr");
 //     });
 //   });
 // });
-
-printInvoiceBtn.addEventListener("click", (e) => {
-  printInvoice();
-});
