@@ -477,3 +477,34 @@ td {
   right: 0;
   top: 0;
 }
+
+#search-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0) translate(-50%, -50%);
+  z-index: 10;
+  border-radius: 1rem;
+  box-shadow: 0.4rem 0.8rem 1rem rgb(148, 148, 148);
+  transition: 0.8s;
+}
+
+#search-container input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+#search-container input::placeholder {
+  color: white;
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 1rem !important;
+}
+
+.search-inp-ctnr {
+  border-radius: 1rem;
+}

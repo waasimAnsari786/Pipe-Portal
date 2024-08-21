@@ -7,6 +7,11 @@ let dbCtnr = document.querySelector("#db-ctnr");
 let optShowBtn = document.querySelector("#bars-icon");
 let optHideBtn = document.querySelector("#close-icon");
 let printInvoiceBtn = document.querySelector(".print-invoice");
+let cancelBtn = document.querySelector("#cancel-btn");
+const searchContainer = document.getElementById("search-container");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+const searchDataBtn = document.getElementById("search-data-btn");
 
 const showHideOptsCtnr = (value) => {
   requestAnimationFrame(() => {
@@ -215,6 +220,13 @@ if (graphCtnr2) {
   });
 }
 
+const showSearchDiv = (scalVal) => {
+  requestAnimationFrame(() => {
+    let elem = document.getElementById("search-container");
+    elem.style.transform = `scale(${scalVal}) translate(-50%, -50%)`;
+  });
+};
+
 const handleOnClick = (targElem, type, btnText) => {
   if (type === "show-data") {
     targElem.innerHTML = `
@@ -287,10 +299,8 @@ if (optCtnr) {
       e.target.closest("button")?.innerText.trim() === "Payroll Entries"
     ) {
       bringForwAni("payroll-entry-data-ctnr");
-    } else if (
-      e.target.closest("button")?.innerText.trim() === "Current Invoice"
-    ) {
-      navigateToNextPageFunc("current transaction.html");
+    } else if (e.target.closest("button")?.innerText.trim() === "Search Data") {
+      showSearchDiv(1);
     }
   });
 }
@@ -702,72 +712,193 @@ function deleteData(key, index) {
   printDataToTable(key);
 }
 
-// // Initial table population (optional)
+// Initial table population (optional)
 printDataToTable("add-vendor-added-data-ctnr");
 // printDataToTable("add-client-added-data-ctnr");
 // printDataToTable("payroll-entry-added-data-ctnr");
 
 // pdf printing code of Jquery
-// $(document).ready(function () {
-//   $("#dnd-pdf").on("click", function () {
-//     $("#vendor-table").printThis({
-//       debug: false, // Show the iframe for debugging
-//       importCSS: true, // Import page CSS
-//       importStyle: true, // Import style tags
-//       printContainer: true, // Grab outer container as well as the contents of the selector
-//       loadCSS: "Pipe-Portal/style.css", // Path to additional CSS file
-//       pageTitle: "My Document", // Add title to print page
-//       removeInline: false, // Remove all inline styles
-//       copyTagClasses: true, // Copy classes from the HTML & body tag
-//       header: null, // Add header content to print page
-//       footer: null, // Add footer content to print page
-//     });
-//   });
-// });
-function printVendorInvoice(vendorName) {
-  const vendorTransactions = vendors.filter(
-    (v) => v["add-vendor-vendor-name"] === vendorName
-  );
-
-  if (vendorTransactions.length > 0) {
-    // Populate vendor details (taking details from the first transaction)
-    const firstTransaction = vendorTransactions[0];
-    document.getElementById("vendorName").textContent =
-      firstTransaction["add-vendor-vendor-name"];
-    document.getElementById("vendorDate").textContent =
-      firstTransaction["add-vendor-date"];
-    document.getElementById("vendorAddress").textContent =
-      firstTransaction["add-vendor-address"];
-    document.getElementById("vendorCell").textContent =
-      firstTransaction["add-vendor-vendor-cell-num"];
-
-    // Populate product details for each transaction
-    const tbody = document.querySelector("#invoiceTable tbody");
-    tbody.innerHTML = ""; // Clear previous data
-
-    vendorTransactions.forEach((transaction, index) => {
-      const row = document.createElement("tr");
-
-      // Create and append cells for each product attribute
-      [
-        "add-product-product-name",
-        "add-product-product-size",
-        "add-product-num-of-bundles",
-        "add-product-kgs",
-        "add-product-price",
-        "add-product-total-price",
-        "add-product-amount-payable",
-        "add-product-advance-payment",
-        "add-product-outstanding-payable",
-      ].forEach((key) => {
-        const cell = document.createElement("td");
-        cell.textContent = transaction[key];
-        row.appendChild(cell);
-      });
-
-      tbody.appendChild(row);
+$(document).ready(function () {
+  $("#print-invoice").on("click", function () {
+    $("#invoice-ctnr").printThis({
+      debug: false, // Show the iframe for debugging
+      importCSS: true, // Import page CSS
+      importStyle: true, // Import style tags
+      printContainer: true, // Grab outer container as well as the contents of the selector
+      loadCSS: "Pipe-Portal/style.css", // Path to additional CSS file
+      pageTitle: "My Document", // Add title to print page
+      removeInline: false, // Remove all inline styles
+      copyTagClasses: true, // Copy classes from the HTML & body tag
+      header: null, // Add header content to print page
+      footer: null, // Add footer content to print page
     });
-  } else {
-    alert("Vendor not found!");
-  }
+  });
+});
+
+cancelBtn.addEventListener("click", (e) => {
+  searchInput.value = "";
+  showSearchDiv(0);
+});
+
+// function filterDataBasedOnSearch(inputValue, key, dateKey) {
+//   // Split the search input value
+//   const searchTerms = inputValue.split("/");
+
+//   // Extract the date term (last term) and other terms (first 3 terms)
+//   const dateTerm = searchTerms.pop(); // Last term
+//   const otherTerms = searchTerms; // First 3 terms
+
+//   // Get the current date
+//   const newDateTerm = new Date(dateTerm).toISOString().split("T")[0];
+//   const currentDate = new Date().toISOString().split("T")[0];
+//   console.log(currentDate);
+
+//   // Get data from local storage
+//   const formsDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || [];
+
+//   // Filter data based on the terms
+//   const filteredData = formsDataAPI[key].filter((item) => {
+//     // Check if the date is within the range
+//     const itemDate = item[dateKey];
+//     const isDateInRange = itemDate >= dateTerm && itemDate <= currentDate;
+
+//     // Check if the first 3 terms match with the item's properties
+//     const matchesTerms = otherTerms.every(
+//       (term) =>
+//         (item["add-vendor-name"] && item["add-vendor-name"].includes(term)) ||
+//         (item["add-vendor-address"] &&
+//           item["add-vendor-address"].includes(term)) ||
+//         (item["add-vendor-vendor-cell-num"] &&
+//           item["add-vendor-vendor-cell-num"].includes(term))
+//     );
+
+//     return isDateInRange && matchesTerms;
+//   });
+
+//   return filteredData;
+// }
+
+// // Example usage
+// searchBtn.addEventListener("click", () => {
+//   const result = filterDataBasedOnSearch(
+//     searchInput.value,
+//     "add-vendor-added-data-ctnr",
+//     "add-vendor-date"
+//   );
+//   console.log(result);
+// });
+
+function generateInvoice(filteredData) {
+  let invoiceHTML = `
+    <div class="invoice">
+      <h1>Invoice</h1>
+      <table class='table table-dark'>
+        <thead>
+          <tr>
+            <th class='fs-5 text-light'>S.No</th>
+            <th class='fs-5 text-light'>Vendor Name</th>
+            <th class='fs-5 text-light'>Address</th>
+            <th class='fs-5 text-light'>Cell Number</th>
+            <th class='fs-5 text-light'>Date</th>
+            <th class='fs-5 text-light'>Product Name</th>
+            <th class='fs-5 text-light'>Price</th>
+            <th class='fs-5 text-light'>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  filteredData.forEach((item, index) => {
+    invoiceHTML += `
+      <tr>
+        <td class='fs-5 text-light'>${index + 1}</td>
+        <td class='fs-5 text-light'>${
+          item["add-vendor-vendor-name"] || "N/A"
+        }</td> <!-- Ensuring correct key -->
+        <td class='fs-5 text-light'>${item["add-vendor-address"] || "N/A"}</td>
+        <td class='fs-5 text-light'>${
+          item["add-vendor-vendor-cell-num"] || "N/A"
+        }</td>
+        <td class='fs-5 text-light'>${item["add-vendor-date"] || "N/A"}</td>
+        <td class='fs-5 text-light'>${
+          item["add-product-product-name"] || "N/A"
+        }</td>
+        <td class='fs-5 text-light'>${item["add-product-price"] || "0.00"}</td>
+        <td class='fs-5 text-light'>${
+          item["add-product-total-price"] || "0.00"
+        }</td>
+      </tr>
+    `;
+  });
+
+  invoiceHTML += `
+        </tbody>
+      </table>
+      <div class="invoice-footer">
+        <p class='fs-4 fw-bold'>Total Amount: ${filteredData.reduce(
+          (sum, item) =>
+            sum + (parseFloat(item["add-product-total-price"]) || 0),
+          0
+        )}</p>
+      </div>
+    </div>
+  `;
+
+  return invoiceHTML;
 }
+
+searchBtn.addEventListener("click", function () {
+  const input = document.getElementById("search-input").value.trim();
+  if (input === "") {
+    alert("Please enter search criteria.");
+    return;
+  }
+
+  // Split the input value by spaces
+  const searchTerms = input.split("/");
+
+  // Get data from localStorage
+  const formDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || {};
+
+  // Define the keys to filter by
+  const filterKeys = [
+    "add-vendor-name",
+    "add-vendor-address",
+    "add-vendor-vendor-cell-num",
+    "add-vendor-date",
+  ];
+
+  // Initialize an array to hold filtered results
+  let filteredResults = [];
+
+  // Iterate over the relevant data containers
+  [
+    "add-vendor-added-data-ctnr",
+    "add-client-added-data-ctnr",
+    "payroll-entry-added-data-ctnr",
+  ].forEach((containerKey) => {
+    const dataContainer = formDataAPI[containerKey] || [];
+
+    // Filter data based on search terms
+    const filteredData = dataContainer.filter((dataObj) => {
+      return filterKeys.some((key) => {
+        return searchTerms.some((term) => {
+          return (
+            dataObj[key] &&
+            dataObj[key].toLowerCase().includes(term.toLowerCase())
+          );
+        });
+      });
+    });
+
+    // Merge the filtered data into the results array
+    filteredResults = [...filteredResults, ...filteredData];
+  });
+
+  // Generate invoice HTML
+  const invoiceHTML = generateInvoice(filteredResults);
+
+  // Display invoice in a div
+  const invoiceContainer = document.querySelector(".invoice-container");
+  invoiceContainer.innerHTML = invoiceHTML;
+});

@@ -159,9 +159,11 @@
             <div class="sub-opt-ctnr"></div>
           </div>
           <div class="col-12 p-0 opt-ctnr-inner">
-            <button class="opts" id="print-cur-invoice">
-              <i class="fas fa-print dshbd-icon"></i>
-              <span>current invoice</span>
+            <button id="search-data-btn" class="opts">
+              <i
+                class="fa-solid fa-magnifying-glass fa-flip-horizontal dshbd-icon"
+              ></i>
+              <span> Search Data </span>
             </button>
 
             <div class="sub-opt-ctnr"></div>
@@ -1218,7 +1220,103 @@
           <!-- view payroll entry container end-->
         </div>
       </div>
+
+      <div id="search-container" class="bg-light p-5 col-4">
+        <p class="fs-4">
+          Please write your vendor's name, address, cell number to search data!
+        </p>
+        <div class="my-5 search-inp-ctnr col-12 bg-secondary ps-3">
+          <div class="row">
+            <div class="col-9">
+              <input
+                class="w-100 py-2 fs-4"
+                type="text"
+                id="search-input"
+                placeholder="Enter vendor details"
+              />
+            </div>
+            <div class="col-3">
+              <button id="search-btn" class="fs-4 btn btn-primary w-100">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+        <button id="cancel-btn" class="fs-4 mt-3 btn btn-secondary">
+          Cancel
+        </button>
+      </div>
     </div>
+
+    <div class="container text-success py-5 col-12" id="invoice-ctnr">
+      <h1 class="display-5 text-center fw-bold">New Alience Pipe Factroy</h1>
+      <p class="fs-4 fw-bold text-center">
+        We manufacture all types of plastic pipes (1/2 to 4 inches) on our
+        customer's order
+      </p>
+      <p class="fs-4 fw-bold text-center">
+        We located near to Aziz Filling Station, Gullabad.
+      </p>
+
+      <div class="invoice-container">
+        <div class="invoice-header position-relative">
+          <h1>Invoice</h1>
+          <p class="invoice-num fs-4 fw-bold">Bill no: <span>1</span></p>
+        </div>
+
+        <div
+          class="col-12 comp-and-client-details-ctnr d-flex justify-content-between align-items-center"
+        >
+          <div class="company-details-ctnr">
+            <p class="fs-4 fw-bold">New Allience Pipe Factory</p>
+            <p class="fs-5 fw-bold">Gullabad, Mansehra.</p>
+            <p class="fs-5 fw-bold">Nizamuddin : 0345-9345056</p>
+            <p class="fs-5 fw-bold">Irfanuddin : 0300-9071190</p>
+            <p class="fs-5 fw-bold">Shahabuddin : 0341-2244787</p>
+          </div>
+          <div class="customer-details-ctnr">
+            <p class="fs-5 fw-bold">Bill To: <span class="cust-name"></span></p>
+            <p class="fs-5 fw-bold">Address: <span class="cust-name"></span></p>
+            <p class="fs-5 fw-bold">
+              Cell Number: <span class="cust-name"></span>
+            </p>
+          </div>
+        </div>
+
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Item 1</td>
+              <td>2</td>
+              <td>$50</td>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <td>Item 2</td>
+              <td>3</td>
+              <td>$30</td>
+              <td>$90</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="invoice-footer">
+          <p><strong>Total Price:</strong> $190</p>
+          <p><strong>Old Balance:</strong> $50</p>
+          <p><strong>Total Balance:</strong> $240</p>
+        </div>
+      </div>
+    </div>
+
+    <button id="print-invoice">print</button>
 
     <script type="module" src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
