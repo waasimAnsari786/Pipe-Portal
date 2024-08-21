@@ -15,12 +15,6 @@
       crossorigin="anonymous"
     />
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,9 +31,6 @@
     />
 
     <title>Pipe Portal Dashboard</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   </head>
 
   <body class="d-body">
@@ -344,9 +335,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="container" id="add-product-form">
               <h1 class="mt-4 d-form-head">add product</h1>
               <div class="row">
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
@@ -1087,8 +1075,8 @@
 
           <!-- view vendor container -->
           <div class="container slide-ctnr pe-4" id="add-vendor-data-ctnr">
+            <h1 class="my-5 fw-bold">Vendor List</h1>
             <div class="table-responsive">
-              <h1 class="my-5 fw-bold">Vendor List</h1>
               <table class="mt-5 table">
                 <thead>
                   <tr>
@@ -1097,15 +1085,6 @@
                     <th scope="col" class="form-h-row">vendor name</th>
                     <th scope="col" class="form-h-row">address</th>
                     <th scope="col" class="form-h-row">cell num</th>
-                  </tr>
-                </thead>
-
-                <tbody id="add-vendor-added-data-ctnr"></tbody>
-              </table>
-
-              <table class="mt-5 table">
-                <thead>
-                  <tr>
                     <th scope="col" class="form-h-row">product name</th>
                     <th scope="col" class="form-h-row">product size</th>
                     <th scope="col" class="form-h-row">num of bundles</th>
@@ -1115,10 +1094,11 @@
                     <th scope="col" class="form-h-row">amount payable</th>
                     <th scope="col" class="form-h-row">advance payment</th>
                     <th scope="col" class="form-h-row">outstanding payable</th>
+                    <th scope="col" class="form-h-row">buttons</th>
                   </tr>
                 </thead>
 
-                <tbody id="add-vendor-product-added-data-ctnr"></tbody>
+                <tbody id="add-vendor-added-data-ctnr"></tbody>
               </table>
             </div>
           </div>
@@ -1243,6 +1223,13 @@
     <script type="module" src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.rawgit.com/jasonday/printThis/master/printThis.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
       AOS.init();

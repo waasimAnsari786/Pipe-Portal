@@ -253,17 +253,6 @@ const handleOnClick = (targElem, type, btnText) => {
   });
 };
 
-// this function is for printing the invoice
-const printInvoice = () => {
-  // navigateToNextPageFunc("current transaction.html");
-  let getedData = JSON.parse(localStorage.getItem("formsDataAPI") || []);
-  let vendorDetails = getedData["add-vendor-added-data-ctnr"];
-  let vendorTransNProducts = getedData["vendor-transaction-added-data-ctnr"];
-  let invoice = document.querySelector(".invoice-ctnr");
-  let invClientDetailsSec = document.querySelector(".customer-details-ctnr");
-  console.log(invClientDetailsSec);
-};
-
 // this variable is for getting the dashbord's page button's section
 let optCtnr = document.querySelector(".opt-ctnr");
 
@@ -374,11 +363,10 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
   // if i have need of calculate total price, i passed the "IDs" of ("total price" , "price" , "num of bundles")'s input
   // with their targeted elements to the desired function then that unction is passing these arguments to the function named "fetchVariables()"
   // for fetching the targeted inputs
-
   if (targID === "add-product-price") {
     findTotalPrice(
       targElem,
-      "#add-product-form",
+      "#add-vendor-form",
       `#${targID}`,
       "#add-product-num-of-bundles",
       "#add-product-total-price",
@@ -396,7 +384,7 @@ const ctnrFuncOfTotalPriceFunc = (targElem, targID) => {
   } else if (targID === "add-product-advance-payment") {
     findOutstandingAmt(
       targElem,
-      "#add-product-form",
+      "#add-vendor-form",
       `#${targID}`,
       "#add-product-total-price",
       "#add-product-outstanding-payable"
@@ -474,7 +462,7 @@ const editDataFunc = (targElem, mainID, btnID) => {
   });
 
   let btn = document.querySelector(`#${mainID}`).querySelector(`#${btnID}`);
-  btn.setAttribute("id", `${btn.id}-1`);
+  btn.setAttribute("id", `${btnID}-1`);
   if (btn.id === `${btnID}-1`) {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -511,16 +499,12 @@ const editDataFunc = (targElem, mainID, btnID) => {
   }
 };
 // this function holds 2 functions which involed above. i created this function for enhancing the readability
-const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2, mainID3) => {
+const ctnrFuncOfAddedDataFunc = (targElem, mainID, mainID2) => {
   let updatedObj = getAddedDataFunc(targElem, mainID);
-  let updatedObj2 = getAddedDataFunc(targElem, mainID2);
-
   let [newObj, inpsLength, ValArrLength] = updatedObj;
-  let [newObj2, inpsLength2, ValArrLength2] = updatedObj2;
-
-  let ID = document.querySelector(mainID3).id;
-  if (inpsLength === ValArrLength && inpsLength2 === ValArrLength2) {
-    addDataToTable(ID, [newObj, newObj2]);
+  let ID = document.querySelector(mainID2).id;
+  if (inpsLength === ValArrLength) {
+    addDataToTable(ID, newObj);
   } else {
     alert("You can't save empty data!");
     return;
@@ -546,8 +530,7 @@ if (formCtnr) {
       ctnrFuncOfAddedDataFunc(
         formCtnr,
         "#add-vendor-form",
-        "#add-product-form",
-        "#add-vendor-data-ctnr"
+        "#add-vendor-added-data-ctnr"
       );
     } else if (e.target.id === "add-client-save-btn") {
       e.preventDefault();
@@ -564,8 +547,12 @@ if (formCtnr) {
         "#payroll-entry-added-data-ctnr"
       );
     } else if (e.target.classList.contains("edit-add-vendor-added-data-ctnr")) {
-      bringForwAni("add-vendor-form");
-      editDataFunc(e.target, "add-vendor-form", "add-vendor-save-btn");
+      bringForwAni("add-vendor-and-product-form");
+      editDataFunc(
+        e.target,
+        "add-vendor-and-product-form",
+        "add-vendor-save-btn"
+      );
     } else if (
       e.target.classList.contains("edit-add-product-added-data-ctnr")
     ) {
@@ -632,7 +619,7 @@ if (formCtnr) {
 
 // Initialize or retrieve data from local storage
 const formsDataAPI = JSON.parse(localStorage.getItem("formsDataAPI")) || {
-  "add-vendor-data-ctnr": [],
+  "add-vendor-added-data-ctnr": [],
   "add-client-added-data-ctnr": [],
   "payroll-entry-added-data-ctnr": [],
 };
@@ -643,19 +630,10 @@ function isDataPresent(array, newData) {
 }
 
 // Function to add new data and update local storage
-function addDataToTable(key, newDataArr) {
+function addDataToTable(key, newData) {
   const formArray = formsDataAPI[key] || [];
-  let newArr = [];
-  let results = [];
-
-  for (let index = 0; index < newDataArr.length; index++) {
-    let result = isDataPresent(formArray, newDataArr[index]);
-    results.push(result);
-    newArr.push(newDataArr[index]);
-  }
-
-  if (results.every((result) => result === false)) {
-    formArray.push(newArr);
+  if (!isDataPresent(formsDataAPI[key], newData)) {
+    formArray.push(newData);
     formsDataAPI[key] = formArray;
     // Save updated data to local storage
     localStorage.setItem("formsDataAPI", JSON.stringify(formsDataAPI));
@@ -668,57 +646,47 @@ function addDataToTable(key, newDataArr) {
 }
 
 // Function to print data to the table
-
-// Function to print data to the table
 function printDataToTable(key) {
-  console.log();
+  const tbody = document.getElementById(key);
+  tbody.innerHTML = ""; // Clear existing rows
 
-  const prDiv = document.getElementById(key);
-  if (prDiv) {
-    const tbodies = prDiv.querySelectorAll("tbody");
-    tbodies[0].innerHTML = ""; // Clear existing rows
-    tbodies[1].innerHTML = ""; // Clear existing rows
+  const data = formsDataAPI[key];
 
-    const data = formsDataAPI[key];
-
-    // Create a Serial Number TD (first column)
+  data.forEach((item, index) => {
     const row = document.createElement("tr");
+
+    // Create Serial Number TD (first column)
     const serialTd = document.createElement("td");
-    serialTd.textContent = data.length; // Serial number based on length of data array
+    serialTd.textContent = index + 1; // Serial number starting from 1
     row.appendChild(serialTd);
 
-    // Loop through the first object and print it in the first table
-    data.forEach((curArr, index) => {
-      curArr.forEach((curObj, i) => {
-        Object.values(curObj).forEach((element) => {
-          const td = document.createElement("td");
-          td.classList.add("added-data");
-          td.textContent = element;
-          row.appendChild(td);
-          tbodies[i].appendChild(row);
-        });
-      });
+    // Create TDs for each property of the item
+    Object.values(item).forEach((value) => {
+      const td = document.createElement("td");
+      td.classList.add("added-data");
+      td.textContent = value;
+      row.appendChild(td);
     });
 
     // Create Edit and Delete buttons
-    const actionsTr = document.createElement("tr");
-    actionsTr.classList.add("ed-dl-btn-ctnr");
+    const actionsTd = document.createElement("td");
+    actionsTd.classList.add("ed-dl-btn-ctnr");
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.className = `btn btn-warning btn-lg edit-${key}`;
+    editButton.className = `btn btn-warning w-100 edit-${key}`;
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
-    deleteButton.className = `btn btn-danger btn-lg delete-${key}`;
-    deleteButton.addEventListener("click", () => deleteData(key));
+    deleteButton.className = `btn btn-danger w-100 delete-${key}`;
+    deleteButton.addEventListener("click", () => deleteData(key, index));
 
-    actionsTr.appendChild(editButton);
-    actionsTr.appendChild(deleteButton);
+    actionsTd.appendChild(editButton);
+    actionsTd.appendChild(deleteButton);
 
-    // Append the action buttons to the first row (since buttons are shared)
-    prDiv.appendChild(actionsTr);
-  }
+    row.appendChild(actionsTd);
+    tbody.appendChild(row);
+  });
 }
 
 // Function to handle deleting data
@@ -735,7 +703,7 @@ function deleteData(key, index) {
 }
 
 // // Initial table population (optional)
-printDataToTable("add-vendor-data-ctnr");
+printDataToTable("add-vendor-added-data-ctnr");
 // printDataToTable("add-client-added-data-ctnr");
 // printDataToTable("payroll-entry-added-data-ctnr");
 
@@ -756,3 +724,50 @@ printDataToTable("add-vendor-data-ctnr");
 //     });
 //   });
 // });
+function printVendorInvoice(vendorName) {
+  const vendorTransactions = vendors.filter(
+    (v) => v["add-vendor-vendor-name"] === vendorName
+  );
+
+  if (vendorTransactions.length > 0) {
+    // Populate vendor details (taking details from the first transaction)
+    const firstTransaction = vendorTransactions[0];
+    document.getElementById("vendorName").textContent =
+      firstTransaction["add-vendor-vendor-name"];
+    document.getElementById("vendorDate").textContent =
+      firstTransaction["add-vendor-date"];
+    document.getElementById("vendorAddress").textContent =
+      firstTransaction["add-vendor-address"];
+    document.getElementById("vendorCell").textContent =
+      firstTransaction["add-vendor-vendor-cell-num"];
+
+    // Populate product details for each transaction
+    const tbody = document.querySelector("#invoiceTable tbody");
+    tbody.innerHTML = ""; // Clear previous data
+
+    vendorTransactions.forEach((transaction, index) => {
+      const row = document.createElement("tr");
+
+      // Create and append cells for each product attribute
+      [
+        "add-product-product-name",
+        "add-product-product-size",
+        "add-product-num-of-bundles",
+        "add-product-kgs",
+        "add-product-price",
+        "add-product-total-price",
+        "add-product-amount-payable",
+        "add-product-advance-payment",
+        "add-product-outstanding-payable",
+      ].forEach((key) => {
+        const cell = document.createElement("td");
+        cell.textContent = transaction[key];
+        row.appendChild(cell);
+      });
+
+      tbody.appendChild(row);
+    });
+  } else {
+    alert("Vendor not found!");
+  }
+}
